@@ -187,7 +187,7 @@
             </div>
         </section>
 
-        <!-- 6. Ürün Vitrini (Birebir Ürünle Eşleşen Fotoğraflar) -->
+        <!-- 6. Ürün Vitrini (E-Ticaret Katalog Çekimleri) -->
         <section id="urunler" class="space-y-4">
             <div class="flex items-center justify-between">
                 <div>
@@ -199,16 +199,16 @@
                 </span>
             </div>
 
-            <!-- %100 Ürünle Uyumlu Fotoğraflar -->
+            <!-- E-Ticaret Ürün Fotoğrafları (Katalog Tarzı) -->
             @php
                 $productImages = [
                     1 => 'https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=600&q=80', // 4K Smart TV
                     2 => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80', // Kablosuz Kulaklık
                     3 => 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=600&q=80', // Gaming Laptop
                     4 => 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80', // Akıllı Telefon
-                    5 => 'https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=600&q=80', // Gerçek RGB Mekanik Oyuncu Klavyesi!
+                    5 => 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=600&q=80', // RGB Mekanik Oyuncu Klavyesi (Katalog Çekimi)
                     6 => 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80', // Erkek Düğmeli Pamuklu Gömlek
-                    7 => 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80', // Gerçek Kapüşonlu Oversize Kadın Sweatshirt!
+                    7 => 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=80', // Düz Beyaz Kapüşonlu Sweatshirt (Katalog Ürün Çekimi)
                     8 => 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80', // Kırmızı Koşu Ayakkabısı (Sneaker)
                 ];
                 $fallbackImages = [
@@ -227,11 +227,11 @@
                     @endphp
                     <div class="bg-white border border-slate-200/80 hover:border-indigo-300 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/5 flex flex-col justify-between group">
                         
-                        <!-- Gerçek Ürün Fotoğrafı -->
-                        <div class="relative bg-slate-100 aspect-square overflow-hidden flex items-center justify-center">
+                        <!-- Katalog Ürün Fotoğrafı -->
+                        <div class="relative bg-slate-50 aspect-square overflow-hidden flex items-center justify-center p-3">
                             <img src="{{ $imageUrl }}" 
                                  alt="{{ $product->name }}" 
-                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                                 class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
 
                             @if($discountPrice)
                                 <span class="absolute top-3 left-3 bg-rose-600 text-white text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider shadow-md">
