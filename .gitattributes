@@ -1,0 +1,18 @@
+# Set default behavior to automatically normalize line endings.
+* text=auto
+
+# PHP files should use LF to avoid syntax issues across Linux and Windows
+*.php text eol=lf
+*.sh text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary

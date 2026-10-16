@@ -1,0 +1,237 @@
+// PazarYeri - E-Ticaret Pazaryeri ER Diyagramı (dbdiagram.io)
+// dbdiagram.io sitesine doğrudan yapıştırarak görsel diyagramı oluşturabilirsiniz.
+
+Table users {
+  id bigint [pk, increment]
+  name varchar
+  email varchar [unique]
+  phone varchar
+  email_verified_at timestamp
+  password varchar
+  remember_token varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table addresses {
+  id bigint [pk, increment]
+  user_id bigint [ref: > users.id]
+  title varchar
+  city varchar
+  district varchar
+  full_address text
+  is_default boolean
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table sellers {
+  id bigint [pk, increment]
+  user_id bigint [unique, ref: - users.id]
+  store_name varchar
+  slug varchar [unique]
+  tax_number varchar
+  iban varchar
+  status varchar // beklemede, onayli, reddedildi
+  commission_rate decimal(5,2)
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table categories {
+  id bigint [pk, increment]
+  parent_id bigint [ref: > categories.id]
+  name varchar
+  slug varchar [unique]
+  commission_rate decimal(5,2)
+  sort integer
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table brands {
+  id bigint [pk, increment]
+  name varchar
+  slug varchar [unique]
+  logo varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table products {
+  id bigint [pk, increment]
+  seller_id bigint [ref: > sellers.id]
+  category_id bigint [ref: > categories.id]
+  brand_id bigint [ref: > brands.id]
+  name varchar
+  slug varchar [unique]
+  description text
+  status varchar // taslak, onay_bekliyor, aktif, pasif
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table product_variants {
+  id bigint [pk, increment]
+  product_id bigint [ref: > products.id]
+  sku varchar [unique]
+  color varchar
+  size varchar
+  price decimal(10,2) // Kural 1: Daima decimal
+  discount_price decimal(10,2)
+  stock integer // Kural 3: Stok burada tutulur
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table media {
+  id bigint [pk, increment]
+  model_type varchar
+  model_id bigint
+  uuid uuid [unique]
+  collection_name varchar
+  name varchar
+  file_name varchar
+  mime_type varchar
+  disk varchar
+  size bigint
+  manipulations json
+  custom_properties json
+  responsive_images json
+  order_column integer
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table carts {
+  id bigint [pk, increment]
+  user_id bigint [ref: > users.id]
+  session_id varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table cart_items {
+  id bigint [pk, increment]
+  cart_id bigint [ref: > carts.id]
+  variant_id bigint [ref: > product_variants.id]
+  quantity integer
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table favorites {
+  id bigint [pk, increment]
+  user_id bigint [ref: > users.id]
+  product_id bigint [ref: > products.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table coupons {
+  id bigint [pk, increment]
+  code varchar [unique]
+  type varchar // yuzde, tutar
+  value decimal(10,2)
+  min_total decimal(10,2)
+  starts_at timestamp
+  ends_at timestamp
+  usage_limit integer
+  used_count integer
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table orders {
+  id bigint [pk, increment]
+  user_id bigint [ref: > users.id]
+  order_number varchar [unique]
+  address json // Kural 2: Siparis anindaki adres kopyasi
+  subtotal decimal(10,2)
+  discount decimal(10,2)
+  shipping decimal(10,2)
+  total decimal(10,2)
+  payment_status varchar // beklemede, odendi, basarisiz, iptal
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table sub_orders {
+  id bigint [pk, increment]
+  order_id bigint [ref: > orders.id]
+  seller_id bigint [ref: > sellers.id]
+  status varchar // onay_bekliyor, hazirlaniyor, kargoya_verildi, teslim_edildi, iptal, iade
+  cargo_company varchar
+  tracking_number varchar
+  commission_amount decimal(10,2)
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table order_items {
+  id bigint [pk, increment]
+  sub_order_id bigint [ref: > sub_orders.id]
+  variant_id bigint [ref: > product_variants.id]
+  product_name varchar // Kural 2: Siparis anindaki urun adi
+  price decimal(10,2) // Kural 1 & 2: Siparis anindaki birim fiyat
+  quantity integer
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table payments {
+  id bigint [pk, increment]
+  order_id bigint [ref: > orders.id]
+  provider varchar // iyzico
+  transaction_id varchar
+  amount decimal(10,2)
+  status varchar
+  raw_response json
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table returns {
+  id bigint [pk, increment]
+  order_item_id bigint [ref: > order_items.id]
+  reason text
+  status varchar // beklemede, onaylandi, reddedildi
+  refund_amount decimal(10,2)
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table reviews {
+  id bigint [pk, increment]
+  user_id bigint [ref: > users.id]
+  product_id bigint [ref: > products.id]
+  order_item_id bigint [ref: > order_items.id]
+  rating integer
+  comment text
+  is_approved boolean
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table seller_payouts {
+  id bigint [pk, increment]
+  seller_id bigint [ref: > sellers.id]
+  period varchar
+  gross decimal(10,2)
+  commission decimal(10,2)
+  net decimal(10,2)
+  paid_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table banners {
+  id bigint [pk, increment]
+  title varchar
+  image varchar
+  url varchar
+  sort integer
+  is_active boolean
+  created_at timestamp
+  updated_at timestamp
+}
