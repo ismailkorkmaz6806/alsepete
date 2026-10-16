@@ -1,107 +1,114 @@
-# 🎯 1. Hafta Sunumunda Ne Yapacaksın? (Adım Adım Kopya Kağıdı)
+# 🎯 1. Hafta Sunumunda Ne Yapacaksın? (Adım Adım Tam Rehber)
 
-Bu belge, hocanın PDF şartnamesindeki 1. Hafta hedeflerine, kabul kriterlerine ve teknoloji yığınına **%100 uygun olarak** hazırlanmıştır.
-
----
-
-## 🛠️ Kullandığımız Teknoloji Yığını (Hocaya Söyleyeceğin Liste)
-*Hoca "Hangi teknolojileri kullandınız?" diye sorduğunda şartnamedeki bu tabloyu söyleyeceksin:*
-
-| Katman | Kullandığımız Teknoloji | Açıklama |
-| :--- | :--- | :--- |
-| **Dil ve Çatı** | **PHP 8.3 + Laravel 13** | Şartnamenin zorunlu seçimi |
-| **Veritabanı** | **MySQL 8** | 20 tablonun tamamı MySQL 8 üzerinde |
-| **Arayüz (Frontend)** | **Blade + Livewire + Tailwind CSS** | Şartnamenin zorunlu seçimi |
-| **Kimlik Doğrulama** | **Laravel Breeze** | Resmi starter kit |
-| **Yetkilendirme (Roller)** | **spatie/laravel-permission** | Admin, Seller, Customer rolleri |
-| **Görsel Yönetimi** | **spatie/laravel-medialibrary** | Çoklu ürün fotoğrafları için |
-| **Test Çatısı** | **Pest PHP** | Modern birim ve özellik testleri |
-| **Kod Kalitesi** | **Laravel Pint** | PSR-12 ve Laravel kod standardı |
-| **ER Diyagramı** | **dbdiagram.io (DBML)** | 20 tablonun ilişkisel şeması |
+Bu belge, 1. Hafta sunumunda hocanın karşısına geçtiğinde **hem teknolojileri derinlemesine açıklayabilmen hem de adımları sırasıyla gösterebilmen için** hazırlanmıştır.
 
 ---
 
-## 📊 Veritabanı Diyagramı Şartnameye Uygun mu?
-**Evet, %100 birebir uygundur!** 
+## 🧠 BÖLÜM 1: Kullandığımız Teknolojiler Nedir ve Ne İşe Yarar? (Hocaya Anlatım)
 
-PDF'in 3. ve 4. sayfalarındaki zorunlu 20 tablonun tamamı `docs/er-diagram.dbml` dosyasında çizilmiştir:
-1. `users`, 2. `addresses`, 3. `sellers`, 4. `categories`, 5. `brands`, 6. `products`, 7. `product_variants`, 8. `media`, 9. `carts/cart_items`, 10. `favorites`, 11. `coupons`, 12. `orders`, 13. `sub_orders`, 14. `order_items`, 15. `payments`, 16. `returns`, 17. `reviews`, 18. `seller_payouts`, 19. `banners`, 20. `spatie permission tabloları`.
+Hoca *"Neden bu teknolojileri seçtiniz, bunlar ne işe yarıyor?"* diye sorduğunda anlatacağın detaylı açıklamalar:
 
-Ve şartnamedeki 3 zorunlu kural işlenmiştir:
-- Fiyatlar `decimal(10,2)` (asla float değil).
-- Sipariş anındaki ürün adı, fiyat ve adres kopyalandı (`snapshot`).
-- Stok varyant tablosunda tutuldu.
+### 1. Laravel 13 Nedir ve Ne İşe Yarar?
+> **Hocaya Anlatım:**
+> *"Hocam, Laravel PHP dünyasının en popüler ve en güçlü açık kaynaklı web uygulama çatısıdır (framework). 
+> 
+> Düz (saf) PHP yazmak yerine Laravel kullanmamızın sebepleri şunlardır:
+> - **MVC Mimarisi:** Kodu Model (Veri/Veritabanı), View (Arayüz/Tasarım) ve Controller (İş Mantığı) olarak ayırır; projenin binlerce satırda bile düzenli kalmasını sağlar.
+> - **Eloquent ORM:** Veritabanına karmaşık SQL sorguları yazmak yerine `$urun->variants` veya `$user->orders` gibi nesne tabanlı (Object-Oriented) ve son derece hızlı erişim sağlar.
+> - **Artisan Komut Motoru:** Terminalden tek komutla migration'ları çalıştırmamızı (`php artisan migrate`), modeller üretmemizi ve yerel geliştirme sunucusunu (`php artisan serve`) ayağa kaldırmamızı sağlar.
+> - **Dahili Güvenlik:** SQL Injection, XSS (siteler arası betik çalıştırma) ve CSRF saldırılarına karşı otomatik koruma kalkanıyla gelir.
+> - **Pazaryeri İçin Uygunluğu:** Büyük ölçekli e-ticaret sitelerinin ihtiyaç duyduğu kuyruk yönetimi (Queue), bildirimler (Notifications) ve zamanlanmış görevleri (Cron) kutudan çıktığı gibi destekler."*
 
 ---
 
-## 🖥️ 1. AŞAMA: Sunumdan 2 Dakika Önce Bilgisayarında Hazır Olacaklar
+### 2. PHP 8.3 Nedir?
+> **Hocaya Anlatım:**
+> *"PHP'nin en güncel ve en hızlı kararlı sürümlerinden biridir. Eski PHP sürümlerine göre JIT (Just-In-Time) derleyicisi sayesinde %30 daha hızlı çalışır, bellek tüketimi çok düşüktür ve tip güvenliği (Typed Properties) sunar."*
 
-1. **Terminal Açık Olsun:**
-   ```bash
-   cd ~/Desktop/pazaryeri
-   php artisan serve
-   ```
-   *(Bu terminal arkada açık kalsın).*
+---
 
-2. **Google Chrome'da 3 Sekme Açık Olsun:**
-   - **Sekme 1:** `http://127.0.0.1:8000` (Projenin açık ana sayfası)
+### 3. MySQL 8 Nedir?
+> **Hocaya Anlatım:**
+> *"Dünyanın en güvenilir ilişkisel veritabanı yönetim sistemidir (RDBMS). 
+> - Pazaryerimizde 20 tablonun birbirine Foreign Key (Yabancı Anahtar) ile bağlanmasını ve ilişkisel bütünlüğü (Referential Integrity) sağlar.
+> - ACID standartlarına tam uyar; yani ödeme anında para çekilip stok düşülürken bir hata olursa işlemi geri alarak (Rollback) verinin bozulmasını engeller."*
+
+---
+
+### 4. Blade ve Tailwind CSS Nedir?
+> **Hocaya Anlatım:**
+> - **Blade:** Laravel'in şablon motorudur. HTML içerisine temiz PHP kodları ve döngüler (`@foreach`, `@if`) yazmamızı sağlar, kodu optimize ederek düz PHP'den bile hızlı derler.
+> - **Tailwind CSS:** Modern 'Utility-first' CSS kütüphanesidir. Hazır hantal stiller yerine mikro sınıflarla mobil uyumlu (Responsive), esnek ve modern arayüzler tasarlamamızı sağlar.
+
+---
+
+### 5. Livewire Nedir?
+> **Hocaya Anlatım:**
+> *"React veya Vue gibi karmaşık JavaScript kütüphanelerine ve API yazma zahmetine gerek kalmadan; doğrudan Laravel içinde sayfayı yenilemeden dinamik (canlı) çalışan bileşenler üretmemizi sağlar (Örneğin 3. haftada varyant seçildiğinde fiyatın anında değişmesi Livewire ile yapılacaktır)."*
+
+---
+
+### 6. Spatie/Laravel-Permission Nedir?
+> **Hocaya Anlatım:**
+> *"Sektör standardı yetkilendirme paketidir. Kullanıcılara `admin`, `seller` ve `customer` rollerini atamamızı ve middleware üzerinden sayfaları korumamızı sağlar."*
+
+---
+
+### 7. Spatie/Laravel-MediaLibrary Nedir?
+> **Hocaya Anlatım:**
+> *"Ürünlerin çoklu fotoğraflarını yüklemek, otomatik olarak küçük önizleme (thumbnail) boyutlarını üretmek ve bunları veritabanıyla ilişkilendirmek için kullandığımız görsel yönetim kütüphanesidir."*
+
+---
+
+### 8. Pest PHP ve Laravel Pint Nedir?
+> **Hocaya Anlatım:**
+> - **Pest:** PHPUnit üzerine kurulu, insan diline çok yakın ve son derece modern bir test çatısıdır.
+> - **Laravel Pint:** Ekip üyelerinin yazdığı kodları otomatik olarak tarayıp PSR-12 uluslararası kod standartlarına göre temizleyen ve hizalayan kod kalitesi aracıdır.
+
+---
+
+### 9. dbdiagram.io (DBML) Nedir?
+> **Hocaya Anlatım:**
+> *"Veritabanı tablolarını ve aralarındaki `1-N`, `1-1`, `N-N` ilişkilerini kodla (DBML) tanımlayıp görselleştiren, şartnamede hocamızın da önerdiği profesyonel ER diyagramı aracıdır."*
+
+---
+
+## 🖥️ BÖLÜM 2: Sunum Öncesi Hazırlık (2 Dakika Önce)
+
+1. **Terminalde:** `cd ~/Desktop/pazaryeri && php artisan serve` çalışır durumda kalsın.
+2. **Google Chrome'da 3 Sekme Aç:**
+   - **Sekme 1:** `http://127.0.0.1:8000` (Projenin canlı ana sayfası)
    - **Sekme 2:** `https://dbdiagram.io` (ER Diyagramı)
    - **Sekme 3:** GitHub reponuz
 
 ---
 
-## 🎤 2. AŞAMA: Sunum Başlayınca Sırasıyla Ne Yapacaksın? (Konuşma Senaryosu)
+## 🎤 BÖLÜM 3: Sunum Akışı ve Konuşma Senaryosu
 
-### 1. Adım: Projeyi ve Teknolojileri Tanıt (1.5 Dakika)
-*Ekranda ana sayfa açıkken hocaya dön ve şunu söyle:*
-> *"Hocam merhaba. Biz projemizde Amazon ve Hepsiburada mantığında çalışan, çok satıcılı bir E-Ticaret Pazaryeri platformu geliştiriyoruz.*
+### 1. Adım: Proje & Teknolojiler (1.5 Dakika)
+> *"Hocam merhaba. Amazon ve Hepsiburada mimarisinde çok satıcılı bir E-Ticaret Pazaryeri geliştiriyoruz. 
 > 
-> *Teknoloji yığını olarak şartnamenin zorunlu kıldığı **PHP 8.3, Laravel 13, MySQL 8, Blade, Livewire ve Tailwind CSS** kullandık. Yetkilendirmede `spatie/laravel-permission`, testlerde ise `Pest` kullanıyoruz.*
+> Teknoloji yığınımızda şartnamenin zorunlu kıldığı **PHP 8.3, Laravel 13 ve MySQL 8** kullandık. Arayüzde **Blade, Livewire ve Tailwind CSS**, yetkilendirmede **Spatie Permission**, testlerde ise **Pest** kullanıyoruz.
 > 
-> *Pazaryerimizin özü şudur: Bir müşteri tek bir sepette 3 farklı satıcıdan ürün aldığında sistem 1 ana sipariş (`orders`) ve satıcı başına 1 alt sipariş (`sub_orders`) oluşturur. Her satıcı sadece kendi siparişini görür ve kargolar.*
-> 
-> *1. haftadaki görevimiz bu mimarinin veritabanını tasarlamak, 20 tabloyu kurmak ve kabul kriteri olan örnek verileri üretmekti."*
+> Sistemin özü: Müşteri tek sepette 3 farklı satıcıdan ürün aldığında sistem 1 ana sipariş (`orders`) ve satıcı başına 3 alt sipariş (`sub_orders`) üretir. Her satıcı sadece kendi siparişini görür ve kargolar. 1. haftada bu mimarinin veritabanını ve altyapısını kurduk."*
 
 ---
 
-### 2. Adım: ER Diyagramını Göster (2 Dakika)
-*Chrome'da `dbdiagram.io` sekmesine tıkla, renkli tabloları göstererek şunu söyle:*
-> *"Hocam, şartnamedeki zorunlu 20 tablonun tamamını eksiksiz modelledik ve dbdiagram.io üzerinde çizdik. Ayrıca dökümandaki 3 zorunlu kuralı veritabanına uyguladık:*
-> 1. *Kuruş yuvarlama hatası olmasın diye tüm fiyatlar `decimal(10,2)` tanımlandı.*
-> 2. *Satıcı ürün fiyatını sonradan değiştirirse eski sipariş bozulmasın diye; sipariş anındaki ürün adı, fiyat ve adres sipariş tablolarına anlık kopya (`snapshot`) olarak alındı.*
-> 3. *Stok en alt kırılım olan `product_variants` tablosunda tutuldu."*
+### 2. Adım: ER Diyagramı ve 3 Zorunlu Kural (2 Dakika)
+*`dbdiagram.io` sekmesini göster:*
+> *"Şartnamedeki 20 tablonun tamamını eksiksiz modelledik ve 3 zorunlu kuralı uyguladık:
+> 1. **Ondalık Fiyat:** Kuruş yuvarlama hatası olmasın diye fiyatlar `decimal(10,2)` tanımlandı.
+> 2. **Snapshot Kuralı:** Satıcı ürün fiyatını veya adını sonradan değiştirirse eski siparişler bozulmasın diye sipariş anındaki değerler sipariş tablolarına kopyalandı.
+> 3. **Stok Kuralı:** Stok varyant tablosunda tutuldu."*
 
 ---
 
 ### 3. Adım: Canlı Sitedeki Verileri Göster (2 Dakika)
-*Tekrar `http://127.0.0.1:8000` sekmesine geç, sayfayı aşağı kaydırarak ürünleri göster:*
-> *"Hocam gördüğünüz gibi ana sayfamız doğrudan MySQL veritabanımıza bağlıdır:*
-> - *1. Haftanın kabul kriteri olan **15 Hiyerarşik Kategori** üst menüde yer alıyor.*
-> - *Aşağıda gördüğünüz ürünler, satıcı mağaza adları (`TeknoMarket`, `ModaTrend` vb.) ve `TL` fiyatları doğrudan MySQL veritabanımızdan çekilmektedir.*
-> - *Seeder'ımız şartnamenin istediği gibi **1 admin, 5 satıcı, 20 müşteri, 15 kategori ve 100 ürünü** eksiksiz oluşturmuştur."*
+*`http://127.0.0.1:8000` sayfasına geç, ürünleri göster:*
+> *"Gördüğünüz gibi ana sayfamız doğrudan MySQL veritabanına bağlıdır. 1. haftanın kabul kriteri olan **15 Hiyerarşik Kategori**, ürünler, onaylı satıcı mağaza isimleri (`TeknoMarket`, `ModaTrend`) ve TL fiyatları az önce veritabanına aktardığımız gerçek verilerdir. 
+> Seeder'ımız **1 admin, 5 satıcı, 20 müşteri, 15 kategori ve 100 ürünü** eksiksiz oluşturmuştur."*
 
 ---
 
 ### 4. Adım: Çapraz Platform ve Kapanış (1 Dakika)
-*VS Code veya dosya yöneticisinde proje klasörünü göster:*
-> *"Hocam kod mimarimizde:*
-> - *Modellerimiz arasında `hasMany` ve `belongsTo` ilişkileri kuruldu.*
-> - *Biz projeyi Linux'ta geliştirdik ancak sizin Windows üzerinde (Herd, Laragon veya XAMPP ile) hatasız çalıştırabilmeniz için `.gitattributes` ile satır sonlarını normalize ettik ve PSR-4 standartlarına uyduk.*
-> - *Kurulum adımları `README.md` dosyamızda detaylıca yazmaktadır.*
-> - *Git üzerinde `main` ve `develop` dallarımızı ayırdık ve 1. hafta teslimatımızı `v0.1` olarak etiketledik. Teşekkürler!"*
-
----
-
-## ❓ 3. AŞAMA: Hoca Ne Sorabilir? (Hazır Cevaplar)
-
-- **Hoca Sorarsa:** *"Veritabanında kaç tablo var?"*
-  - **Cevabın:** *"Şartnamede zorunlu tuttuğunuz 20 tablonun tamamı var hocam (users, sellers, categories, products, variants, orders, sub_orders, media, carts, cart_items, coupons vb.)."*
-
-- **Hoca Sorarsa:** *"Neden float değil de decimal yaptınız?"*
-  - **Cevabın:** *"Float kayan noktalı hesaplama yaptığı için finansal işlemlerde kuruş yuvarlama hatası verir. E-ticarette finansal standart daima decimal(10,2)'dir."*
-
-- **Hoca Sorarsa:** *"Siparişte adres neden JSON tutuluyor?"*
-  - **Cevabın:** *"Müşteri 1 sene sonra adres defterindeki adresini silse veya değiştirse bile geçmiş siparişin faturasındaki teslimat adresi bozulmasın diye (Snapshot kuralı)."*
-
-- **Hoca Sorarsa:** *"Canlı test edebilir miyiz?"*
-  - **Cevabın:** *"Tabii ki hocam, terminalde `php artisan migrate:fresh --seed` komutunu çalıştırırsanız tüm tablolar sıfırdan hatasız kurulur ve 100 ürünle dolar."*
+> *"Biz projeyi Linux'ta geliştirdik ancak sizin Windows üzerinde (Herd veya Laragon ile) hatasız çalıştırabilmeniz için `.gitattributes` ile satır sonlarını normalize ettik ve PSR-4 standartlarına uyduk. README dosyamızda tüm adımlar hazırdır. Teşekkürler!"*
