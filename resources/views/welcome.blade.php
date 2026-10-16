@@ -192,11 +192,11 @@
             <div class="flex items-center justify-between">
                 <div>
                     <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">Günün Fırsatları & Çok Satanlar</h2>
-                    <p class="text-xs text-slate-500">Veritabanından çekilen 100 üründen seçilenler</p>
+                    <p class="text-xs text-slate-500">Sizin için özenle seçilen en popüler ürünler</p>
                 </div>
-                <span class="text-xs font-bold text-slate-500 bg-white px-3 py-1 rounded-full border border-slate-200">
-                    Ondalık Fiyat Standardı (decimal 10,2)
-                </span>
+                <a href="#urunler" class="text-xs font-bold text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-3.5 py-1.5 rounded-full transition-colors inline-flex items-center gap-1.5">
+                    Tümünü Gör <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </a>
             </div>
 
             <!-- E-Ticaret Ürün Fotoğrafları (Katalog Tarzı) -->
@@ -301,19 +301,21 @@
                 </div>
             </div>
             <div>
-                <h4 class="font-bold text-slate-900 mb-3 text-sm">Hızlı Bağlantılar</h4>
-                <ul class="space-y-2">
-                    <li><a href="/admin" class="hover:text-indigo-600 transition-colors">Yönetici Paneli (/admin)</a></li>
-                    <li><a href="/satici" class="hover:text-indigo-600 transition-colors">Satıcı Paneli (/satici)</a></li>
-                    <li><a href="/hesabim" class="hover:text-indigo-600 transition-colors">Müşteri Hesabı (/hesabim)</a></li>
+                <h4 class="font-bold text-slate-900 mb-3 text-sm">Kurumsal</h4>
+                <ul class="space-y-2 text-slate-500">
+                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Hakkımızda</a></li>
+                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Kariyer & İletişim</a></li>
+                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Gizlilik & Güvenlik Politikası</a></li>
+                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Mesafeli Satış Sözleşmesi</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold text-slate-900 mb-3 text-sm">Mimari Standartlar</h4>
-                <ul class="space-y-2">
-                    <li><span class="text-slate-600">PHP 8.3 + Laravel 13</span></li>
-                    <li><span class="text-slate-600">Ondalık Fiyat (decimal 10,2)</span></li>
-                    <li><span class="text-slate-600">Alt Sipariş (sub_orders)</span></li>
+                <h4 class="font-bold text-slate-900 mb-3 text-sm">Müşteri Hizmetleri</h4>
+                <ul class="space-y-2 text-slate-500">
+                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Sıkça Sorulan Sorular</a></li>
+                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Canlı Yardım & Destek</a></li>
+                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Kolay İade & Değişim</a></li>
+                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Kargo & Teslimat Takibi</a></li>
                 </ul>
             </div>
             <div>
