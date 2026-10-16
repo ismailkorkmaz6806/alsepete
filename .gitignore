@@ -32,3 +32,5 @@ ehthumbs.db
 Thumbs.db
 desktop.ini
 $RECYCLE.BIN/
+*.sqlite
+*.sqlite-journal
