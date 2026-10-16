@@ -123,9 +123,8 @@
     <!-- 4. Ana İçerik -->
     <main class="max-w-7xl mx-auto px-4 py-8 space-y-12 flex-1 w-full">
 
-        <!-- Luminous Hero Banner (Canlı & Ferah Gradyan) -->
+        <!-- Luminous Hero Banner -->
         <section class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-indigo-600 via-blue-600 to-sky-500 text-white p-8 md:p-14 shadow-xl shadow-indigo-500/10">
-            <!-- Arka Plan Dekoratif Işıklar -->
             <div class="absolute -right-10 -bottom-10 w-72 h-72 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
             <div class="absolute right-1/3 -top-10 w-48 h-48 bg-sky-300/20 rounded-full blur-xl pointer-events-none"></div>
 
@@ -155,7 +154,7 @@
             </div>
         </section>
 
-        <!-- 5. Kategori Kartları (Ferah Beyaz Kartlar & Pastel İkonlar) -->
+        <!-- 5. Kategori Kartları -->
         <section class="space-y-4">
             <div class="flex items-center justify-between">
                 <div>
@@ -188,7 +187,7 @@
             </div>
         </section>
 
-        <!-- 6. Ürün Vitrini (Açık, Net, Canlı) -->
+        <!-- 6. Ürün Vitrini (Gerçek Ürün Fotoğrafları ile!) -->
         <section id="urunler" class="space-y-4">
             <div class="flex items-center justify-between">
                 <div>
@@ -200,28 +199,48 @@
                 </span>
             </div>
 
+            <!-- Ürün Görselleri Eşleştirme Haritası -->
+            @php
+                $productImages = [
+                    1 => 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=600&q=80', // TV
+                    2 => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80', // Kulaklık
+                    3 => 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=600&q=80', // Gaming Laptop
+                    4 => 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80', // Akıllı Telefon
+                    5 => 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80', // Mekanik Klavye
+                    6 => 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80', // Erkek Gömlek
+                    7 => 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80', // Kadın Sweatshirt
+                    8 => 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80', // Koşu Ayakkabısı
+                ];
+                $fallbackImages = [
+                    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80', // Saat
+                    'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=600&q=80', // Parfüm
+                    'https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=600&q=80', // Gözlük
+                ];
+            @endphp
+
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                @foreach($products as $product)
+                @foreach($products as $index => $product)
                     @php
                         $firstVariant = $product->variants->first();
                         $price = $firstVariant ? $firstVariant->price : 0;
                         $discountPrice = $firstVariant ? $firstVariant->discount_price : null;
+                        $imageUrl = $productImages[$index + 1] ?? $fallbackImages[$index % count($fallbackImages)];
                     @endphp
                     <div class="bg-white border border-slate-200/80 hover:border-indigo-300 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/5 flex flex-col justify-between group">
                         
-                        <!-- Görsel Alanı -->
-                        <div class="relative bg-slate-50 aspect-square flex items-center justify-center p-6 border-b border-slate-100 overflow-hidden">
-                            <div class="w-20 h-20 rounded-2xl bg-white border border-slate-200/80 flex items-center justify-center text-slate-400 group-hover:scale-110 group-hover:text-indigo-600 group-hover:border-indigo-200 transition-all duration-300 shadow-sm">
-                                <i class="fa-solid fa-box-open text-3xl"></i>
-                            </div>
+                        <!-- Gerçek Ürün Fotoğrafı Alanı -->
+                        <div class="relative bg-slate-100 aspect-square overflow-hidden flex items-center justify-center">
+                            <img src="{{ $imageUrl }}" 
+                                 alt="{{ $product->name }}" 
+                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
 
                             @if($discountPrice)
-                                <span class="absolute top-3 left-3 bg-rose-500 text-white text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider shadow-sm">
-                                    İndirim
+                                <span class="absolute top-3 left-3 bg-rose-600 text-white text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider shadow-md">
+                                    Fırsat
                                 </span>
                             @endif
 
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-xl bg-white/90 hover:bg-rose-50 text-slate-400 hover:text-rose-500 border border-slate-200/80 flex items-center justify-center transition-colors shadow-sm">
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-xl bg-white/90 hover:bg-white text-slate-500 hover:text-rose-500 flex items-center justify-center transition-colors shadow-sm">
                                 <i class="fa-regular fa-heart text-xs"></i>
                             </button>
                         </div>
@@ -251,7 +270,7 @@
                                         <span class="text-lg font-black text-slate-900 tracking-tight">{{ number_format($price, 2, ',', '.') }} <span class="text-xs font-semibold text-indigo-600">TL</span></span>
                                     @endif
                                 </div>
-                                <button class="bg-indigo-50 hover:bg-indigo-600 text-indigo-600 hover:text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+                                <button class="bg-indigo-50 hover:bg-indigo-600 text-indigo-600 hover:text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 hover:scale-105 shadow-sm">
                                     <i class="fa-solid fa-plus text-[10px]"></i> Ekle
                                 </button>
                             </div>
@@ -263,7 +282,7 @@
         </section>
     </main>
 
-    <!-- 7. Footer (Açık, Temiz ve Kurumsal) -->
+    <!-- 7. Footer -->
     <footer class="border-t border-slate-200/80 bg-white mt-20 text-slate-500 text-xs">
         <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
             <div class="space-y-3">
