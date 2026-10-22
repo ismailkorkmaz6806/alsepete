@@ -34,3 +34,8 @@ desktop.ini
 $RECYCLE.BIN/
 *.sqlite
 *.sqlite-journal
+
+# Sunum ve Kisisel Notlar
+SUNUMDA_YAPILACAKLAR.md
+docs/SUNUMDA_YAPILACAKLAR.md
+*sunum*
