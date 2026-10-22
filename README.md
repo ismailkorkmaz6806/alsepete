@@ -100,20 +100,12 @@ Amazon ve Hepsiburada iş modeline dayalı, çok satıcılı, modern bir Laravel
 
 ## 👥 Hafta 1 Üretilen Örnek (Seed) Veriler
 
-`php artisan migrate:fresh --seed` komutu çalıştırıldığında şartnamedeki 1. hafta kabul kriterlerine uygun olarak aşağıdaki veritabanı kayıtları otomatik üretilir:
-- **1 Admin Kullanıcı Kaydı**
-  - E-posta: `admin@pazaryeri.com`
-  - Rol: `admin` *(Hafta 2'de `/admin` paneli yetkilendirmesinde kullanılacaktır)*
-- **5 Satıcı Hesabı**
-  - E-postalar: `satici1@pazaryeri.com` ... `satici5@pazaryeri.com`
-  - Rol: `seller` *(Hafta 2'de `/satici` mağaza paneli yetkilendirmesinde kullanılacaktır)*
-- **20 Müşteri Hesabı**
-  - E-postalar: `musteri1@pazaryeri.com` ... `musteri20@pazaryeri.com`
-  - Rol: `customer`
-- **15 Hiyerarşik Kategori** (Elektronik, Moda, Ev & Yaşam, Spor, Kitap ve alt kategorileri)
-- **100 Ürün ve 200 Varyant** (Gerçekçi stoklar, renk ve bedenler, `decimal(10,2)` fiyatlar)
-
-> **Not:** Kullanıcı kimlik doğrulama arayüzü (Login / Register ekranları) ve rol bazlı panel koruma middleware'leri (`/admin`, `/satici`) **Hafta 2** takviminde yer almaktadır. Hafta 1 kapsamında bu kullanıcıların veritabanı şeması, rolleri ve seed verileri eksiksiz hazırlanmıştır.
+`php artisan migrate:fresh --seed` komutu çalıştırıldığında şartnamedeki 1. hafta kabul kriterlerine uygun olarak veritabanına otomatik yüklenen veriler:
+- **1 Admin** (Yönetici yetkili kullanıcı kaydı)
+- **5 Satıcı** (Onaylı mağaza profilleri)
+- **20 Müşteri** (Kullanıcı kayıtları ve örnek adresler)
+- **15 Hiyerarşik Kategori** (Elektronik, Moda, Ev & Yaşam, Spor vb. ana ve alt kategoriler)
+- **100 Ürün ve 200 Varyant** (Gerçekçi stok adetleri, renk/beden seçenekleri, `decimal(10,2)` formatında fiyatlar)
 
 ---
 
