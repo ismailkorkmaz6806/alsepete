@@ -11,6 +11,9 @@ test('email verification screen can be rendered', function () {
     $response = $this->actingAs($user)->get('/verify-email');
 
     $response->assertStatus(200);
+    $response->assertSee('Kaydolduğunuz için teşekkür ederiz');
+    $response->assertSee('Doğrulama E-Postasını Tekrar Gönder');
+    $response->assertSee('Çıkış Yap');
 });
 
 test('email can be verified', function () {
