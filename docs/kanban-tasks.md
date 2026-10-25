@@ -13,21 +13,22 @@ Bu dosyadaki görevleri GitHub reponuzda **Projects -> New Project -> Board (Kan
 - [x] Ana sayfa wireframe tasarım dokümanını hazırla
 - [x] README kurulum kılavuzunu (Linux & Windows) hazırla
 
-### Sütun 2: Hafta 2 (Kimlik Doğrulama, Roller ve Kategoriler)
-- [ ] Breeze / Livewire starter kit kurulumu
-- [ ] spatie/laravel-permission rollerini aktifleştir (admin, seller, customer)
-- [ ] Rol bazlı middleware yaz (/admin yalnızca admin, /satici yalnızca onaylı satıcı)
-- [ ] Admin için Kategori CRUD (alt kategori desteği, slug, sıralama)
-- [ ] Ortak layout: Header, Arama kutusu, Mega menü, Footer
-- [ ] Form doğrulama mesajlarını Türkçeleştir (lang/tr)
+### Sütun 2: Hafta 2 (Kimlik Doğrulama, Roller ve Kategoriler) [DONE]
+- [x] Breeze / Livewire starter kit kurulumu (Giriş/Kayıt arayüzleri)
+- [x] spatie/laravel-permission rollerini aktifleştir (admin, seller, customer)
+- [x] Rol bazlı middleware yaz (/admin yalnızca admin, /satici yalnızca onaylı satıcı)
+- [x] Admin için Kategori CRUD (alt kategori hiyerarşisi, slug, sıralama, Action mimarisi)
+- [x] Ortak layout: Header, Arama kutusu, Dinamik Mega menü, Footer
+- [x] Form doğrulama mesajlarını Türkçeleştir (lang/tr) ve çoklu dil desteği (TR/EN)
 
-### Sütun 3: Hafta 3 (Ürün Kataloğu ve Vitrin)
-- [ ] spatie/laravel-medialibrary görsel entegrasyonu
-- [ ] Ana sayfa: Banner slider, öne çıkan kategoriler, çok satanlar bileşeni
-- [ ] Kategori sayfası: 24 ürünlük sayfalama ve sıralama (fiyat, en yeni)
-- [ ] Ürün detay sayfası: Canlı varyant seçimi (Livewire ile anlık fiyat/stok değişimi)
+### Sütun 3: Hafta 3 (Ürün Kataloğu ve Vitrin) [TODO]
+- [ ] Ürün ve varyant modelleri: renk, beden, fiyat, indirimli fiyat, stok
+- [ ] Çoklu görsel yükleme ve küçük resim üretimi (spatie/laravel-medialibrary)
+- [ ] Ana sayfa: Banner slider, öne çıkan kategoriler, "Çok satanlar", "Yeni gelenler"
+- [ ] Kategori sayfası: Ürün kartları, sayfalama (24 ürün), sıralama (fiyat artan/azalan, en yeni, en çok değerlendirilen)
+- [ ] Ürün detay sayfası: Görsel galeri, varyant seçimi, fiyat, stok durumu, satıcı adı, "Sepete ekle" butonu
 - [ ] SEO uyumlu URL rotaları (/urun/{slug}, /kategori/{slug})
-- [ ] N+1 sorgu denetimi (Laravel Debugbar)
+- [ ] Kabul Kriteri: Canlı varyant değişimi (Livewire ile sayfa yenilenmeden) ve N+1 sorgu denetimi (with())
 
 ### Sütun 4: Hafta 4 (Arama, Filtreleme ve Satıcı Paneli) - [ARA DEMO 1]
 - [ ] Arama kutusunda anlık autocomplete önerisi
