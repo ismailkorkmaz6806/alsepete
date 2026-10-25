@@ -17,3 +17,12 @@ test('invalid locale is ignored', function () {
 
     $response->assertSessionMissing('locale');
 });
+
+test('home page renders in english when locale is set to en', function () {
+    $response = $this->withSession(['locale' => 'en'])->get('/');
+
+    $response->assertStatus(200);
+    $response->assertSee('All Categories');
+    $response->assertSee('Become a Seller');
+    $response->assertSee('Cart');
+});

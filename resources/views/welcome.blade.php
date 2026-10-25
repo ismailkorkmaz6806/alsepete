@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PazarYeri - Güvenli ve Modern Çok Satıcılı Alışveriş</title>
+    <title>PazarYeri - {{ __('Güvenli ve Modern Çok Satıcılı Alışveriş') }}</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -41,24 +41,23 @@
             <div class="relative z-10 max-w-2xl space-y-4">
                 <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
                     <span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span>
-                    <span class="text-xs font-bold text-white uppercase tracking-wider">Haftanın Öne Çıkan Fırsatları</span>
+                    <span class="text-xs font-bold text-white uppercase tracking-wider">{{ __('Haftanın Öne Çıkan Fırsatları') }}</span>
                 </div>
 
                 <h1 class="text-3xl md:text-5xl font-black tracking-tight leading-[1.15]">
-                    Güvenli Pazar Yeri, <br>
-                    <span class="text-sky-200">Tek Sepette Binlerce Ürün.</span>
+                    {{ __('Güvenli Pazar Yeri, Tek Sepette Binlerce Ürün.') }}
                 </h1>
 
                 <p class="text-indigo-100 text-sm md:text-base leading-relaxed max-w-xl">
-                    Farklı satıcılardan tek seferde alışveriş yapın, her satıcının bağımsız kargo takibini ve onaylı ürün kalitesini yaşayın.
+                    {{ __('Farklı satıcılardan tek seferde alışveriş yapın, her satıcının bağımsız kargo takibini ve onaylı ürün kalitesini yaşayın.') }}
                 </p>
 
                 <div class="pt-3 flex flex-wrap gap-4 items-center">
                     <a href="#urunler" class="bg-white hover:bg-slate-50 text-indigo-700 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition-all hover:scale-105 text-sm flex items-center gap-2">
-                        Alışverişe Başla <i class="fa-solid fa-arrow-right text-xs"></i>
+                        {{ __('Alışverişe Başla') }} <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
-                    <a href="/satici" class="bg-indigo-700/50 hover:bg-indigo-700 text-white border border-white/20 font-semibold px-6 py-3.5 rounded-2xl backdrop-blur-md transition-all text-sm">
-                        Satıcı Portali
+                    <a href="{{ url('/satici') }}" class="bg-indigo-700/50 hover:bg-indigo-700 text-white border border-white/20 font-semibold px-6 py-3.5 rounded-2xl backdrop-blur-md transition-all text-sm">
+                        {{ __('Satıcı Portali') }}
                     </a>
                 </div>
             </div>
@@ -68,10 +67,10 @@
         <section class="space-y-4">
             <div class="flex items-center justify-between">
                 <div>
-                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">Kategorileri Keşfet</h2>
-                    <p class="text-xs text-slate-500">Platformdaki 15 hiyerarşik kategori ağacı</p>
+                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">{{ __('Kategorileri Keşfet') }}</h2>
+                    <p class="text-xs text-slate-500">{{ __('Platformdaki 15 hiyerarşik kategori ağacı') }}</p>
                 </div>
-                <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">15 Kategori Aktif</span>
+                <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">{{ __('15 Kategori Aktif') }}</span>
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
@@ -90,8 +89,8 @@
                         <div class="w-12 h-12 mx-auto rounded-2xl {{ $c['bg'] }} {{ $c['text'] }} flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-layer-group"></i>
                         </div>
-                        <h3 class="font-bold text-slate-800 text-sm group-hover:text-indigo-600 transition-colors">{{ $cat->name }}</h3>
-                        <span class="text-[11px] text-slate-400 mt-1 block font-medium">{{ $cat->children->count() }} Alt Kategori</span>
+                        <h3 class="font-bold text-slate-800 text-sm group-hover:text-indigo-600 transition-colors">{{ __($cat->name) }}</h3>
+                        <span class="text-[11px] text-slate-400 mt-1 block font-medium">{{ $cat->children->count() }} {{ __('Alt Kategori') }}</span>
                     </a>
                 @endforeach
             </div>
@@ -101,11 +100,11 @@
         <section id="urunler" class="space-y-4">
             <div class="flex items-center justify-between">
                 <div>
-                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">Günün Fırsatları & Çok Satanlar</h2>
-                    <p class="text-xs text-slate-500">Sizin için özenle seçilen en popüler ürünler</p>
+                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">{{ __('Günün Fırsatları & Çok Satanlar') }}</h2>
+                    <p class="text-xs text-slate-500">{{ __('Sizin için özenle seçilen en popüler ürünler') }}</p>
                 </div>
                 <a href="#urunler" class="text-xs font-bold text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-3.5 py-1.5 rounded-full transition-colors inline-flex items-center gap-1.5">
-                    Tümünü Gör <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    {{ __('Tümünü Gör') }} <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </a>
             </div>
 
@@ -145,7 +144,7 @@
 
                             @if($discountPrice)
                                 <span class="absolute top-3 left-3 bg-rose-600 text-white text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider shadow-md">
-                                    Fırsat
+                                    {{ __('Fırsat') }}
                                 </span>
                             @endif
 
@@ -165,7 +164,7 @@
                                     {{ $product->name }}
                                 </h3>
                                 <span class="text-[11px] text-slate-400 block font-medium">
-                                    {{ $product->category->name ?? 'Kategori' }}
+                                    {{ __($product->category->name ?? 'Kategori') }}
                                 </span>
                             </div>
 
@@ -180,7 +179,7 @@
                                     @endif
                                 </div>
                                 <button class="bg-indigo-50 hover:bg-indigo-600 text-indigo-600 hover:text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 hover:scale-105 shadow-sm">
-                                    <i class="fa-solid fa-plus text-[10px]"></i> Ekle
+                                    <i class="fa-solid fa-plus text-[10px]"></i> {{ __('Ekle') }}
                                 </button>
                             </div>
                         </div>
