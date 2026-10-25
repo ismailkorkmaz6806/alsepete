@@ -14,7 +14,7 @@
 
             <div class="flex items-center space-x-4">
                 <a href="{{ url('/satici') }}" class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 font-semibold text-indigo-600">
-                    <i class="fa-solid fa-store text-[11px]"></i> {{ __("PazarYeri'nde Satıcı Ol") }}
+                    <i class="fa-solid fa-store text-[11px]"></i> {{ __("AlSepete'de Satıcı Ol") }}
                 </a>
                 <span class="text-slate-300">|</span>
                 
@@ -45,13 +45,13 @@
         <!-- Logo -->
         <a href="{{ route('home') }}" class="flex items-center gap-2.5 shrink-0 group">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-600 flex items-center justify-center text-white text-lg font-black shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
-                <i class="fa-solid fa-cube text-base"></i>
+                <i class="fa-solid fa-basket-shopping text-base"></i>
             </div>
             <div class="flex flex-col">
                 <span class="text-xl sm:text-2xl font-black tracking-tight text-slate-900 flex items-center leading-none">
-                    Pazar<span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Yeri</span>
+                    Al<span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Sepete</span>
                 </span>
-                <span class="text-[9px] uppercase tracking-widest font-bold text-slate-400 mt-0.5">E-Ticaret Pazaryeri</span>
+                <span class="text-[9px] uppercase tracking-widest font-bold text-slate-400 mt-0.5">Çok Satıcılı Alışveriş</span>
             </div>
         </a>
 
