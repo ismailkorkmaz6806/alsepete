@@ -158,10 +158,10 @@
                             <div class="space-y-1.5">
                                 <div class="flex items-center gap-1.5 text-[11px] text-indigo-600 font-semibold">
                                     <i class="fa-solid fa-store text-[10px]"></i>
-                                    <span>{{ $product->seller->store_name ?? 'Onaylı Satıcı' }}</span>
+                                    <span>{{ __($product->seller->store_name ?? 'Onaylı Satıcı') }}</span>
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-sm leading-snug line-clamp-2 group-hover:text-indigo-600 transition-colors">
-                                    {{ $product->name }}
+                                    {{ __($product->name) }}
                                 </h3>
                                 <span class="text-[11px] text-slate-400 block font-medium">
                                     {{ __($product->category->name ?? 'Kategori') }}
@@ -173,9 +173,9 @@
                                 <div>
                                     @if($discountPrice)
                                         <span class="block text-[11px] text-slate-400 line-through font-medium">{{ number_format($price, 2, ',', '.') }} TL</span>
-                                        <span class="text-lg font-black text-slate-900 tracking-tight">{{ number_format($discountPrice, 2, ',', '.') }} <span class="text-xs font-semibold text-indigo-600">TL</span></span>
+                                        <span class="text-lg font-black text-slate-900 tracking-tight">{{ number_format($discountPrice, 2, ',', '.') }} <span class="text-xs font-semibold text-indigo-600">{{ __('TL') }}</span></span>
                                     @else
-                                        <span class="text-lg font-black text-slate-900 tracking-tight">{{ number_format($price, 2, ',', '.') }} <span class="text-xs font-semibold text-indigo-600">TL</span></span>
+                                        <span class="text-lg font-black text-slate-900 tracking-tight">{{ number_format($price, 2, ',', '.') }} <span class="text-xs font-semibold text-indigo-600">{{ __('TL') }}</span></span>
                                     @endif
                                 </div>
                                 <button class="bg-indigo-50 hover:bg-indigo-600 text-indigo-600 hover:text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 hover:scale-105 shadow-sm">

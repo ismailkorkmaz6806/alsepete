@@ -51,7 +51,7 @@
                 <span class="text-xl sm:text-2xl font-black tracking-tight text-slate-900 flex items-center leading-none">
                     Al<span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Sepete</span>
                 </span>
-                <span class="text-[9px] uppercase tracking-widest font-bold text-slate-400 mt-0.5">Çok Satıcılı Alışveriş</span>
+                <span class="text-[9px] uppercase tracking-widest font-bold text-slate-400 mt-0.5">{{ __('Çok Satıcılı Alışveriş') }}</span>
             </div>
         </a>
 
