@@ -18,9 +18,10 @@ Route::get('/', function () {
 Route::get('/dil/{locale}', function (string $locale) {
     if (in_array($locale, ['tr', 'en'])) {
         session(['locale' => $locale]);
+        cookie()->queue(cookie('locale', $locale, 60 * 24 * 30));
     }
 
-    return redirect()->back();
+    return redirect()->back(fallback: route('home'));
 })->name('locale.switch');
 
 Route::get('/dashboard', function () {
