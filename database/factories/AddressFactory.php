@@ -20,7 +20,7 @@ class AddressFactory extends Factory
             'title' => fake()->randomElement(['Ev', 'İş Yeri', 'Yazlık']),
             'city' => fake()->randomElement($cities),
             'district' => fake()->randomElement($districts),
-            'full_address' => fake('tr_TR')->streetAddress() . ' No:' . fake()->buildingNumber(),
+            'full_address' => fake('tr_TR')->streetAddress().' No:'.fake()->buildingNumber(),
             'is_default' => false,
         ];
     }

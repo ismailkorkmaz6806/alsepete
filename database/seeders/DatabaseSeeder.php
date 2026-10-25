@@ -57,23 +57,23 @@ class DatabaseSeeder extends Seeder
         $categoryTree = [
             'Elektronik' => [
                 'commission' => 8.00,
-                'sub' => ['Bilgisayar & Tablet', 'Telefon & Aksesuar']
+                'sub' => ['Bilgisayar & Tablet', 'Telefon & Aksesuar'],
             ],
             'Moda & Giyim' => [
                 'commission' => 15.00,
-                'sub' => ['Erkek Giyim', 'Kadın Giyim']
+                'sub' => ['Erkek Giyim', 'Kadın Giyim'],
             ],
             'Ev & Yaşam' => [
                 'commission' => 12.00,
-                'sub' => ['Mobilya', 'Mutfak Gereçleri']
+                'sub' => ['Mobilya', 'Mutfak Gereçleri'],
             ],
             'Spor & Outdoor' => [
                 'commission' => 10.00,
-                'sub' => ['Fitness & Kondisyon', 'Kamp Malzemeleri']
+                'sub' => ['Fitness & Kondisyon', 'Kamp Malzemeleri'],
             ],
             'Kitap & Hobi' => [
                 'commission' => 6.00,
-                'sub' => ['Edebiyat Kitapları', 'Eğitici Oyunlar']
+                'sub' => ['Edebiyat Kitapları', 'Eğitici Oyunlar'],
             ],
         ];
 
@@ -133,7 +133,7 @@ class DatabaseSeeder extends Seeder
                 ['email' => $s['email']],
                 [
                     'name' => $s['name'],
-                    'phone' => '0532000000' . ($idx + 1),
+                    'phone' => '0532000000'.($idx + 1),
                     'password' => Hash::make('password'),
                     'email_verified_at' => now(),
                 ]
@@ -148,8 +148,8 @@ class DatabaseSeeder extends Seeder
                 [
                     'store_name' => $s['store'],
                     'slug' => Str::slug($s['store']),
-                    'tax_number' => '123456789' . $idx,
-                    'iban' => 'TR' . str_pad($idx . '987654321', 24, '0', STR_PAD_RIGHT),
+                    'tax_number' => '123456789'.$idx,
+                    'iban' => 'TR'.str_pad($idx.'987654321', 24, '0', STR_PAD_RIGHT),
                     'status' => 'onayli',
                     'commission_rate' => $s['rate'],
                 ]
@@ -164,7 +164,7 @@ class DatabaseSeeder extends Seeder
                 ['email' => "musteri{$i}@pazaryeri.com"],
                 [
                     'name' => "Müşteri {$i}",
-                    'phone' => '054400000' . str_pad($i, 2, '0', STR_PAD_LEFT),
+                    'phone' => '054400000'.str_pad($i, 2, '0', STR_PAD_LEFT),
                     'password' => Hash::make('password'),
                     'email_verified_at' => now(),
                 ]
@@ -216,8 +216,8 @@ class DatabaseSeeder extends Seeder
             $assignedCategory = $allCategories[($pIndex - 1) % $allCategories->count()];
             $assignedBrand = $createdBrands[($pIndex - 1) % $createdBrands->count()];
 
-            $productName = $template['title'] . ' Model ' . $pIndex;
-            $slug = Str::slug($productName) . '-' . $pIndex;
+            $productName = $template['title'].' Model '.$pIndex;
+            $slug = Str::slug($productName).'-'.$pIndex;
 
             $product = Product::firstOrCreate(
                 ['slug' => $slug],
