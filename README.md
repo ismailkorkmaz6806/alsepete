@@ -1,13 +1,20 @@
-# PazarYeri - Çok Satıcılı E-Ticaret Pazaryeri Platformu
+# 🛍️ AlSepete - Çok Satıcılı E-Ticaret Pazaryeri Platformu
 
 Amazon ve Hepsiburada iş modeline dayalı, çok satıcılı, modern bir Laravel e-ticaret pazaryeri projesi.
 
+[![Laravel Version](https://img.shields.io/badge/Laravel-11%20%2F%2012-red?logo=laravel)](https://laravel.com)
+[![PHP Version](https://img.shields.io/badge/PHP-8.2%20%2F%208.3-blue?logo=php)](https://php.net)
+[![Tests](https://img.shields.io/badge/Tests-39%20Passing-brightgreen?logo=pest)](https://pestphp.com)
+[![Code Style](https://img.shields.io/badge/Code%20Style-PSR--12%20(Pint)-success)](https://laravel.com/docs/pint)
+[![Release](https://img.shields.io/badge/Release-v0.2%20(Hafta%202)-indigo)](https://github.com/ismailkorkmaz6806/pazaryeri/releases/tag/v0.2)
+
 ---
 
-## 📌 Proje Özeti ve Çekirdek Mantık
-- **Çok Satıcılı Mimari:** Satıcılar mağaza açar (`sellers`), ürün listeler ve kendi siparişlerini yönetir.
-- **Sepet ve Sipariş Bölme:** Müşteri 3 farklı satıcıdan ürün aldığında; sistem **1 ana sipariş (`orders`)** ve satıcı başına **1 alt sipariş (`sub_orders`)** oluşturur. Her satıcı sadece kendi ürünlerini görür ve kargolar.
-- **Komisyon Modeli:** Kategori (`categories.commission_rate`) ve satıcı bazlı komisyon otomatik hesaplanır.
+## 📌 Proje Özeti ve Çekirdek Mimari
+
+- **Çok Satıcılı Mimari:** Satıcılar mağaza açar (`sellers`), ürün listeler ve kendi siparişlerini bağımsız yönetir.
+- **Sepet ve Sipariş Bölme Mantığı:** Müşteri tek sepette 3 farklı satıcıdan ürün aldığında; sistem **1 ana sipariş (`orders`)** ve satıcı başına **1 alt sipariş (`sub_orders`)** oluşturur. Her satıcı yalnızca kendi alt siparişini görür ve kargolar.
+- **Dinamik Komisyon Modeli:** Kategori (`categories.commission_rate`) ve satıcı bazlı komisyon otomatik hesaplanır.
 - **3 Zorunlu Tasarım Kuralı:**
   1. Fiyatlar `decimal(10,2)` olarak saklanır (asla float kullanılmaz).
   2. Sipariş anındaki ürün adı, fiyat ve teslimat adresi sipariş tablolarına kopyalanır (`snapshot`).
@@ -15,103 +22,114 @@ Amazon ve Hepsiburada iş modeline dayalı, çok satıcılı, modern bir Laravel
 
 ---
 
+## 🚀 Hafta 2 (v0.2) Teslim Edilen Modüller
+
+Hafta 2 gereksinimlerinin tamamı ve bonus özellikler eksiksiz tamamlanmıştır:
+
+### 1. Kimlik Doğrulama & Roller (Spatie / Breeze)
+- **Roller:** `spatie/laravel-permission` entegrasyonu ile 3 hiyerarşik rol (`admin`, `seller`, `customer`).
+- **Güvenli Kayıt:** Yeni kayıt olan kullanıcılara varsayılan olarak `customer` rolü atanır.
+- **Modern UI:** Giriş, Kayıt, Şifre Sıfırlama ve Profil ekranları modern Tailwind CSS, Plus Jakarta Sans tipografisi ve AlSepete marka kimliği ile baştan tasarlandı.
+
+### 2. Rol Tabanlı Rota Koruması (Middleware)
+- **Admin Koruması:** `EnsureUserIsAdmin` middleware'i ile `/admin/*` rotaları yalnızca `admin` rolüne açıktır.
+- **Onaylı Satıcı Koruması:** `EnsureSellerIsApproved` (`seller.approved`) middleware'i ile `/satici/*` rotaları yalnızca sistem yöneticisince onaylanmış (`status = onayli`) satıcılara açıktır. Onaysız satıcılar ve müşteriler `403 Forbidden` yanıtı alır.
+
+### 3. Kategori Yönetimi (Admin CRUD) - İnce Controller & Action Mimarisi
+- **Thin Controller:** `CategoryController` yalnızca HTTP orkestrasyonu yapar; hiçbir metodu 7 satırı geçmez.
+- **Single Responsibility (Action Sınıfları):**
+  - `CreateCategoryAction`: Otomatik benzersiz slug üretimi, parent kategori ve komisyon kaydı.
+  - `UpdateCategoryAction`: Güncelleme ve slug senkronizasyonu.
+  - `DeleteCategoryAction`: Alt kategorilerin ve ilişkilerin güvenli silinmesi/taşınması.
+- **FormRequest Validasyonu:** `CategoryStoreRequest` ve `CategoryUpdateRequest` ile Türkçe kurallar.
+- **Yetkilendirme (Policy):** `CategoryPolicy` ile yalnızca admin kullanıcılar CRUD işlemi yapabilir.
+- **Hiyerarşik Yapı:** Sınırsız alt kategori desteği (`parent_id`), komisyon oranı (`commission_rate`) ve vitrin sıralaması (`order`).
+
+### 4. Ortak Düzen & Dinamik Mega Menü
+- **Ortak Düzen:** `layouts.app` ve `layouts.guest` ile tutarlı navbar, header ve footer.
+- **Dinamik Veri Akışı:** `AppServiceProvider` üzerinden `View::composer('*')` ile veritabanından çekilen kategoriler tüm sayfalarda önbellekli ve dinamik olarak sunulur.
+- **Mega Menü:** Tıklanabilir ve açılır (dropdown) katmanlı hiyerarşik kategori ağacı.
+
+### 5. Türkçe & Çoklu Dil Desteği (+2 Bonus Puan)
+- **Türkçe Hata Mesajları:** `lang/tr/` ve `lang/tr.json` dizinleri altında Laravel doğrulama mesajları ve arayüz metinleri Türkçeleştirildi.
+- **Dinamik TR / EN Dil Değiştirici:** Navbar üzerinden tek tıkla oturum ve cookie tabanlı anlık Türkçe-İngilizce geçişi (`/dil/{locale}`).
+
+### 6. Gelişmiş Gösterge Panelleri (Dashboards)
+- **Admin Dashboard (`/admin`):** Kategori sayısı (CRUD bağlantısı), onaylı satıcılar, toplam kayıtlı kullanıcı ve vitrindeki ürün metrikleri.
+- **Satıcı Dashboard (`/satici`):** Mağaza adı, vergi numarası, IBAN, komisyon oranı ve Hafta 3–6 geliştirme yol haritası.
+
+---
+
+## 🔐 Hazır Test Hesapları
+
+Veritabanı seed edildiğinde kullanıma hazır gelen hesaplar:
+
+| Rol | E-Posta | Şifre | Erişim Alanı |
+|---|---|---|---|
+| **Admin** | `admin@pazaryeri.com` | `password` | `/admin` ve `/admin/categories` |
+| **Onaylı Satıcı** | `satici1@pazaryeri.com` | `password` | `/satici` (Mağaza Paneli) |
+| **Müşteri** | `musteri1@pazaryeri.com` | `password` | Ana sayfa & Kullanıcı profili |
+
+---
+
 ## 💻 Sistem Gereksinimleri
-- **PHP:** 8.2 veya 8.3+ (Gerekli eklentiler: `pdo_mysql` veya `pdo_sqlite`, `mbstring`, `openssl`, `curl`)
+- **PHP:** 8.2 veya 8.3+ (Gerekli eklentiler: `pdo_mysql` veya `pdo_sqlite`, `mbstring`, `openssl`, `curl`, `intl`)
 - **Composer:** 2.x
 - **Veritabanı:** MySQL 8.x veya SQLite
 - **Node.js:** LTS (v18+ veya v20+)
 
 ---
 
-## 🚀 Kurulum Rehberi (Çapraz Platform)
+## 🚀 Hızlı Başlangıç & Kurulum Rehberi
 
-### A. Windows Ortamında Kurulum (Laravel Herd / Laragon / XAMPP)
-1. **Projeyi Klonlayın:**
-   ```powershell
-   git clone <REPO_URL>
-   cd pazaryeri
-   ```
+### 1. Projeyi İndirin ve Bağımlılıkları Kurun
+```bash
+git clone https://github.com/ismailkorkmaz6806/pazaryeri.git
+cd pazaryeri
+composer install
+npm install
+```
 
-2. **Bağımlılıkları Yükleyin:**
-   ```powershell
-   composer install
-   npm install
-   ```
+### 2. Ortam Değişkenlerini Yapılandırın
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+*(Not: Hızlı test için varsayılan `DB_CONNECTION=sqlite` kullanılabilir. MySQL için `.env` dosyasındaki `DB_*` alanlarını düzenleyin).*
 
-3. **Çevre Dosyasını (.env) Hazırlayın:**
-   ```powershell
-   copy .env.example .env
-   php artisan key:generate
-   ```
-   *Not: MySQL kullanıyorsanız `.env` dosyasındaki `DB_DATABASE=pazaryeri` veritabanını MySQL'de oluşturun.*
-   *Hızlı test için SQLite kullanmak isterseniz `.env` dosyasında `DB_CONNECTION=sqlite` yapabilirsiniz.*
+### 3. Veritabanını Oluşturun ve Seed Edin
+```bash
+php artisan migrate:fresh --seed
+```
 
-4. **Veritabanını Oluşturun ve Örnek Verilerle Doldurun (Hafta 1 Kabul Kriteri):**
-   ```powershell
-   php artisan migrate:fresh --seed
-   ```
-
-5. **Projeyi Başlatın:**
-   ```powershell
-   php artisan serve
-   ```
-   *Arayüz derlemesi için ayrı bir terminalde:*
-   ```powershell
-   npm run dev
-   ```
+### 4. Depolama Köprüsünü Kurun ve Sunucuyu Başlatın
+```bash
+php artisan storage:link
+php artisan serve
+```
+Tarayıcınızda açın: **`http://127.0.0.1:8000`**
 
 ---
 
-### B. Linux / macOS Ortamında Kurulum
-1. **Projeyi Klonlayın:**
-   ```bash
-   git clone <REPO_URL>
-   cd pazaryeri
-   ```
+## 🧪 Test ve Kod Kalitesi
 
-2. **Bağımlılıkları Yükleyin:**
-   ```bash
-   composer install
-   npm install
-   ```
+Projede yazılan tüm iş kuralları ve güvenlik kontrolleri otomatik testlerle güvence altındadır:
 
-3. **Çevre Dosyasını (.env) Hazırlayın:**
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
-   ```
+```bash
+# Pest Feature ve Unit Testlerini Çalıştırın (39 Test, 88 Assertion)
+php artisan test
 
-4. **İzinleri Düzenleyin:**
-   ```bash
-   chmod -R 775 storage bootstrap/cache
-   ```
-
-5. **Veritabanı ve Seed İşlemini Çalıştırın:**
-   ```bash
-   php artisan migrate:fresh --seed
-   ```
-
-6. **Projeyi Başlatın:**
-   ```bash
-   php artisan serve
-   ```
+# PSR-12 Kod Standartlarını Denetleyin
+./vendor/bin/pint --test
+```
 
 ---
 
-## 👥 Hafta 1 Üretilen Örnek (Seed) Veriler
-
-`php artisan migrate:fresh --seed` komutu çalıştırıldığında şartnamedeki 1. hafta kabul kriterlerine uygun olarak veritabanına otomatik yüklenen veriler:
-- **1 Admin** (Yönetici yetkili kullanıcı kaydı)
-- **5 Satıcı** (Onaylı mağaza profilleri)
-- **20 Müşteri** (Kullanıcı kayıtları ve örnek adresler)
-- **15 Hiyerarşik Kategori** (Elektronik, Moda, Ev & Yaşam, Spor vb. ana ve alt kategoriler)
-- **100 Ürün ve 200 Varyant** (Gerçekçi stok adetleri, renk/beden seçenekleri, `decimal(10,2)` formatında fiyatlar)
-
----
-
-## 📁 1. Hafta Teslimat Dosyaları
-- **ER Diyagramı:** `docs/er-diagram.dbml` dosyasındaki kodu [dbdiagram.io](https://dbdiagram.io) sitesine yapıştırarak ilişkileri görüntüleyebilirsiniz.
-- **Ana Sayfa Wireframe:** `docs/wireframe.md` dosyasında UI blok yapısı ve bileşen detayları bulunmaktadır.
-- **Kanban Görev Panosu:** `docs/kanban-tasks.md` dosyasında 10 haftalık GitHub Projects görev listesi yer alır.
-- **Veritabanı Modelleri:** `app/Models/` altında 18 Eloquent modeli ve ilişkileri tanımlanmıştır.
-- **Migration Dosyaları:** `database/migrations/` altında 20 tablonun şeması eksiksiz yer almaktadır.
+## 📁 Hafta 1 & Hafta 2 Teslimat Belgeleri
+- **ER Diyagramı:** `docs/er-diagram.dbml` ([dbdiagram.io](https://dbdiagram.io) uyumlu)
+- **Arayüz Tel Çerçevesi (Wireframe):** `docs/wireframe.md`
+- **10 Haftalık Kanban Planı:** `docs/kanban-tasks.md`
+- **İş Mantığı (Actions):** `app/Actions/Category/`
+- **Yetkilendirme Politikaları (Policies):** `app/Policies/CategoryPolicy.php`
+- **Middleware Sınıfları:** `app/Http/Middleware/EnsureUserIsAdmin.php`, `EnsureSellerIsApproved.php`, `SetLocale.php`
+- **Dil Dosyaları:** `lang/tr/`, `lang/en.json`, `lang/tr.json`
