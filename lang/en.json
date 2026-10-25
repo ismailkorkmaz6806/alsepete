@@ -1,9 +1,13 @@
 {
     "E-Posta Doğrulama": "Email Verification",
     "Şifrenizi Onaylayın": "Confirm Password",
+    "Güvenli ve Modern Çok Satıcılı Alışveriş": "Secure & Modern Multi-Vendor Shopping",
+    "Çok Satıcılı Alışveriş": "Multi-Vendor Shopping",
+    "Çok Satıcılı Platform": "Multi-Vendor Platform",
     "Onaylı Mağazalar & Orijinal Ürünler": "Verified Stores & Authentic Products",
     "Çoklu Satıcı Kargo Takibi": "Multi-Vendor Shipment Tracking",
     "AlSepete'de Satıcı Ol": "Become a Seller on AlSepete",
+    "PazarYeri'nde Satıcı Ol": "Become a Seller on AlSepete",
     "Yardım": "Help",
     "Ürün, marka, kategori veya satıcı ara...": "Search products, brands, categories or sellers...",
     "Ara": "Search",
@@ -28,6 +32,7 @@
     "Sizin için özenle seçilen en popüler ürünler": "Most popular products handpicked for you",
     "Fırsat": "Deal",
     "Ekle": "Add",
+    "Onaylı Satıcı": "Verified Seller",
     "Kontrol Paneli": "Dashboard",
     "Profil Ayarları": "Profile Settings",
     "Admin Yönetim Paneli": "Admin Dashboard",
@@ -67,5 +72,13 @@
     "Fitness & Kondisyon": "Fitness & Exercise",
     "Kamp Malzemeleri": "Camping Gear",
     "Edebiyat Kitapları": "Literature Books",
-    "Eğitici Oyunlar": "Educational Games"
+    "Eğitici Oyunlar": "Educational Games",
+    "Ultra HD Smart LED Televizyon Model 1": "Ultra HD Smart LED TV Model 1",
+    "Kablosuz Gürültü Engelleyici Kulaklık Model 2": "Wireless Noise Cancelling Headphones Model 2",
+    "Oyuncu Laptop 16GB RAM 512GB SSD Model 3": "Gaming Laptop 16GB RAM 512GB SSD Model 3",
+    "Akıllı Telefon 128GB 5G Model 4": "Smart Phone 128GB 5G Model 4",
+    "Mekanik RGB Oyuncu Klavyesi Model 5": "RGB Mechanical Gaming Keyboard Model 5",
+    "Slim Fit Erkek Pamuklu Gömlek Model 6": "Men's Slim Fit Cotton Shirt Model 6",
+    "Oversize Kadın Kapüşonlu Sweatshirt Model 7": "Women's Oversize Hooded Sweatshirt Model 7",
+    "Deri Tabanlı Koşu Ayakkabısı Model 8": "Leather Sole Running Shoes Model 8"
 }

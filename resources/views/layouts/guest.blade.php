@@ -40,7 +40,7 @@
                     <span class="text-2xl font-black tracking-tight text-slate-900 leading-none">
                         Al<span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Sepete</span>
                     </span>
-                    <span class="text-[10px] uppercase tracking-widest font-bold text-slate-400 mt-1">Çok Satıcılı Platform</span>
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-slate-400 mt-1">{{ __('Çok Satıcılı Platform') }}</span>
                 </div>
             </a>
         </div>
