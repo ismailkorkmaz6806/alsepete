@@ -13,7 +13,7 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" value="E-Posta Adresi" />
-            <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus placeholder="ornek@pazaryeri.com" />
+            <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus placeholder="ornek@alsepete.com" />
             <x-input-error :messages="$errors->get('email')" class="mt-1" />
         </div>
 

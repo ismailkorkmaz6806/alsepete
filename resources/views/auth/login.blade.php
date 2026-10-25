@@ -13,7 +13,7 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" value="E-Posta Adresi" />
-            <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="ornek@pazaryeri.com" />
+            <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="ornek@alsepete.com" />
             <x-input-error :messages="$errors->get('email')" class="mt-1" />
         </div>
 
@@ -59,9 +59,9 @@
             <i class="fa-solid fa-key text-indigo-500"></i> Hızlı Test Girişleri (Şifre: <span class="font-mono text-indigo-600">password</span>)
         </div>
         <div class="grid grid-cols-1 gap-1 text-[11px]">
-            <div>👑 <span class="font-semibold text-slate-700">Yönetici:</span> <span class="font-mono text-slate-500">admin@pazaryeri.com</span></div>
-            <div>🏪 <span class="font-semibold text-slate-700">Onaylı Satıcı:</span> <span class="font-mono text-slate-500">satici1@pazaryeri.com</span></div>
-            <div>🛒 <span class="font-semibold text-slate-700">Müşteri:</span> <span class="font-mono text-slate-500">musteri1@pazaryeri.com</span></div>
+            <div>👑 <span class="font-semibold text-slate-700">Yönetici:</span> <span class="font-mono text-slate-500">admin@alsepete.com</span></div>
+            <div>🏪 <span class="font-semibold text-slate-700">Onaylı Satıcı:</span> <span class="font-mono text-slate-500">satici1@alsepete.com</span></div>
+            <div>🛒 <span class="font-semibold text-slate-700">Müşteri:</span> <span class="font-mono text-slate-500">musteri1@alsepete.com</span></div>
         </div>
     </div>
 </x-guest-layout>

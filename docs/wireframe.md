@@ -1,4 +1,4 @@
-# PazarYeri - Ana Sayfa Wireframe ve UI Mimarisi
+# AlSepete - Ana Sayfa Wireframe ve UI Mimarisi
 
 Bu doküman, Hafta 1 teslimatında istenen **Ana Sayfa Wireframe** tasarımını, bileşen hiyerarşisini ve kullanıcı deneyimi (UX) akışını açıklar.
 

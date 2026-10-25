@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'PazarYeri') }}</title>
+        <title>{{ config('app.name', 'AlSepete') }}</title>
 
         <!-- Tailwind CSS CDN & FontAwesome & Fonts -->
         <script src="https://cdn.tailwindcss.com"></script>

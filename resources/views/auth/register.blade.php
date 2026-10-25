@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="mb-6">
         <h2 class="text-2xl font-black text-slate-900 tracking-tight">Kayıt Ol</h2>
-        <p class="text-xs text-slate-500 mt-1">PazarYeri ailesine katılarak avantajlı alışverişe başlayın.</p>
+        <p class="text-xs text-slate-500 mt-1">AlSepete ailesine katılarak avantajlı alışverişe başlayın.</p>
     </div>
 
     <form method="POST" action="{{ route('register') }}" class="space-y-4">
@@ -17,7 +17,7 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" value="E-Posta Adresi" />
-            <x-text-input id="email" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="ornek@pazaryeri.com" />
+            <x-text-input id="email" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="ornek@alsepete.com" />
             <x-input-error :messages="$errors->get('email')" class="mt-1" />
         </div>
 

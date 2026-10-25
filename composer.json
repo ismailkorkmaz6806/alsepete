@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "pazaryeri/marketplace",
+    "name": "alsepete/marketplace",
     "type": "project",
-    "description": "Cok Saticili E-Ticaret Pazaryeri Platformu",
+    "description": "AlSepete - Cok Saticili E-Ticaret Pazaryeri Platformu",
     "keywords": ["laravel", "marketplace", "ecommerce", "livewire"],
     "license": "MIT",
     "require": {
