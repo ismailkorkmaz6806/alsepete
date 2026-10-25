@@ -6,7 +6,7 @@ Amazon ve Hepsiburada iş modeline dayalı, çok satıcılı, modern bir Laravel
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%20%2F%208.3-blue?logo=php)](https://php.net)
 [![Tests](https://img.shields.io/badge/Tests-39%20Passing-brightgreen?logo=pest)](https://pestphp.com)
 [![Code Style](https://img.shields.io/badge/Code%20Style-PSR--12%20(Pint)-success)](https://laravel.com/docs/pint)
-[![Release](https://img.shields.io/badge/Release-v0.2%20(Hafta%202)-indigo)](https://github.com/ismailkorkmaz6806/pazaryeri/releases/tag/v0.2)
+[![Release](https://img.shields.io/badge/Release-v0.2%20(Hafta%202)-indigo)](https://github.com/ismailkorkmaz6806/alsepete/releases/tag/v0.2)
 
 ---
 
@@ -66,9 +66,9 @@ Veritabanı seed edildiğinde kullanıma hazır gelen hesaplar:
 
 | Rol | E-Posta | Şifre | Erişim Alanı |
 |---|---|---|---|
-| **Admin** | `admin@pazaryeri.com` | `password` | `/admin` ve `/admin/categories` |
-| **Onaylı Satıcı** | `satici1@pazaryeri.com` | `password` | `/satici` (Mağaza Paneli) |
-| **Müşteri** | `musteri1@pazaryeri.com` | `password` | Ana sayfa & Kullanıcı profili |
+| **Admin** | `admin@alsepete.com` | `password` | `/admin` ve `/admin/categories` |
+| **Onaylı Satıcı** | `satici1@alsepete.com` | `password` | `/satici` (Mağaza Paneli) |
+| **Müşteri** | `musteri1@alsepete.com` | `password` | Ana sayfa & Kullanıcı profili |
 
 ---
 
@@ -84,8 +84,8 @@ Veritabanı seed edildiğinde kullanıma hazır gelen hesaplar:
 
 ### 1. Projeyi İndirin ve Bağımlılıkları Kurun
 ```bash
-git clone https://github.com/ismailkorkmaz6806/pazaryeri.git
-cd pazaryeri
+git clone https://github.com/ismailkorkmaz6806/alsepete.git
+cd alsepete
 composer install
 npm install
 ```

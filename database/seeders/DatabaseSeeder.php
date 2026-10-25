@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
 
         // 2. 1 Admin Kullanicisi
         $admin = User::firstOrCreate(
-            ['email' => 'admin@pazaryeri.com'],
+            ['email' => 'admin@alsepete.com'],
             [
                 'name' => 'Sistem Yöneticisi',
                 'phone' => '05550000001',
@@ -120,11 +120,11 @@ class DatabaseSeeder extends Seeder
 
         // 5. 5 Onayli Satici ve Kullanici Hesaplari
         $sellerData = [
-            ['name' => 'Ahmet Satıcı', 'email' => 'satici1@pazaryeri.com', 'store' => 'TeknoMarket', 'rate' => 8.00],
-            ['name' => 'Mehmet Tekstil', 'email' => 'satici2@pazaryeri.com', 'store' => 'ModaTrend', 'rate' => 14.00],
-            ['name' => 'Ayşe Dizayn', 'email' => 'satici3@pazaryeri.com', 'store' => 'EvDekor', 'rate' => 12.00],
-            ['name' => 'Caner Spor', 'email' => 'satici4@pazaryeri.com', 'store' => 'AktifSpor', 'rate' => 10.00],
-            ['name' => 'Zeynep Kitap', 'email' => 'satici5@pazaryeri.com', 'store' => 'KitapKafası', 'rate' => 6.00],
+            ['name' => 'Ahmet Satıcı', 'email' => 'satici1@alsepete.com', 'store' => 'TeknoMarket', 'rate' => 8.00],
+            ['name' => 'Mehmet Tekstil', 'email' => 'satici2@alsepete.com', 'store' => 'ModaTrend', 'rate' => 14.00],
+            ['name' => 'Ayşe Dizayn', 'email' => 'satici3@alsepete.com', 'store' => 'EvDekor', 'rate' => 12.00],
+            ['name' => 'Caner Spor', 'email' => 'satici4@alsepete.com', 'store' => 'AktifSpor', 'rate' => 10.00],
+            ['name' => 'Zeynep Kitap', 'email' => 'satici5@alsepete.com', 'store' => 'KitapKafası', 'rate' => 6.00],
         ];
 
         $createdSellers = collect();
@@ -161,7 +161,7 @@ class DatabaseSeeder extends Seeder
         // 6. 20 Musteri ve Adresleri
         for ($i = 1; $i <= 20; $i++) {
             $customer = User::firstOrCreate(
-                ['email' => "musteri{$i}@pazaryeri.com"],
+                ['email' => "musteri{$i}@alsepete.com"],
                 [
                     'name' => "Müşteri {$i}",
                     'phone' => '054400000'.str_pad($i, 2, '0', STR_PAD_LEFT),
