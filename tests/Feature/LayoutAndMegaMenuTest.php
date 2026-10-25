@@ -25,7 +25,7 @@ test('home page renders mega menu with categories from database', function () {
     $response->assertStatus(200);
     $response->assertSee('Elektronik & Bilgisayar');
     $response->assertSee('Dizüstü Bilgisayarlar');
-    $response->assertSee('PazarYeri');
+    $response->assertSee('AlSepete');
     $response->assertSee('Sepetim');
 });
 

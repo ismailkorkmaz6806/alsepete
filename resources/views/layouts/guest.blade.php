@@ -34,11 +34,11 @@
         <div class="mb-6 text-center">
             <a href="{{ route('home') }}" class="inline-flex items-center gap-3 group">
                 <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-600 flex items-center justify-center text-white text-xl font-black shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-cube text-lg"></i>
+                    <i class="fa-solid fa-basket-shopping text-lg"></i>
                 </div>
                 <div class="flex flex-col text-left">
                     <span class="text-2xl font-black tracking-tight text-slate-900 leading-none">
-                        Pazar<span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Yeri</span>
+                        Al<span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Sepete</span>
                     </span>
                     <span class="text-[10px] uppercase tracking-widest font-bold text-slate-400 mt-1">Çok Satıcılı Platform</span>
                 </div>

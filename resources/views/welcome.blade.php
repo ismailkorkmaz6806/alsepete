@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PazarYeri - {{ __('Güvenli ve Modern Çok Satıcılı Alışveriş') }}</title>
+    <title>AlSepete - {{ __('Güvenli ve Modern Çok Satıcılı Alışveriş') }}</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -45,7 +45,7 @@
                 </div>
 
                 <h1 class="text-3xl md:text-5xl font-black tracking-tight leading-[1.15]">
-                    {{ __('Güvenli Pazar Yeri, Tek Sepette Binlerce Ürün.') }}
+                    {{ __('AlSepete ile Güvenli Alışveriş, Tek Sepette Binlerce Ürün.') }}
                 </h1>
 
                 <p class="text-indigo-100 text-sm md:text-base leading-relaxed max-w-xl">
