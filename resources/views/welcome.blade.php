@@ -14,6 +14,7 @@
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
         }
+        [x-cloak] { display: none !important; }
         .subtle-mesh {
             background-color: #f8fafc;
             background-image: 
@@ -22,103 +23,12 @@
                 radial-gradient(at 50% 90%, rgba(168, 85, 247, 0.05) 0px, transparent 50%);
         }
     </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="subtle-mesh text-slate-800 min-h-screen antialiased flex flex-col selection:bg-indigo-600 selection:text-white">
 
-    <!-- 1. Üst İnce Bar (Hafif ve Ferah) -->
-    <div class="border-b border-slate-200/80 bg-white/70 backdrop-blur-md text-xs py-2 px-4 text-slate-600">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-6">
-                <span class="flex items-center gap-1.5 font-medium text-slate-700">
-                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Onaylı Mağazalar & Orijinal Ürünler
-                </span>
-                <span class="hidden sm:inline text-slate-500">
-                    <i class="fa-solid fa-truck-fast text-indigo-500 mr-1"></i> Çoklu Satıcı Kargo Takibi
-                </span>
-            </div>
-            <div class="flex items-center space-x-5 text-slate-600">
-                <a href="/satici" class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 font-semibold text-indigo-600">
-                    <i class="fa-solid fa-store text-xs"></i> PazarYeri'nde Satıcı Ol
-                </a>
-                <span class="text-slate-300">|</span>
-                <a href="#" class="hover:text-slate-900 transition-colors">Yardım</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2. Ana Header (Ferah ve Canlı) -->
-    <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between gap-6">
-            <!-- Özgün Logo (Indigo & Mor Gradyan) -->
-            <a href="/" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-600 flex items-center justify-center text-white text-xl font-black shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-cube text-lg"></i>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-2xl font-extrabold tracking-tight text-slate-900 flex items-center">
-                        Pazar<span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Yeri</span>
-                    </span>
-                    <span class="text-[10px] uppercase tracking-widest font-bold text-slate-400 -mt-1">Çok Satıcılı Ekosistem</span>
-                </div>
-            </a>
-
-            <!-- Modern Arama Kutusu -->
-            <div class="flex-1 max-w-2xl relative">
-                <div class="relative group">
-                    <input type="text" placeholder="Ürün, marka, kategori veya satıcı ara..." 
-                           class="w-full bg-slate-100/90 border border-slate-200 focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-500/10 rounded-2xl py-2.5 pl-11 pr-28 text-sm text-slate-800 placeholder-slate-400 transition-all duration-200">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3 text-slate-400 text-sm group-focus-within:text-indigo-600 transition-colors"></i>
-                    <button class="absolute right-1.5 top-1.5 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white text-xs font-semibold px-4 py-1.5 rounded-xl transition-all shadow-sm">
-                        Ara
-                    </button>
-                </div>
-            </div>
-
-            <!-- Aksiyonlar -->
-            <div class="flex items-center space-x-3 sm:space-x-4">
-                <!-- Hesabım -->
-                <a href="/hesabim" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-slate-100 text-slate-700 hover:text-indigo-600 transition-colors group">
-                    <div class="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-indigo-50 text-slate-600 group-hover:text-indigo-600 flex items-center justify-center transition-colors">
-                        <i class="fa-regular fa-user text-xs"></i>
-                    </div>
-                    <div class="hidden md:flex flex-col text-left">
-                        <span class="text-[10px] text-slate-400 font-medium">Giriş Yap</span>
-                        <span class="text-xs font-bold text-slate-800">Hesabım</span>
-                    </div>
-                </a>
-
-                <!-- Favoriler -->
-                <a href="#" class="relative p-2.5 rounded-xl hover:bg-slate-100 text-slate-600 hover:text-rose-500 transition-colors">
-                    <i class="fa-regular fa-heart text-base"></i>
-                    <span class="absolute -top-1 -right-1 bg-rose-500 text-white text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center shadow-sm">0</span>
-                </a>
-
-                <!-- Sepet -->
-                <a href="/sepet" class="flex items-center gap-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3.5 py-2 rounded-xl font-bold text-xs transition-colors">
-                    <div class="relative">
-                        <i class="fa-solid fa-bag-shopping text-sm text-indigo-600"></i>
-                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-[9px] font-bold rounded-full w-3.5 h-3.5 flex items-center justify-center">0</span>
-                    </div>
-                    <span class="hidden sm:inline">Sepetim</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- 3. Kategori Navigasyonu -->
-        <div class="border-t border-slate-100 bg-white/80">
-            <div class="max-w-7xl mx-auto px-4 flex items-center space-x-8 overflow-x-auto text-xs font-semibold py-2.5 scrollbar-none text-slate-600">
-                <span class="text-indigo-600 flex items-center gap-1.5 uppercase tracking-wider text-[11px] font-bold">
-                    <i class="fa-solid fa-bars"></i> Tüm Kategoriler:
-                </span>
-                @foreach($categories as $category)
-                    <a href="/kategori/{{ $category->slug }}" class="hover:text-indigo-600 transition-colors whitespace-nowrap py-0.5">
-                        {{ $category->name }}
-                    </a>
-                @endforeach
-            </div>
-        </div>
-    </header>
+    <!-- Ortak Header, Mega Menü & Dil Seçici -->
+    @include('layouts.navigation')
 
     <!-- 4. Ana İçerik -->
     <main class="max-w-7xl mx-auto px-4 py-8 space-y-12 flex-1 w-full">
@@ -281,55 +191,8 @@
         </section>
     </main>
 
-    <!-- 7. Footer -->
-    <footer class="border-t border-slate-200/80 bg-white mt-20 text-slate-500 text-xs">
-        <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div class="space-y-3">
-                <span class="text-base font-extrabold text-slate-900 flex items-center gap-2">
-                    <div class="w-6 h-6 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-xs">
-                        <i class="fa-solid fa-cube"></i>
-                    </div>
-                    PazarYeri
-                </span>
-                <p class="text-slate-500 text-xs leading-relaxed">
-                    Amazon ve Hepsiburada mimarisinde çok satıcılı, güvenli alışveriş platformu.
-                </p>
-                <div class="flex space-x-3 text-slate-400 pt-1">
-                    <a href="#" class="hover:text-indigo-600"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#" class="hover:text-indigo-600"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="hover:text-indigo-600"><i class="fa-brands fa-twitter"></i></a>
-                </div>
-            </div>
-            <div>
-                <h4 class="font-bold text-slate-900 mb-3 text-sm">Kurumsal</h4>
-                <ul class="space-y-2 text-slate-500">
-                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Hakkımızda</a></li>
-                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Kariyer & İletişim</a></li>
-                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Gizlilik & Güvenlik Politikası</a></li>
-                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Mesafeli Satış Sözleşmesi</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold text-slate-900 mb-3 text-sm">Müşteri Hizmetleri</h4>
-                <ul class="space-y-2 text-slate-500">
-                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Sıkça Sorulan Sorular</a></li>
-                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Canlı Yardım & Destek</a></li>
-                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Kolay İade & Değişim</a></li>
-                    <li><a href="#" class="hover:text-indigo-600 transition-colors">Kargo & Teslimat Takibi</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold text-slate-900 mb-3 text-sm">Satıcı Ekosistemi</h4>
-                <p class="mb-3 text-slate-500 leading-relaxed">Mağazanızı açın, ürünlerinizi listeleyin ve satışa başlayın.</p>
-                <a href="/satici" class="inline-block bg-slate-900 hover:bg-indigo-600 text-white font-bold px-4 py-2 rounded-xl transition-colors">
-                    Satıcı Başvurusu Yap
-                </a>
-            </div>
-        </div>
-        <div class="border-t border-slate-100 py-6 text-center text-slate-400">
-            &copy; 2026 PazarYeri Çok Satıcılı E-Ticaret Platformu. Tüm hakları saklıdır.
-        </div>
-    </footer>
+    <!-- Ortak Footer -->
+    @include('layouts.footer')
 
 </body>
 </html>

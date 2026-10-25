@@ -13,13 +13,14 @@ class SellerFactory extends Factory
 
     public function definition(): array
     {
-        $store = fake('tr_TR')->company() . ' Mağazası';
+        $store = fake('tr_TR')->company().' Mağazası';
+
         return [
             'user_id' => User::factory(),
             'store_name' => $store,
-            'slug' => Str::slug($store) . '-' . fake()->unique()->numberBetween(100, 999),
+            'slug' => Str::slug($store).'-'.fake()->unique()->numberBetween(100, 999),
             'tax_number' => fake()->numerify('##########'),
-            'iban' => 'TR' . fake()->numerify('########################'),
+            'iban' => 'TR'.fake()->numerify('########################'),
             'status' => 'onayli',
             'commission_rate' => 10.00,
         ];

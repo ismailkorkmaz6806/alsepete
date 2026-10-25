@@ -43,9 +43,10 @@ class Coupon extends Model
         if ($this->usage_limit !== null && $this->used_count >= $this->usage_limit) {
             return false;
         }
-        if ($subtotal < (float)$this->min_total) {
+        if ($subtotal < (float) $this->min_total) {
             return false;
         }
+
         return true;
     }
 }

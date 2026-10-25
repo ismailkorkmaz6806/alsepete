@@ -13,6 +13,7 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         $name = fake()->unique()->department();
+
         return [
             'parent_id' => null,
             'name' => $name,

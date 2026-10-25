@@ -18,7 +18,7 @@ return new class extends Migration
                 'kargoya_verildi',
                 'teslim_edildi',
                 'iptal',
-                'iade'
+                'iade',
             ])->default('onay_bekliyor')->index();
             $table->string('cargo_company')->nullable();
             $table->string('tracking_number')->nullable()->index();
