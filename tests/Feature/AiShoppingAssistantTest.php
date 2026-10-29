@@ -17,12 +17,14 @@ class AiShoppingAssistantTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected Seller $seller;
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $sellerUser = User::factory()->create();
-        $seller = Seller::create([
+        $this->seller = Seller::create([
             'user_id' => $sellerUser->id,
             'store_name' => 'TeknoStore',
             'slug' => 'teknostore',
@@ -31,6 +33,7 @@ class AiShoppingAssistantTest extends TestCase
             'status' => 'onayli',
             'commission_rate' => 10.00,
         ]);
+        $seller = $this->seller;
 
         $cat = Category::create([
             'name' => 'Elektrikli Ev Aletleri',
@@ -115,8 +118,37 @@ class AiShoppingAssistantTest extends TestCase
     public function test_ai_assistant_handles_quick_prompt(): void
     {
         Livewire::test(AiShoppingAssistant::class)
-            ->call('quickAsk', 'Bütçe dostu kahve makinesi')
+            ->call('quickAsk', '☕ Bütçe dostu kahve makinesi öner')
             ->assertSee('Karaca Hatır Hüps');
+    }
+
+    public function test_coffee_query_does_not_match_environment_friendly_sneakers(): void
+    {
+        // Create an Adidas sneaker with "Çevre Dostu" in name
+        $adidas = Brand::create(['name' => 'Adidas', 'slug' => 'adidas']);
+        $catShoes = Category::create(['name' => 'Spor Ayakkabı & Çanta', 'slug' => 'spor-ayakkabi']);
+        $sneaker = Product::create([
+            'seller_id' => $this->seller->id,
+            'category_id' => $catShoes->id,
+            'brand_id' => $adidas->id,
+            'name' => 'Adidas Stan Smith Primegreen Çevre Dostu Deri Sneaker',
+            'slug' => 'adidas-stan-smith-cevre-dostu',
+            'description' => 'Geri dönüştürülmüş çevre dostu spor ayakkabı.',
+            'status' => 'aktif',
+            'image_url' => '/images/products/adidas.jpg',
+        ]);
+        ProductVariant::create([
+            'product_id' => $sneaker->id,
+            'sku' => 'ADI-SS-01',
+            'price' => 2999.00,
+            'stock' => 5,
+        ]);
+
+        Livewire::test(AiShoppingAssistant::class)
+            ->set('userInput', '☕ Bütçe dostu kahve makinesi öner')
+            ->call('sendMessage')
+            ->assertSee('Karaca Hatır Hüps')
+            ->assertDontSee('Adidas Stan Smith');
     }
 
     public function test_ai_assistant_can_reset_chat(): void
