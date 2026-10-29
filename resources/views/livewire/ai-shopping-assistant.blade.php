@@ -134,8 +134,8 @@
                         </div>
                         <div class="max-w-[88%] space-y-3">
                             <div class="bg-white text-slate-800 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm border border-slate-200/80">
-                                <div class="text-sm leading-relaxed space-y-2 prose-sm">
-                                    {!! nl2br(e($msg['content'])) !!}
+                                <div class="text-sm leading-relaxed space-y-1 prose prose-sm prose-indigo prose-a:text-indigo-600 prose-a:font-bold prose-a:underline hover:prose-a:text-indigo-800 prose-p:my-1.5 prose-ul:my-1 prose-li:my-0.5 max-w-none text-slate-800">
+                                    {!! Str::markdown($msg['content']) !!}
                                 </div>
                                 <span class="block text-[10px] text-slate-400 mt-1.5">{{ $msg['time'] }}</span>
                             </div>
