@@ -4,9 +4,9 @@ Amazon ve Hepsiburada iş modeline dayalı, çok satıcılı, modern bir Laravel
 
 [![Laravel Version](https://img.shields.io/badge/Laravel-11%20%2F%2012-red?logo=laravel)](https://laravel.com)
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%20%2F%208.3-blue?logo=php)](https://php.net)
-[![Tests](https://img.shields.io/badge/Tests-39%20Passing-brightgreen?logo=pest)](https://pestphp.com)
+[![Tests](https://img.shields.io/badge/Tests-54%20Passing-brightgreen?logo=pest)](https://pestphp.com)
 [![Code Style](https://img.shields.io/badge/Code%20Style-PSR--12%20(Pint)-success)](https://laravel.com/docs/pint)
-[![Release](https://img.shields.io/badge/Release-v0.2%20(Hafta%202)-indigo)](https://github.com/ismailkorkmaz6806/alsepete/releases/tag/v0.2)
+[![Release](https://img.shields.io/badge/Release-v0.3%20(Hafta%203)-indigo)](https://github.com/ismailkorkmaz6806/alsepete/releases/tag/v0.3)
 
 ---
 
@@ -19,6 +19,41 @@ Amazon ve Hepsiburada iş modeline dayalı, çok satıcılı, modern bir Laravel
   1. Fiyatlar `decimal(10,2)` olarak saklanır (asla float kullanılmaz).
   2. Sipariş anındaki ürün adı, fiyat ve teslimat adresi sipariş tablolarına kopyalanır (`snapshot`).
   3. Stok `product_variants` tablosundadır ve `DB::transaction` + `lockForUpdate()` ile korunur.
+
+---
+
+## 🌟 Hafta 3 (v0.3) Teslim Edilen Modüller & Bonuslar
+
+Hafta 3 şartnamesine ait gezilebilir vitrin, reaktif varyant yönetimi ve seçilen bonus özellikler:
+
+### 1. Canlı Varyant Seçimi & Ürün Detay (Livewire Component)
+- **Sayfa Yenilenmeden Reaktif Değişim:** Renk ve beden seçildiğinde anlık fiyat, indirim oranı ve stok miktarı Livewire ile dinamik güncellenir.
+- **SEO Uyumlu URL:** `/urun/{slug}` rotası.
+- **Görsel Galerisi:** Büyük ürün önizlemesi ve tıklanabilir çoklu küçük resim (thumbnail) galerisi.
+- **Stok Koruması:** Stok bittiğinde *"Tükendi"* uyarısı ve sepete ekleme butonunun otomatik pasifleştirilmesi.
+
+### 2. Kategori Sayfası (24 Ürünlük Sayfalama & Sıralama)
+- **SEO Uyumlu URL:** `/kategori/{slug}` rotası.
+- **24'lük Sayfalama:** `paginate(24)` ile standart e-ticaret sayfalama düzeni.
+- **Sıralama Seçenekleri:** Fiyat: Düşükten Yükseğe (`price_asc`), Fiyat: Yüksekten Düşüğe (`price_desc`), En Yeniler (`newest`), En Çok Değerlendirilenler (`rating`).
+- **Yan Filtreler:** Marka filtreleme ve sadece stokta olan ürünleri listeleme (`in_stock`).
+
+### 3. Ana Sayfa Vitrini (Showcase)
+- **Banner Slider:** Alpine.js tabanlı otomatik geçişli (5 sn), önceki/sonraki butonlu ve noktalı kampanya slider'ı.
+- **Öne Çıkan Kategoriler:** İkonlu, alt kategori adetli ve doğrudan kategori sayfasına yönlendiren kart ızgarası.
+- **Çok Satanlar & Yeni Gelenler:** Veritabanından dinamik çekilen, fırsat etiketli ürün vitrinleri.
+
+### 4. N+1 Sorgu Koruması & Laravel Debugbar
+- Tüm sayfalarda `with(['seller', 'variants', 'brand', 'category', 'media'])` kullanılarak N+1 sorgu problemi sıfıra indirilmiştir.
+- Geliştirme ortamında sorguları görsel olarak denetlemek için `barryvdh/laravel-debugbar` entegre edilmiştir.
+
+### 5. Bonus Görevler (+4 Puan)
+- 🌟 **Bonus 1 (+2 Puan) - "Bu Ürünü Alanlar Bunları da Aldı":** Ürün detay sayfasında çapraz kategori ve ilgili ürün öneri algoritması.
+- 🌟 **Bonus 2 (+2 Puan) - Satıcıya Soru Sor & Cevap Sistemi:** 
+  - Müşterinin ürün sayfasından Livewire ile satıcıya soru sorabilmesi.
+  - Onaylı satıcının kendi mağaza panelinden (`/satici/sorular`) gelen soruları görüntüleyip yanıtlaması.
+  - Yanıtlanan soruların ürün detay sayfasında Soru-Cevap bloğunda otomatik yayınlanması.
+- 🌟 **Bonus 3 (+2 Puan) - Çoklu Dil:** Türkçe ve İngilizce tam yerelleştirme (Hafta 2'de tamamlandı).
 
 ---
 

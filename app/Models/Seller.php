@@ -45,4 +45,9 @@ class Seller extends Model
     {
         return $this->hasMany(SellerPayout::class);
     }
+
+    public function questions()
+    {
+        return $this->hasMany(ProductQuestion::class);
+    }
 }

@@ -21,14 +21,18 @@ Bu dosyadaki görevleri GitHub reponuzda **Projects -> New Project -> Board (Kan
 - [x] Ortak layout: Header, Arama kutusu, Dinamik Mega menü, Footer
 - [x] Form doğrulama mesajlarını Türkçeleştir (lang/tr) ve çoklu dil desteği (TR/EN)
 
-### Sütun 3: Hafta 3 (Ürün Kataloğu ve Vitrin) [TODO]
-- [ ] Ürün ve varyant modelleri: renk, beden, fiyat, indirimli fiyat, stok
-- [ ] Çoklu görsel yükleme ve küçük resim üretimi (spatie/laravel-medialibrary)
-- [ ] Ana sayfa: Banner slider, öne çıkan kategoriler, "Çok satanlar", "Yeni gelenler"
-- [ ] Kategori sayfası: Ürün kartları, sayfalama (24 ürün), sıralama (fiyat artan/azalan, en yeni, en çok değerlendirilen)
-- [ ] Ürün detay sayfası: Görsel galeri, varyant seçimi, fiyat, stok durumu, satıcı adı, "Sepete ekle" butonu
-- [ ] SEO uyumlu URL rotaları (/urun/{slug}, /kategori/{slug})
-- [ ] Kabul Kriteri: Canlı varyant değişimi (Livewire ile sayfa yenilenmeden) ve N+1 sorgu denetimi (with())
+### Sütun 3: Hafta 3 (Ürün Kataloğu ve Vitrin) [DONE]
+- [x] Ürün ve varyant modelleri: renk, beden, fiyat, indirimli fiyat, stok
+- [x] Çoklu görsel yükleme ve küçük resim üretimi (spatie/laravel-medialibrary)
+- [x] Ana sayfa: Banner slider (Alpine.js), öne çıkan kategoriler, "Çok satanlar", "Yeni gelenler"
+- [x] Kategori sayfası: Ürün kartları, sayfalama (24 ürün), sıralama (fiyat artan/azalan, en yeni, en çok değerlendirilen)
+- [x] Ürün detay sayfası: Görsel galeri, varyant seçimi, fiyat, stok durumu, satıcı adı, "Sepete ekle" butonu
+- [x] SEO uyumlu URL rotaları (/urun/{slug}, /kategori/{slug})
+- [x] Kabul Kriteri: Canlı varyant değişimi (Livewire ile sayfa yenilenmeden) ve N+1 sorgu denetimi (with())
+- [x] [BONUS +2 Puan] "Bu ürünü alanlar bunları da aldı" çapraz öneri sistemi
+- [x] [BONUS +2 Puan] Satıcıya soru sor ve cevap sistemi (Ürün sayfasında Livewire & Satıcı panelinde yanıt)
+- [x] [BONUS +2 Puan] Çoklu dil desteği (TR / EN)
+- [x] Laravel Debugbar entegrasyonu (N+1 sorgu optimizasyonu kanıtı)
 
 ### Sütun 4: Hafta 4 (Arama, Filtreleme ve Satıcı Paneli) - [ARA DEMO 1]
 - [ ] Arama kutusunda anlık autocomplete önerisi

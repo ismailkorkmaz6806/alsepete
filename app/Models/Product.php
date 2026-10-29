@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Product extends Model implements HasMedia
 {
@@ -49,5 +50,43 @@ class Product extends Model implements HasMedia
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(ProductQuestion::class);
+    }
+
+    public function answeredQuestions()
+    {
+        return $this->hasMany(ProductQuestion::class)->approved()->answered()->latest();
+    }
+
+    public function getMinPriceAttribute()
+    {
+        return $this->variants->min(fn ($v) => $v->discount_price ?? $v->price) ?? 0;
+    }
+
+    public function getMaxPriceAttribute()
+    {
+        return $this->variants->max('price') ?? 0;
+    }
+
+    public function getTotalStockAttribute(): int
+    {
+        return (int) $this->variants->sum('stock');
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width(300)
+            ->height(300)
+            ->nonQueued();
+
+        $this->addMediaConversion('large')
+            ->width(800)
+            ->height(800)
+            ->nonQueued();
     }
 }
