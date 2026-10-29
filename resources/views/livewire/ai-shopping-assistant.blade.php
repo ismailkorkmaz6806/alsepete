@@ -15,11 +15,22 @@
     class="relative">
 
     <!-- FLOATING LAUNCHER BUTTON -->
-    <div class="fixed bottom-6 right-6 z-50">
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+        <!-- Attention-Grabbing Speech Badge (Disappears when open) -->
+        <div 
+            x-show="!isOpen" 
+            x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="opacity-0 translate-y-2 scale-90"
+            x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+            class="hidden sm:flex items-center gap-2 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-2xl shadow-xl border border-indigo-100 text-slate-800 text-xs font-semibold animate-bounce duration-1000">
+            <span class="text-indigo-600 font-bold">🛒 {{ __('Sepetinize yardım edeyim mi?') }}</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        </div>
+
         <button 
             type="button"
             @click="isOpen = !isOpen; if(isOpen) scrollToBottom();"
-            class="group relative flex items-center gap-3 px-5 py-3.5 bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-full shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 border border-white/20 cursor-pointer">
+            class="group relative flex items-center gap-3 pl-2 pr-5 py-2.5 bg-gradient-to-r from-indigo-700 via-indigo-600 to-purple-600 hover:from-indigo-800 hover:to-purple-700 text-white rounded-full shadow-2xl hover:shadow-indigo-500/50 hover:scale-105 active:scale-95 transition-all duration-300 border-2 border-white/30 cursor-pointer">
             
             <!-- Glowing Ping Ring Animation -->
             <span class="absolute -top-1 -right-1 flex h-4 w-4">
@@ -27,16 +38,20 @@
                 <span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-white"></span>
             </span>
 
-            <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-amber-300">
-                <i class="fa-solid fa-wand-magic-sparkles text-sm group-hover:rotate-12 transition-transform"></i>
+            <!-- 3D Mascot Avatar Circle -->
+            <div class="relative w-12 h-12 rounded-full overflow-hidden bg-white p-0.5 shadow-md border-2 border-white/60 group-hover:rotate-6 transition-transform flex-shrink-0">
+                <img src="{{ asset('images/ai-assistant-mascot.jpg') }}" alt="AlSepete AI Robot" class="w-full h-full object-cover rounded-full">
             </div>
             
-            <div class="text-left hidden sm:block">
-                <div class="text-[11px] font-medium text-indigo-100 uppercase tracking-wider leading-none">AlSepete</div>
-                <div class="text-sm font-bold text-white leading-tight">{{ __('AI Asistanı') }}</div>
+            <div class="text-left hidden sm:block pr-1">
+                <div class="flex items-center gap-1.5">
+                    <span class="text-[10px] font-black text-indigo-200 uppercase tracking-wider leading-none">AlSepete</span>
+                    <span class="inline-flex items-center px-1.5 py-0.2 text-[9px] font-black bg-amber-400 text-slate-900 rounded-full shadow-xs">AI PRO</span>
+                </div>
+                <div class="text-sm font-black text-white leading-tight mt-0.5">{{ __('AI Asistanı') }}</div>
             </div>
 
-            <i class="fa-solid fa-chevron-up text-xs text-indigo-200 transition-transform duration-300" :class="isOpen ? 'rotate-180' : ''"></i>
+            <i class="fa-solid fa-chevron-up text-xs text-indigo-200 transition-transform duration-300 ml-1" :class="isOpen ? 'rotate-180' : ''"></i>
         </button>
     </div>
 
@@ -53,20 +68,20 @@
         class="fixed bottom-24 right-4 sm:right-6 w-[92vw] sm:w-[420px] h-[580px] max-h-[82vh] bg-white rounded-3xl shadow-2xl border border-slate-200/90 flex flex-col z-50 overflow-hidden backdrop-blur-md">
 
         <!-- HEADER -->
-        <div class="px-5 py-4 bg-gradient-to-r from-slate-900 via-indigo-950 to-indigo-900 text-white flex items-center justify-between shadow-md">
+        <div class="px-5 py-3.5 bg-gradient-to-r from-slate-900 via-indigo-950 to-indigo-900 text-white flex items-center justify-between shadow-md">
             <div class="flex items-center gap-3">
-                <div class="relative w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center shadow-inner border border-white/20 text-white">
-                    <i class="fa-solid fa-robot text-lg"></i>
-                    <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-slate-900 rounded-full"></span>
+                <div class="relative w-11 h-11 rounded-2xl overflow-hidden bg-white p-0.5 shadow-md border-2 border-indigo-400/40 flex-shrink-0">
+                    <img src="{{ asset('images/ai-assistant-mascot.jpg') }}" alt="AlSepete AI Robot" class="w-full h-full object-cover rounded-xl">
+                    <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-slate-900 rounded-full"></span>
                 </div>
                 <div>
                     <h3 class="font-bold text-white text-base leading-snug flex items-center gap-1.5">
                         {{ __('AlSepete AI Danışman') }}
-                        <span class="text-[10px] bg-indigo-500/30 text-indigo-300 font-semibold px-2 py-0.5 rounded-full border border-indigo-400/20">PRO</span>
+                        <span class="text-[10px] bg-indigo-500/40 text-amber-300 font-bold px-2 py-0.5 rounded-full border border-amber-400/30">PRO</span>
                     </h3>
                     <p class="text-xs text-emerald-400 font-medium flex items-center gap-1">
                         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                        {{ __('Çevrimiçi • Katalog Uzmanı') }}
+                        {{ __('Sepet Uzmanı • Çevrimiçi') }}
                     </p>
                 </div>
             </div>
@@ -106,8 +121,8 @@
                 @else
                     <!-- ASSISTANT MESSAGE -->
                     <div class="flex items-start gap-2.5">
-                        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 text-white flex-shrink-0 flex items-center justify-center text-xs shadow-sm mt-1">
-                            <i class="fa-solid fa-robot"></i>
+                        <div class="w-9 h-9 rounded-2xl overflow-hidden bg-white shadow-sm border border-indigo-200 flex-shrink-0 mt-0.5">
+                            <img src="{{ asset('images/ai-assistant-mascot.jpg') }}" alt="AlSepete AI Robot" class="w-full h-full object-cover">
                         </div>
                         <div class="max-w-[88%] space-y-3">
                             <div class="bg-white text-slate-800 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm border border-slate-200/80">
@@ -157,9 +172,12 @@
             @endforeach
 
             <!-- TYPING / LOADING INDICATOR -->
-            <div wire:loading wire:target="sendMessage, quickAsk" class="flex items-center gap-2 text-slate-400 pl-10">
-                <div class="bg-white border border-slate-200 px-4 py-2.5 rounded-2xl rounded-tl-none shadow-sm flex items-center gap-1.5">
-                    <span class="text-xs text-slate-500 font-medium">{{ __('AlSepete AI kataloğu inceliyor') }}</span>
+            <div wire:loading wire:target="sendMessage, quickAsk" class="flex items-center gap-2.5 text-slate-400">
+                <div class="w-8 h-8 rounded-xl overflow-hidden bg-white shadow-xs border border-indigo-200 flex-shrink-0 animate-pulse">
+                    <img src="{{ asset('images/ai-assistant-mascot.jpg') }}" alt="AlSepete AI Robot" class="w-full h-full object-cover">
+                </div>
+                <div class="bg-white border border-slate-200 px-4 py-2.5 rounded-2xl rounded-tl-none shadow-xs flex items-center gap-1.5">
+                    <span class="text-xs text-slate-600 font-medium">{{ __('Kataloğu tarıyorum...') }}</span>
                     <span class="flex gap-1 items-center ml-1">
                         <span class="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-bounce"></span>
                         <span class="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-bounce [animation-delay:0.2s]"></span>
