@@ -4,7 +4,7 @@ Amazon ve Hepsiburada iş modeline dayalı, çok satıcılı, modern bir Laravel
 
 [![Laravel Version](https://img.shields.io/badge/Laravel-11%20%2F%2012-red?logo=laravel)](https://laravel.com)
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%20%2F%208.3-blue?logo=php)](https://php.net)
-[![Tests](https://img.shields.io/badge/Tests-54%20Passing-brightgreen?logo=pest)](https://pestphp.com)
+[![Tests](https://img.shields.io/badge/Tests-55%20Passing-brightgreen?logo=pest)](https://pestphp.com)
 [![Code Style](https://img.shields.io/badge/Code%20Style-PSR--12%20(Pint)-success)](https://laravel.com/docs/pint)
 [![Release](https://img.shields.io/badge/Release-v0.3%20(Hafta%203)-indigo)](https://github.com/ismailkorkmaz6806/alsepete/releases/tag/v0.3)
 
@@ -151,7 +151,7 @@ Tarayıcınızda açın: **`http://127.0.0.1:8000`**
 Projede yazılan tüm iş kuralları ve güvenlik kontrolleri otomatik testlerle güvence altındadır:
 
 ```bash
-# Pest Feature ve Unit Testlerini Çalıştırın (39 Test, 88 Assertion)
+# Feature ve Unit Testlerini Çalıştırın (55 Test, 143 Assertion)
 php artisan test
 
 # PSR-12 Kod Standartlarını Denetleyin
