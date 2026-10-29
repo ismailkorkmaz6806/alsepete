@@ -788,142 +788,316 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Dyson Airwrap Multi-Styler Saç Şekillendirici ve Kurutucu Set',
                 'cat' => 'Saç Bakımı & Şekillendirme', 'brand' => 'Dyson', 'seller' => 'kozmetik', 'price' => 24999.00,
-                'img' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Bakır / Nikel Parlak', 'size' => 'Uzun Başlıklı Özel Seri', 'stock' => 12], ['color' => 'Mavi / Allık Pembesi', 'size' => 'Uzun Başlıklı Özel Seri', 'stock' => 10]],
             ],
             [
                 'name' => 'Dyson Supersonic HD07 Akıllı Isı Kontrollü Saç Kurutma Makinesi',
                 'cat' => 'Saç Bakımı & Şekillendirme', 'brand' => 'Dyson', 'seller' => 'kozmetik', 'price' => 17999.00,
                 'img' => 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80'],
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Demir / Fuşya', 'size' => '5 Manyetik Başlıklı', 'stock' => 15]],
             ],
             [
                 'name' => 'Giorgio Armani Acqua Di Gio Profondo Erkek Parfüm EDP 100ml',
                 'cat' => 'Parfüm & Deodorant', 'brand' => 'Armani', 'seller' => 'kozmetik', 'price' => 4899.00,
                 'img' => 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=800&auto=format&fit=crop&q=80'],
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1617897903246-719242758050?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Okyanus Mavisi Şişe', 'size' => '100 ml EDP', 'stock' => 25], ['color' => 'Okyanus Mavisi Şişe', 'size' => '200 ml EDP', 'stock' => 10]],
             ],
             [
                 'name' => "L'Oréal Paris Revitalift Saf Hyaluronik Asit Kırışıklık Karşıtı Yüz Serumu 30ml",
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => "L'Oréal", 'seller' => 'kozmetik', 'price' => 649.00,
                 'img' => 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80'],
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Cam Şişe Damlalıklı', 'size' => '30 ml', 'stock' => 60], ['color' => 'Cam Şişe Damlalıklı', 'size' => '50 ml Mega Boy', 'stock' => 35]],
             ],
             [
                 'name' => "L'Oréal Paris Telescopic Uzatıcı ve Ayırıcı Siyah Maskara",
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => "L'Oréal", 'seller' => 'kozmetik', 'price' => 429.00,
                 'img' => 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80'],
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Karbon Siyah', 'size' => '8 ml', 'stock' => 80]],
             ],
             [
                 'name' => "L'Oréal Paris Elseve Mucizevi Yağ Saç Bakım Serumu 100ml",
                 'cat' => 'Saç Bakımı & Şekillendirme', 'brand' => "L'Oréal", 'seller' => 'kozmetik', 'price' => 349.00,
                 'img' => 'https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80'],
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Değerli Çiçek Özleri', 'size' => '100 ml Pompalı', 'stock' => 70]],
             ],
             [
                 'name' => 'Nivea Q10 Kırışıklık Karşıtı Sıkılaştırıcı Gündüz Kremi SPF 15 50ml',
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => 'Nivea', 'seller' => 'kozmetik', 'price' => 449.00,
-                'img' => 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1608248597289-497d519ab712?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Beyaz / Sarı Kavanoz', 'size' => '50 ml', 'stock' => 50]],
             ],
             [
                 'name' => 'Nivea Luminous 630 Leke Karşıtı Aydınlatıcı Gece Bakım Serumu',
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => 'Nivea', 'seller' => 'kozmetik', 'price' => 799.00,
                 'img' => 'https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80'],
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1608248597289-497d519ab712?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Altın Yaldızlı Şişe', 'size' => '30 ml', 'stock' => 40]],
             ],
             [
                 'name' => 'Nivea Men Black & White Invisible Leke Karşıtı 48 Saat Deodorant Sprey 200ml',
                 'cat' => 'Parfüm & Deodorant', 'brand' => 'Nivea', 'seller' => 'kozmetik', 'price' => 199.00,
                 'img' => 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&auto=format&fit=crop&q=80'],
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1617897903246-719242758050?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Siyah/Beyaz Şişe', 'size' => '200 ml Tekli', 'stock' => 90], ['color' => 'Siyah/Beyaz Şişe', 'size' => '3x200 ml Avantaj Paketi', 'stock' => 40]],
             ],
             [
                 'name' => 'Clinique Moisture Surge 100 Saat Etkili Yoğun Nemlendirici Jel Krem 50ml',
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => 'Clinique', 'seller' => 'kozmetik', 'price' => 1899.00,
-                'img' => 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1608248597289-497d519ab712?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1556228722-d0b71c7b8054?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Pembe Jel Kavanoz', 'size' => '50 ml', 'stock' => 30], ['color' => 'Pembe Jel Kavanoz', 'size' => '125 ml Mega Boy', 'stock' => 15]],
             ],
             [
                 'name' => 'Clinique Take The Day Off İnatçı Makyaj Temizleme Katı Balmı 125ml',
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => 'Clinique', 'seller' => 'kozmetik', 'price' => 1649.00,
-                'img' => 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1556228722-d0b71c7b8054?w=800&auto=format&fit=crop&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1608248597289-497d519ab712?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Mor Kavanoz', 'size' => '125 ml', 'stock' => 25]],
             ],
             [
                 'name' => 'Dyson Corrale Kablosuz Esnek Plakalı Saç Düzleştirici',
                 'cat' => 'Saç Bakımı & Şekillendirme', 'brand' => 'Dyson', 'seller' => 'kozmetik', 'price' => 19999.00,
-                'img' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Bakır / Fuşya', 'size' => 'Seyahat Şarj Üniteli', 'stock' => 10]],
             ],
             [
                 'name' => 'Giorgio Armani Si Passione Kadın Parfüm EDP 100ml',
                 'cat' => 'Parfüm & Deodorant', 'brand' => 'Armani', 'seller' => 'kozmetik', 'price' => 5299.00,
                 'img' => 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=800&auto=format&fit=crop&q=80'],
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1617897903246-719242758050?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Lüks Kırmızı Cam Şişe', 'size' => '100 ml EDP', 'stock' => 20]],
             ],
             [
                 'name' => "L'Oréal Men Expert Hydra Energetic Yorgunluk Karşıtı C Vitamini Nemlendirici",
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => "L'Oréal", 'seller' => 'kozmetik', 'price' => 389.00,
-                'img' => 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1617897903246-719242758050?w=800&auto=format&fit=crop&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1608248597289-497d519ab712?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Turuncu/Siyah Pompa', 'size' => '50 ml', 'stock' => 45]],
             ],
             [
                 'name' => 'Nivea Sun Koruma & Ferahlık Transparan Güneş Koruyucu Sprey SPF 50+',
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => 'Nivea', 'seller' => 'kozmetik', 'price' => 549.00,
                 'img' => 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80'],
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Mavi Şişe', 'size' => '200 ml Yüksek Koruma', 'stock' => 40]],
             ],
             [
                 'name' => 'Clinique Dramatically Different Nemlendirici Yağsız Yüz Jeli 125ml',
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => 'Clinique', 'seller' => 'kozmetik', 'price' => 1749.00,
                 'img' => 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80'],
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1556228722-d0b71c7b8054?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Sarı Şeffaf Şişe', 'size' => '125 ml Pompalı', 'stock' => 30]],
             ],
             [
                 'name' => "L'Oréal Paris True Match Hyaluronik Asitli Bakım Yapan Fondöten",
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => "L'Oréal", 'seller' => 'kozmetik', 'price' => 489.00,
-                'img' => 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&auto=format&fit=crop&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => '1.N Ivory Açık Ton', 'size' => '30 ml', 'stock' => 25], ['color' => '2.N Vanilla Doğal Ton', 'size' => '30 ml', 'stock' => 35], ['color' => '3.D/3.W Golden Beige Buğday', 'size' => '30 ml', 'stock' => 20]],
             ],
             [
                 'name' => 'Nivea Soft E Vitaminli Yoğun Nemlendirici Hızlı Emilen Bakım Kremi 300ml',
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => 'Nivea', 'seller' => 'kozmetik', 'price' => 249.00,
-                'img' => 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1608248597289-497d519ab712?w=800&auto=format&fit=crop&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1556228722-d0b71c7b8054?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Beyaz Geniş Kavanoz', 'size' => '300 ml Aile Boyu', 'stock' => 80]],
             ],
             [
                 'name' => 'Clinique All About Eyes Göz Altı Morluk ve Torba Karşıtı Krem 15ml',
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => 'Clinique', 'seller' => 'kozmetik', 'price' => 1499.00,
-                'img' => 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1608248597289-497d519ab712?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1556228722-d0b71c7b8054?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Şeftali Tonlu Kavanoz', 'size' => '15 ml', 'stock' => 25]],
             ],
             [
                 'name' => 'Dyson Airstrait Islak ve Kuru Saç Düzleştirici Sıcak Hava Teknolojisi',
                 'cat' => 'Saç Bakımı & Şekillendirme', 'brand' => 'Dyson', 'seller' => 'kozmetik', 'price' => 23999.00,
-                'img' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&auto=format&fit=crop&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Prusya Mavisi / Parlak Bakır', 'size' => 'Plakasız Hava Akımı', 'stock' => 12]],
+            ],
+        ];
+
+        // Kategoriye ve Satıcıya Göre Zengin Galeri Görsel Havuzları (Her Ürüne En Az 6 Farklı Görsel)
+        $galleryPools = [
+            'tekno' => [
+                'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1616469829941-c7200edec809?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=800&auto=format&fit=crop&q=80',
+            ],
+            'moda' => [
+                'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800&auto=format&fit=crop&q=80',
+            ],
+            'ev' => [
+                'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1615873968403-89e068629265?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1540518614846-7ede433c4ef7?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&auto=format&fit=crop&q=80',
+            ],
+            'spor' => [
+                'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1517649763962-0c623266ddc0?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&auto=format&fit=crop&q=80',
+            ],
+            'kozmetik' => [
+                'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1608248597359-5dc383921b76?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1556228722-d0b71c7b8054?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1512290900672-1f5be623e137?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1608248597289-497d519ab712?w=800&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80',
             ],
         ];
 
@@ -936,7 +1110,33 @@ class DatabaseSeeder extends Seeder
 
             $slug = Str::slug($item['name']).'-'.($pIdx + 1);
 
-            $product = Product::firstOrCreate(
+            // Her ürün için en az 5 galeri görseli + 1 ana görsel = toplamda en az 6 farklı görsel garantisi
+            $gallery = $item['gallery'] ?? [];
+            $mainImg = $item['img'];
+            $sellerKey = $item['seller'] ?? 'tekno';
+            $pool = $galleryPools[$sellerKey] ?? $galleryPools['tekno'];
+
+            $poolFiltered = array_values(array_filter($pool, fn ($url) => $url !== $mainImg && ! in_array($url, $gallery)));
+            $merged = array_values(array_unique(array_merge($gallery, $poolFiltered)));
+            $finalGallery = array_values(array_filter($merged, fn ($url) => $url !== $mainImg));
+
+            if (count($finalGallery) < 5) {
+                foreach ($galleryPools as $altPool) {
+                    foreach ($altPool as $candidate) {
+                        if ($candidate !== $mainImg && ! in_array($candidate, $finalGallery)) {
+                            $finalGallery[] = $candidate;
+                            if (count($finalGallery) >= 5) {
+                                break 2;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // En az 5 farklı galeri görseli al (ana görselle birlikte en az 6 görsel)
+            $finalGallery = array_values(array_slice($finalGallery, 0, max(5, count($gallery))));
+
+            $product = Product::updateOrCreate(
                 ['slug' => $slug],
                 [
                     'seller_id' => $seller->id,
@@ -944,7 +1144,7 @@ class DatabaseSeeder extends Seeder
                     'brand_id' => $brand?->id,
                     'name' => $item['name'],
                     'image_url' => $item['img'],
-                    'gallery' => $item['gallery'] ?? [],
+                    'gallery' => $finalGallery,
                     'description' => "Bu ürün resmi distribütör garantili olup, yetkili satıcı {$seller->store_name} tarafından AlSepete güvencesiyle gönderilmektedir. %100 orijinal ve faturalı üründür. 14 gün koşulsuz iade hakkınız bulunmaktadır.",
                     'status' => 'aktif',
                 ]
@@ -959,7 +1159,7 @@ class DatabaseSeeder extends Seeder
                 $varPrice = $basePrice + ($vIdx * 100.00);
                 $discountPrice = $hasDiscount ? round($varPrice * 0.90, 2) : null;
 
-                ProductVariant::firstOrCreate(
+                ProductVariant::updateOrCreate(
                     ['sku' => 'SKU-P'.($pIdx + 1).'-V'.($vIdx + 1)],
                     [
                         'product_id' => $product->id,

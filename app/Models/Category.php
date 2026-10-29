@@ -25,6 +25,18 @@ class Category extends Model
         ];
     }
 
+    public function getNameAttribute(?string $val): ?string
+    {
+        if (app()->getLocale() === 'en' && $val) {
+            $trans = __($val);
+            if ($trans !== $val) {
+                return $trans;
+            }
+        }
+
+        return $val;
+    }
+
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_id');
