@@ -14,44 +14,52 @@
     "
     class="relative">
 
-    <!-- FLOATING LAUNCHER BUTTON -->
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
-        <!-- Attention-Grabbing Speech Badge (Disappears when open) -->
+    <!-- FLOATING LAUNCHER (3D Character Mascot - Frameless & Prominent) -->
+    <div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end pointer-events-none">
+        
+        <!-- Attention-Grabbing Speech Bubble (Disappears when open) -->
         <div 
             x-show="!isOpen" 
             x-transition:enter="transition ease-out duration-300 transform"
-            x-transition:enter-start="opacity-0 translate-y-2 scale-90"
+            x-transition:enter-start="opacity-0 translate-y-3 scale-90"
             x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-            class="hidden sm:flex items-center gap-2 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-2xl shadow-xl border border-indigo-100 text-slate-800 text-xs font-semibold animate-bounce duration-1000">
-            <span class="text-indigo-600 font-bold">🛒 {{ __('Sepetinize yardım edeyim mi?') }}</span>
+            class="pointer-events-auto mb-1 mr-3 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-2xl shadow-xl border border-indigo-100 text-slate-800 text-xs font-bold flex items-center gap-1.5 animate-bounce duration-1000 cursor-pointer select-none"
+            @click="isOpen = true; scrollToBottom();">
+            <span class="text-indigo-600 font-extrabold flex items-center gap-1">
+                <span>🛒</span>
+                <span>{{ __('Sepetinize yardım edeyim mi?') }}</span>
+            </span>
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
         </div>
 
+        <!-- 3D Mascot Floating Button (Pure Character, No Border/Frame) -->
         <button 
             type="button"
             @click="isOpen = !isOpen; if(isOpen) scrollToBottom();"
-            class="group relative flex items-center gap-3 pl-2 pr-5 py-2.5 bg-gradient-to-r from-indigo-700 via-indigo-600 to-purple-600 hover:from-indigo-800 hover:to-purple-700 text-white rounded-full shadow-2xl hover:shadow-indigo-500/50 hover:scale-105 active:scale-95 transition-all duration-300 border-2 border-white/30 cursor-pointer">
-            
-            <!-- Glowing Ping Ring Animation -->
-            <span class="absolute -top-1 -right-1 flex h-4 w-4">
+            class="pointer-events-auto group relative flex flex-col items-center justify-center p-1 transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer focus:outline-none"
+            title="{{ __('AlSepete AI Asistanı') }}">
+
+            <!-- Soft Ambient Glow underneath Mascot -->
+            <div class="absolute inset-0 bg-indigo-500/20 blur-2xl rounded-full scale-110 group-hover:bg-indigo-600/35 transition-all"></div>
+
+            <!-- Big 3D Robot Mascot (No Border, Transparent Background) -->
+            <img 
+                src="{{ asset('images/ai-robot-mascot.png') }}" 
+                alt="{{ __('AI Asistanı') }}" 
+                class="relative h-24 sm:h-28 w-auto object-contain drop-shadow-2xl transition-transform duration-300 group-hover:-translate-y-1.5 select-none"
+            />
+
+            <!-- Online Status Ping -->
+            <span class="absolute top-1 right-2 flex h-3.5 w-3.5">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-white"></span>
+                <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-white shadow-xs"></span>
             </span>
 
-            <!-- 3D Mascot Avatar Circle -->
-            <div class="relative w-12 h-12 rounded-full overflow-hidden bg-white p-0.5 shadow-md border-2 border-white/60 group-hover:rotate-6 transition-transform flex-shrink-0">
-                <img src="{{ asset('images/ai-assistant-mascot.jpg') }}" alt="AlSepete AI Robot" class="w-full h-full object-cover rounded-full">
+            <!-- Compact AI Asistanı Label Badge -->
+            <div class="absolute -bottom-1.5 bg-gradient-to-r from-indigo-700 via-indigo-600 to-purple-600 text-white text-[11px] font-black px-3 py-0.5 rounded-full shadow-lg border border-white/40 tracking-wider uppercase whitespace-nowrap group-hover:shadow-indigo-500/50 transition-all flex items-center gap-1">
+                <span>{{ __('AI Asistanı') }}</span>
+                <i class="fa-solid fa-chevron-up text-[9px] text-indigo-200 transition-transform duration-300" :class="isOpen ? 'rotate-180' : ''"></i>
             </div>
-            
-            <div class="text-left hidden sm:block pr-1">
-                <div class="flex items-center gap-1.5">
-                    <span class="text-[10px] font-black text-indigo-200 uppercase tracking-wider leading-none">AlSepete</span>
-                    <span class="inline-flex items-center px-1.5 py-0.2 text-[9px] font-black bg-amber-400 text-slate-900 rounded-full shadow-xs">AI PRO</span>
-                </div>
-                <div class="text-sm font-black text-white leading-tight mt-0.5">{{ __('AI Asistanı') }}</div>
-            </div>
-
-            <i class="fa-solid fa-chevron-up text-xs text-indigo-200 transition-transform duration-300 ml-1" :class="isOpen ? 'rotate-180' : ''"></i>
         </button>
     </div>
 
@@ -65,14 +73,14 @@
         x-transition:leave-start="opacity-100 translate-y-0 scale-100"
         x-transition:leave-end="opacity-0 translate-y-8 scale-95"
         x-cloak
-        class="fixed bottom-24 right-4 sm:right-6 w-[92vw] sm:w-[420px] h-[580px] max-h-[82vh] bg-white rounded-3xl shadow-2xl border border-slate-200/90 flex flex-col z-50 overflow-hidden backdrop-blur-md">
+        class="fixed bottom-28 right-4 sm:right-6 w-[92vw] sm:w-[420px] h-[580px] max-h-[80vh] bg-white rounded-3xl shadow-2xl border border-slate-200/90 flex flex-col z-50 overflow-hidden backdrop-blur-md">
 
         <!-- HEADER -->
         <div class="px-5 py-3.5 bg-gradient-to-r from-slate-900 via-indigo-950 to-indigo-900 text-white flex items-center justify-between shadow-md">
             <div class="flex items-center gap-3">
-                <div class="relative w-11 h-11 rounded-2xl overflow-hidden bg-white p-0.5 shadow-md border-2 border-indigo-400/40 flex-shrink-0">
-                    <img src="{{ asset('images/ai-assistant-mascot.jpg') }}" alt="AlSepete AI Robot" class="w-full h-full object-cover rounded-xl">
-                    <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-slate-900 rounded-full"></span>
+                <div class="relative w-12 h-12 flex-shrink-0 flex items-center justify-center">
+                    <img src="{{ asset('images/ai-robot-mascot.png') }}" alt="AlSepete AI Robot" class="w-full h-full object-contain drop-shadow-md">
+                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-slate-900 rounded-full"></span>
                 </div>
                 <div>
                     <h3 class="font-bold text-white text-base leading-snug flex items-center gap-1.5">
@@ -121,8 +129,8 @@
                 @else
                     <!-- ASSISTANT MESSAGE -->
                     <div class="flex items-start gap-2.5">
-                        <div class="w-9 h-9 rounded-2xl overflow-hidden bg-white shadow-sm border border-indigo-200 flex-shrink-0 mt-0.5">
-                            <img src="{{ asset('images/ai-assistant-mascot.jpg') }}" alt="AlSepete AI Robot" class="w-full h-full object-cover">
+                        <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center mt-0.5">
+                            <img src="{{ asset('images/ai-robot-mascot.png') }}" alt="AlSepete AI Robot" class="w-full h-full object-contain drop-shadow-sm">
                         </div>
                         <div class="max-w-[88%] space-y-3">
                             <div class="bg-white text-slate-800 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm border border-slate-200/80">
@@ -173,8 +181,8 @@
 
             <!-- TYPING / LOADING INDICATOR -->
             <div wire:loading wire:target="sendMessage, quickAsk" class="flex items-center gap-2.5 text-slate-400">
-                <div class="w-8 h-8 rounded-xl overflow-hidden bg-white shadow-xs border border-indigo-200 flex-shrink-0 animate-pulse">
-                    <img src="{{ asset('images/ai-assistant-mascot.jpg') }}" alt="AlSepete AI Robot" class="w-full h-full object-cover">
+                <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center animate-pulse">
+                    <img src="{{ asset('images/ai-robot-mascot.png') }}" alt="AlSepete AI Robot" class="w-full h-full object-contain drop-shadow-xs">
                 </div>
                 <div class="bg-white border border-slate-200 px-4 py-2.5 rounded-2xl rounded-tl-none shadow-xs flex items-center gap-1.5">
                     <span class="text-xs text-slate-600 font-medium">{{ __('Kataloğu tarıyorum...') }}</span>
