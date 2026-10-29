@@ -201,22 +201,79 @@
 
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                 @php
-                    $colors = [
-                        ['bg' => 'bg-indigo-50', 'text' => 'text-indigo-600', 'border' => 'hover:border-indigo-300', 'icon' => 'fa-laptop'],
-                        ['bg' => 'bg-rose-50', 'text' => 'text-rose-600', 'border' => 'hover:border-rose-300', 'icon' => 'fa-shirt'],
-                        ['bg' => 'bg-emerald-50', 'text' => 'text-emerald-600', 'border' => 'hover:border-emerald-300', 'icon' => 'fa-couch'],
-                        ['bg' => 'bg-amber-50', 'text' => 'text-amber-600', 'border' => 'hover:border-amber-300', 'icon' => 'fa-dumbbell'],
-                        ['bg' => 'bg-sky-50', 'text' => 'text-sky-600', 'border' => 'hover:border-sky-300', 'icon' => 'fa-book'],
+                    $categoryVisuals = [
+                        'elektronik' => [
+                            'img' => 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600&auto=format&fit=crop&q=80',
+                            'icon' => 'fa-laptop',
+                            'badge' => 'bg-indigo-600',
+                            'border' => 'hover:border-indigo-400',
+                        ],
+                        'moda-giyim' => [
+                            'img' => 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&auto=format&fit=crop&q=80',
+                            'icon' => 'fa-shirt',
+                            'badge' => 'bg-rose-600',
+                            'border' => 'hover:border-rose-400',
+                        ],
+                        'ev-yasam' => [
+                            'img' => 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&auto=format&fit=crop&q=80',
+                            'icon' => 'fa-couch',
+                            'badge' => 'bg-emerald-600',
+                            'border' => 'hover:border-emerald-400',
+                        ],
+                        'spor-outdoor' => [
+                            'img' => 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=80',
+                            'icon' => 'fa-dumbbell',
+                            'badge' => 'bg-amber-600',
+                            'border' => 'hover:border-amber-400',
+                        ],
+                        'kozmetik-kisisel-bakim' => [
+                            'img' => 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&auto=format&fit=crop&q=80',
+                            'icon' => 'fa-sparkles',
+                            'badge' => 'bg-fuchsia-600',
+                            'border' => 'hover:border-fuchsia-400',
+                        ],
                     ];
                 @endphp
                 @foreach($categories as $idx => $cat)
-                    @php $c = $colors[$idx % count($colors)]; @endphp
-                    <a href="{{ route('categories.show', $cat->slug) }}" class="bg-white p-5 rounded-2xl border border-slate-200/80 {{ $c['border'] }} shadow-xs hover:shadow-md transition-all duration-300 text-center group hover:-translate-y-1">
-                        <div class="w-12 h-12 mx-auto rounded-2xl {{ $c['bg'] }} {{ $c['text'] }} flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid {{ $c['icon'] }}"></i>
+                    @php
+                        $visual = $categoryVisuals[$cat->slug] ?? [
+                            'img' => 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80',
+                            'icon' => 'fa-tag',
+                            'badge' => 'bg-slate-700',
+                            'border' => 'hover:border-slate-400',
+                        ];
+                    @endphp
+                    <a href="{{ route('categories.show', $cat->slug) }}" 
+                       class="group bg-white rounded-2xl border border-slate-200/80 {{ $visual['border'] }} p-3 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 overflow-hidden">
+                        
+                        <!-- Kategori Görseli -->
+                        <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 mb-3">
+                            <img src="{{ $visual['img'] }}" 
+                                 alt="{{ $cat->name }}" 
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+                            
+                            <!-- İkon Rozeti -->
+                            <div class="absolute top-2 right-2 w-7 h-7 rounded-lg {{ $visual['badge'] }} text-white flex items-center justify-center text-xs shadow-md">
+                                <i class="fa-solid {{ $visual['icon'] }}"></i>
+                            </div>
+
+                            <!-- Alt Kategori Sayısı (Görsel İçi Rozet) -->
+                            <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-xs px-2 py-0.5 rounded-md text-[10px] font-black text-slate-800 shadow-xs">
+                                {{ $cat->children->count() }} {{ __('Alt Kategori') }}
+                            </div>
                         </div>
-                        <h3 class="font-bold text-slate-800 text-sm group-hover:text-indigo-600 transition-colors">{{ __($cat->name) }}</h3>
-                        <span class="text-[11px] text-slate-400 mt-1 block font-medium">{{ $cat->children->count() }} {{ __('Alt Kategori') }}</span>
+
+                        <!-- Başlık & Keşfet Linki -->
+                        <div class="text-center px-1 pb-1">
+                            <h3 class="font-extrabold text-slate-800 text-sm group-hover:text-indigo-600 transition-colors line-clamp-1">
+                                {{ __($cat->name) }}
+                            </h3>
+                            <span class="text-[11px] font-semibold text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1 mt-0.5">
+                                <span>{{ __('Keşfet') }}</span>
+                                <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                            </span>
+                        </div>
                     </a>
                 @endforeach
             </div>
