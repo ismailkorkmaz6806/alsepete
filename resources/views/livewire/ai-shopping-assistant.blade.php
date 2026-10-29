@@ -1,5 +1,5 @@
 <div x-data="{
-        isOpen: @entangle('isOpen'),
+        isOpen: false,
         scrollToBottom() {
             $nextTick(() => {
                 const container = this.$refs.chatBody;
@@ -10,7 +10,6 @@
         }
     }" 
     x-init="
-        $watch('isOpen', value => { if (value) scrollToBottom(); });
         window.addEventListener('scroll-chat-to-bottom', () => scrollToBottom());
     "
     class="relative">
@@ -20,7 +19,6 @@
         <button 
             type="button"
             @click="isOpen = !isOpen; if(isOpen) scrollToBottom();"
-            wire:click="toggleChat"
             class="group relative flex items-center gap-3 px-5 py-3.5 bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-full shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 border border-white/20 cursor-pointer">
             
             <!-- Glowing Ping Ring Animation -->
@@ -84,7 +82,6 @@
                 <button 
                     type="button" 
                     @click="isOpen = false"
-                    wire:click="closeChat" 
                     title="{{ __('Kapat') }}"
                     class="p-2 hover:bg-white/10 rounded-xl transition text-slate-300 hover:text-white cursor-pointer">
                     <i class="fa-solid fa-xmark text-sm"></i>
