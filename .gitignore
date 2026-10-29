@@ -39,3 +39,6 @@ $RECYCLE.BIN/
 SUNUMDA_YAPILACAKLAR.md
 docs/SUNUMDA_YAPILACAKLAR.md
 *sunum*
+storage/debugbar/
+.~lock.*
+

@@ -118,6 +118,9 @@
                             <a href="{{ route('dashboard') }}" class="flex items-center gap-2 px-4 py-2 text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">
                                 <i class="fa-solid fa-chart-pie w-4 text-slate-400"></i> {{ __('Kontrol Paneli') }}
                             </a>
+                            <a href="{{ route('dashboard') }}#sorular" class="flex items-center gap-2 px-4 py-2 text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">
+                                <i class="fa-solid fa-comments w-4 text-slate-400"></i> {{ __('Sorduğum Sorular') }}
+                            </a>
                             <a href="{{ route('profile.edit') }}" class="flex items-center gap-2 px-4 py-2 text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">
                                 <i class="fa-solid fa-user-gear w-4 text-slate-400"></i> {{ __('Profil Ayarları') }}
                             </a>

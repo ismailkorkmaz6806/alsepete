@@ -35,8 +35,7 @@ class ProductDetail extends Component
         }
 
         // Ana görsel
-        $firstMedia = $this->product->getFirstMediaUrl('images');
-        $this->activeImage = $firstMedia ?: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80';
+        $this->activeImage = $this->product->featured_image;
     }
 
     #[Computed]

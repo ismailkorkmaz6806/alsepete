@@ -8,6 +8,7 @@ use App\Http\Controllers\Seller\QuestionController as SellerQuestionController;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductQuestion;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -45,7 +46,13 @@ Route::get('/dil/{locale}', function (string $locale) {
 })->name('locale.switch');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $user = auth()->user();
+    $myQuestions = ProductQuestion::with(['product.category', 'seller'])
+        ->where('user_id', $user->id)
+        ->latest()
+        ->get();
+
+    return view('dashboard', compact('user', 'myQuestions'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Admin Paneli Rotalari

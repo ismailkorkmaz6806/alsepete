@@ -18,9 +18,21 @@ class Product extends Model implements HasMedia
         'brand_id',
         'name',
         'slug',
+        'image_url',
+        'gallery',
         'description',
         'status',
     ];
+
+    protected $casts = [
+        'gallery' => 'array',
+    ];
+
+    public function getFeaturedImageAttribute(): string
+    {
+        return $this->getFirstMediaUrl('images')
+            ?: ($this->image_url ?: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80');
+    }
 
     public function seller()
     {

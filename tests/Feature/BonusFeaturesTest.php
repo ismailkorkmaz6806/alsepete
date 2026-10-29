@@ -119,3 +119,24 @@ test('another user or customer cannot answer someone else seller question', func
 
     $response->assertStatus(403);
 });
+
+test('customer can view their asked questions and seller answers on dashboard', function () {
+    ProductQuestion::create([
+        'product_id' => $this->product->id,
+        'user_id' => $this->customer->id,
+        'seller_id' => $this->seller->id,
+        'question' => 'Müşteri panelimdeki özel soru?',
+        'answer' => 'Satıcının cevabı burada.',
+        'answered_at' => now(),
+        'is_approved' => true,
+    ]);
+
+    $response = $this->actingAs($this->customer)->get(route('dashboard'));
+
+    $response->assertStatus(200);
+    $response->assertSee('Müşteri Kontrol Paneli');
+    $response->assertSee('Sorduğum Sorular ve Satıcı Yanıtları');
+    $response->assertSee('Müşteri panelimdeki özel soru?');
+    $response->assertSee('Satıcının cevabı burada.');
+    $response->assertSee('Bonus Test Urunu');
+});
