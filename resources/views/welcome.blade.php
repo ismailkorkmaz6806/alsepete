@@ -30,64 +30,154 @@
     <!-- Ortak Header, Mega Menü & Dil Seçici -->
     @include('layouts.navigation')
 
-    <!-- 4. Ana İçerik -->
+    <!-- Ana İçerik -->
     <main class="max-w-7xl mx-auto px-4 py-8 space-y-12 flex-1 w-full">
 
-        <!-- Luminous Hero Banner -->
-        <section class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-indigo-600 via-blue-600 to-sky-500 text-white p-8 md:p-14 shadow-xl shadow-indigo-500/10">
-            <div class="absolute -right-10 -bottom-10 w-72 h-72 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
-            <div class="absolute right-1/3 -top-10 w-48 h-48 bg-sky-300/20 rounded-full blur-xl pointer-events-none"></div>
-
-            <div class="relative z-10 max-w-2xl space-y-4">
-                <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
-                    <span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span>
-                    <span class="text-xs font-bold text-white uppercase tracking-wider">{{ __('Haftanın Öne Çıkan Fırsatları') }}</span>
+        <!-- 1. Hafta 3: Dinamik Banner Slider (Alpine.js) -->
+        <section x-data="{
+                    activeSlide: 0,
+                    slidesCount: 3,
+                    timer: null,
+                    startTimer() {
+                        this.timer = setInterval(() => {
+                            this.activeSlide = (this.activeSlide + 1) % this.slidesCount;
+                        }, 5000);
+                    },
+                    stopTimer() {
+                        clearInterval(this.timer);
+                    }
+                 }" 
+                 x-init="startTimer()"
+                 @mouseenter="stopTimer()"
+                 @mouseleave="startTimer()"
+                 class="relative rounded-3xl overflow-hidden shadow-xl shadow-indigo-500/10 min-h-[300px] sm:min-h-[380px] bg-slate-900">
+            
+            <!-- Slayt 1: Genel Kampanya -->
+            <div x-show="activeSlide === 0" 
+                 x-transition:enter="transition ease-out duration-500"
+                 x-transition:enter-start="opacity-0 scale-95"
+                 x-transition:enter-end="opacity-100 scale-100"
+                 class="relative w-full h-full min-h-[300px] sm:min-h-[380px] bg-gradient-to-r from-indigo-700 via-indigo-600 to-violet-600 text-white p-8 sm:p-14 flex flex-col justify-center">
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">{{ __('Haftanın Öne Çıkan Fırsatları') }}</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-[1.15]">
+                        {{ __('AlSepete ile Güvenli Alışveriş, Tek Sepette Binlerce Ürün.') }}
+                    </h1>
+                    <p class="text-indigo-100 text-sm sm:text-base leading-relaxed max-w-xl">
+                        {{ __('Farklı satıcılardan tek seferde alışveriş yapın, bağımsız kargo takibini ve onaylı satıcı kalitesini yaşayın.') }}
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <a href="#cok-satanlar" class="bg-white hover:bg-slate-50 text-indigo-700 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition-all hover:scale-105 text-xs sm:text-sm flex items-center gap-2">
+                            {{ __('Fırsatları Keşfet') }} <i class="fa-solid fa-arrow-down text-xs"></i>
+                        </a>
+                        <a href="{{ route('categories.show', 'elektronik') }}" class="bg-indigo-900/40 hover:bg-indigo-900/60 text-white border border-white/20 font-bold px-6 py-3.5 rounded-2xl backdrop-blur-md transition-all text-xs sm:text-sm">
+                            {{ __('Elektronik Vitrini') }}
+                        </a>
+                    </div>
                 </div>
+            </div>
 
-                <h1 class="text-3xl md:text-5xl font-black tracking-tight leading-[1.15]">
-                    {{ __('AlSepete ile Güvenli Alışveriş, Tek Sepette Binlerce Ürün.') }}
-                </h1>
-
-                <p class="text-indigo-100 text-sm md:text-base leading-relaxed max-w-xl">
-                    {{ __('Farklı satıcılardan tek seferde alışveriş yapın, her satıcının bağımsız kargo takibini ve onaylı ürün kalitesini yaşayın.') }}
-                </p>
-
-                <div class="pt-3 flex flex-wrap gap-4 items-center">
-                    <a href="#urunler" class="bg-white hover:bg-slate-50 text-indigo-700 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition-all hover:scale-105 text-sm flex items-center gap-2">
-                        {{ __('Alışverişe Başla') }} <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                    <a href="{{ url('/satici') }}" class="bg-indigo-700/50 hover:bg-indigo-700 text-white border border-white/20 font-semibold px-6 py-3.5 rounded-2xl backdrop-blur-md transition-all text-sm">
-                        {{ __('Satıcı Portali') }}
-                    </a>
+            <!-- Slayt 2: Moda & Trendler -->
+            <div x-show="activeSlide === 1" 
+                 x-cloak
+                 x-transition:enter="transition ease-out duration-500"
+                 x-transition:enter-start="opacity-0 scale-95"
+                 x-transition:enter-end="opacity-100 scale-100"
+                 class="relative w-full h-full min-h-[300px] sm:min-h-[380px] bg-gradient-to-r from-rose-600 via-pink-600 to-amber-500 text-white p-8 sm:p-14 flex flex-col justify-center">
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
+                        <i class="fa-solid fa-fire text-amber-300 text-xs"></i>
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">{{ __('Yeni Sezon Trendleri') }}</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-[1.15]">
+                        {{ __('Sezonun En Şık Tasarımları Şimdi AlSepete\'de!') }}
+                    </h2>
+                    <p class="text-pink-100 text-sm sm:text-base leading-relaxed max-w-xl">
+                        {{ __('Seçkin tekstil üreticilerinden doğrudan gardırobunuza; özel indirimler ve aynı gün kargo imkanı.') }}
+                    </p>
+                    <div class="pt-2">
+                        <a href="{{ route('categories.show', 'moda-giyim') }}" class="bg-white hover:bg-slate-50 text-rose-700 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition-all hover:scale-105 text-xs sm:text-sm inline-flex items-center gap-2">
+                            {{ __('Moda Ürünlerini İncele') }} <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Slayt 3: Ev & Yaşam / Teknoloji -->
+            <div x-show="activeSlide === 2" 
+                 x-cloak
+                 x-transition:enter="transition ease-out duration-500"
+                 x-transition:enter-start="opacity-0 scale-95"
+                 x-transition:enter-end="opacity-100 scale-100"
+                 class="relative w-full h-full min-h-[300px] sm:min-h-[380px] bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-700 text-white p-8 sm:p-14 flex flex-col justify-center">
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
+                        <i class="fa-solid fa-shield-halved text-emerald-300 text-xs"></i>
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">{{ __('Onaylı Satıcı Ekosistemi') }}</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-[1.15]">
+                        {{ __('Eviniz ve Çalışma Alanınız İçin İhtiyacınız Olan Her Şey.') }}
+                    </h2>
+                    <p class="text-sky-100 text-sm sm:text-base leading-relaxed max-w-xl">
+                        {{ __('Ergonomik koltuklar, akıllı aksesuarlar ve mutfak gereçleri özel fiyatlarla sizleri bekliyor.') }}
+                    </p>
+                    <div class="pt-2">
+                        <a href="{{ route('categories.show', 'ev-yasam') }}" class="bg-white hover:bg-slate-50 text-sky-700 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition-all hover:scale-105 text-xs sm:text-sm inline-flex items-center gap-2">
+                            {{ __('Koleksiyonu Keşfet') }} <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slider Okları (Next & Prev) -->
+            <button @click="activeSlide = (activeSlide - 1 + slidesCount) % slidesCount" 
+                    class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md text-white flex items-center justify-center transition-all focus:outline-none">
+                <i class="fa-solid fa-chevron-left text-xs"></i>
+            </button>
+            <button @click="activeSlide = (activeSlide + 1) % slidesCount" 
+                    class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md text-white flex items-center justify-center transition-all focus:outline-none">
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+
+            <!-- Gösterge Noktaları (Dots) -->
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
+                <template x-for="i in slidesCount" :key="i">
+                    <button @click="activeSlide = i - 1" 
+                            class="h-2 rounded-full transition-all focus:outline-none"
+                            :class="activeSlide === (i - 1) ? 'w-8 bg-white' : 'w-2 bg-white/40 hover:bg-white/60'">
+                    </button>
+                </template>
             </div>
         </section>
 
-        <!-- 5. Kategori Kartları -->
+        <!-- 2. Hafta 3: Öne Çıkan Kategoriler -->
         <section class="space-y-4">
             <div class="flex items-center justify-between">
                 <div>
-                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">{{ __('Kategorileri Keşfet') }}</h2>
-                    <p class="text-xs text-slate-500">{{ __('Platformdaki 15 hiyerarşik kategori ağacı') }}</p>
+                    <h2 class="text-xl font-black text-slate-900 tracking-tight">{{ __('Öne Çıkan Kategoriler') }}</h2>
+                    <p class="text-xs text-slate-500">{{ __('İhtiyacınız olan ürünleri kategori bazında filtreleyin') }}</p>
                 </div>
-                <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">{{ __('15 Kategori Aktif') }}</span>
+                <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">{{ count($categories) }} {{ __('Kategori') }}</span>
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                 @php
                     $colors = [
-                        ['bg' => 'bg-indigo-50', 'text' => 'text-indigo-600', 'border' => 'hover:border-indigo-300'],
-                        ['bg' => 'bg-rose-50', 'text' => 'text-rose-600', 'border' => 'hover:border-rose-300'],
-                        ['bg' => 'bg-emerald-50', 'text' => 'text-emerald-600', 'border' => 'hover:border-emerald-300'],
-                        ['bg' => 'bg-amber-50', 'text' => 'text-amber-600', 'border' => 'hover:border-amber-300'],
-                        ['bg' => 'bg-sky-50', 'text' => 'text-sky-600', 'border' => 'hover:border-sky-300'],
+                        ['bg' => 'bg-indigo-50', 'text' => 'text-indigo-600', 'border' => 'hover:border-indigo-300', 'icon' => 'fa-laptop'],
+                        ['bg' => 'bg-rose-50', 'text' => 'text-rose-600', 'border' => 'hover:border-rose-300', 'icon' => 'fa-shirt'],
+                        ['bg' => 'bg-emerald-50', 'text' => 'text-emerald-600', 'border' => 'hover:border-emerald-300', 'icon' => 'fa-couch'],
+                        ['bg' => 'bg-amber-50', 'text' => 'text-amber-600', 'border' => 'hover:border-amber-300', 'icon' => 'fa-dumbbell'],
+                        ['bg' => 'bg-sky-50', 'text' => 'text-sky-600', 'border' => 'hover:border-sky-300', 'icon' => 'fa-book'],
                     ];
                 @endphp
                 @foreach($categories as $idx => $cat)
                     @php $c = $colors[$idx % count($colors)]; @endphp
-                    <a href="/kategori/{{ $cat->slug }}" class="bg-white p-5 rounded-2xl border border-slate-200/80 {{ $c['border'] }} shadow-sm hover:shadow-md transition-all duration-300 text-center group hover:-translate-y-1">
+                    <a href="{{ route('categories.show', $cat->slug) }}" class="bg-white p-5 rounded-2xl border border-slate-200/80 {{ $c['border'] }} shadow-xs hover:shadow-md transition-all duration-300 text-center group hover:-translate-y-1">
                         <div class="w-12 h-12 mx-auto rounded-2xl {{ $c['bg'] }} {{ $c['text'] }} flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-layer-group"></i>
+                            <i class="fa-solid {{ $c['icon'] }}"></i>
                         </div>
                         <h3 class="font-bold text-slate-800 text-sm group-hover:text-indigo-600 transition-colors">{{ __($cat->name) }}</h3>
                         <span class="text-[11px] text-slate-400 mt-1 block font-medium">{{ $cat->children->count() }} {{ __('Alt Kategori') }}</span>
@@ -96,98 +186,209 @@
             </div>
         </section>
 
-        <!-- 6. Ürün Vitrini (E-Ticaret Katalog Çekimleri) -->
-        <section id="urunler" class="space-y-4">
+        <!-- 3. Hafta 3: "Çok Satanlar" Vitrini (SEO URL: /urun/{slug}) -->
+        <section id="cok-satanlar" class="space-y-4">
             <div class="flex items-center justify-between">
                 <div>
-                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">{{ __('Günün Fırsatları & Çok Satanlar') }}</h2>
-                    <p class="text-xs text-slate-500">{{ __('Sizin için özenle seçilen en popüler ürünler') }}</p>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-100 text-rose-800 uppercase">
+                            <i class="fa-solid fa-fire text-rose-600 me-1"></i> {{ __('Trend Ürünler') }}
+                        </span>
+                    </div>
+                    <h2 class="text-xl font-black text-slate-900 tracking-tight">{{ __('Çok Satanlar') }}</h2>
+                    <p class="text-xs text-slate-500">{{ __('AlSepete müşterilerinin en çok tercih ettiği popüler ürünler') }}</p>
                 </div>
-                <a href="#urunler" class="text-xs font-bold text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-3.5 py-1.5 rounded-full transition-colors inline-flex items-center gap-1.5">
-                    {{ __('Tümünü Gör') }} <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </a>
             </div>
 
-            <!-- E-Ticaret Ürün Fotoğrafları (Katalog Tarzı) -->
-            @php
-                $productImages = [
-                    1 => 'https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=600&q=80', // 4K Smart TV
-                    2 => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80', // Kablosuz Kulaklık
-                    3 => 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=600&q=80', // Gaming Laptop
-                    4 => 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80', // Akıllı Telefon
-                    5 => 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=600&q=80', // RGB Mekanik Oyuncu Klavyesi (Katalog Çekimi)
-                    6 => 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80', // Erkek Düğmeli Pamuklu Gömlek
-                    7 => 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=80', // Düz Beyaz Kapüşonlu Sweatshirt (Katalog Ürün Çekimi)
-                    8 => 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80', // Kırmızı Koşu Ayakkabısı (Sneaker)
-                ];
-                $fallbackImages = [
-                    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80',
-                    'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=600&q=80',
-                ];
-            @endphp
-
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                @foreach($products as $index => $product)
+                @foreach($bestsellers as $product)
                     @php
-                        $firstVariant = $product->variants->first();
-                        $price = $firstVariant ? $firstVariant->price : 0;
-                        $discountPrice = $firstVariant ? $firstVariant->discount_price : null;
-                        $imageUrl = $productImages[$index + 1] ?? $fallbackImages[$index % count($fallbackImages)];
+                        $primaryVariant = $product->variants->first();
+                        $productImage = $product->getFirstMediaUrl('images') ?: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80';
                     @endphp
-                    <div class="bg-white border border-slate-200/80 hover:border-indigo-300 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/5 flex flex-col justify-between group">
+                    <a href="{{ route('products.show', $product->slug) }}" 
+                       class="group bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs hover:shadow-xl hover:border-indigo-300 transition-all flex flex-col justify-between">
                         
-                        <!-- Katalog Ürün Fotoğrafı -->
-                        <div class="relative bg-slate-50 aspect-square overflow-hidden flex items-center justify-center p-3">
-                            <img src="{{ $imageUrl }}" 
-                                 alt="{{ $product->name }}" 
-                                 class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                        <div>
+                            <!-- Ürün Görseli -->
+                            <div class="relative aspect-square rounded-xl bg-slate-50 overflow-hidden mb-3">
+                                <img src="{{ $productImage }}" 
+                                     alt="{{ $product->name }}" 
+                                     class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300">
+                                
+                                @if($primaryVariant && $primaryVariant->discount_price)
+                                    <span class="absolute top-2 left-2 bg-rose-500 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full shadow-xs">
+                                        %{{ round((($primaryVariant->price - $primaryVariant->discount_price) / $primaryVariant->price) * 100) }}
+                                    </span>
+                                @endif
 
-                            @if($discountPrice)
-                                <span class="absolute top-3 left-3 bg-rose-600 text-white text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider shadow-md">
-                                    {{ __('Fırsat') }}
-                                </span>
-                            @endif
-
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-xl bg-white/90 hover:bg-white text-slate-500 hover:text-rose-500 flex items-center justify-center transition-colors shadow-sm">
-                                <i class="fa-regular fa-heart text-xs"></i>
-                            </button>
-                        </div>
-
-                        <!-- Ürün Detayları -->
-                        <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
-                            <div class="space-y-1.5">
-                                <div class="flex items-center gap-1.5 text-[11px] text-indigo-600 font-semibold">
-                                    <i class="fa-solid fa-store text-[10px]"></i>
-                                    <span>{{ __($product->seller->store_name ?? 'Onaylı Satıcı') }}</span>
-                                </div>
-                                <h3 class="font-bold text-slate-800 text-sm leading-snug line-clamp-2 group-hover:text-indigo-600 transition-colors">
-                                    {{ __($product->name) }}
-                                </h3>
-                                <span class="text-[11px] text-slate-400 block font-medium">
-                                    {{ __($product->category->name ?? 'Kategori') }}
-                                </span>
+                                @if($product->brand)
+                                    <span class="absolute top-2 right-2 bg-white/90 backdrop-blur-xs text-slate-700 font-bold text-[9px] px-2 py-0.5 rounded-md border border-slate-200/60">
+                                        {{ $product->brand->name }}
+                                    </span>
+                                @endif
                             </div>
 
-                            <!-- Fiyat ve Sepet Butonu -->
-                            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-                                <div>
-                                    @if($discountPrice)
-                                        <span class="block text-[11px] text-slate-400 line-through font-medium">{{ number_format($price, 2, ',', '.') }} TL</span>
-                                        <span class="text-lg font-black text-slate-900 tracking-tight">{{ number_format($discountPrice, 2, ',', '.') }} <span class="text-xs font-semibold text-indigo-600">{{ __('TL') }}</span></span>
-                                    @else
-                                        <span class="text-lg font-black text-slate-900 tracking-tight">{{ number_format($price, 2, ',', '.') }} <span class="text-xs font-semibold text-indigo-600">{{ __('TL') }}</span></span>
-                                    @endif
+                            <!-- Kategori & Başlık -->
+                            <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1">
+                                {{ $product->category->name }}
+                            </span>
+                            <h3 class="text-xs font-bold text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-relaxed">
+                                {{ $product->name }}
+                            </h3>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 mt-3 space-y-2">
+                            <!-- Satıcı & Puan -->
+                            <div class="flex items-center justify-between text-[11px] text-slate-500">
+                                <span class="truncate max-w-[120px] font-medium">{{ $product->seller->store_name }}</span>
+                                <div class="flex items-center gap-1 text-amber-500 font-bold">
+                                    <i class="fa-solid fa-star text-[10px]"></i>
+                                    <span class="text-slate-700">4.9</span>
                                 </div>
-                                <button class="bg-indigo-50 hover:bg-indigo-600 text-indigo-600 hover:text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 hover:scale-105 shadow-sm">
-                                    <i class="fa-solid fa-plus text-[10px]"></i> {{ __('Ekle') }}
-                                </button>
+                            </div>
+
+                            <!-- Fiyat -->
+                            <div class="flex items-baseline gap-2">
+                                @if($primaryVariant && $primaryVariant->discount_price)
+                                    <span class="text-base font-black text-indigo-600">
+                                        {{ number_format($primaryVariant->discount_price, 2, ',', '.') }} TL
+                                    </span>
+                                    <span class="text-xs text-slate-400 line-through">
+                                        {{ number_format($primaryVariant->price, 2, ',', '.') }} TL
+                                    </span>
+                                @elseif($primaryVariant)
+                                    <span class="text-base font-black text-slate-900">
+                                        {{ number_format($primaryVariant->price, 2, ',', '.') }} TL
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </section>
+
+        <!-- 4. Hafta 3: "Yeni Gelenler" Vitrini -->
+        <section class="space-y-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-sky-100 text-sky-800 uppercase">
+                            <i class="fa-solid fa-sparkles text-sky-600 me-1"></i> {{ __('Katalog Güncellemesi') }}
+                        </span>
+                    </div>
+                    <h2 class="text-xl font-black text-slate-900 tracking-tight">{{ __('Yeni Gelenler') }}</h2>
+                    <p class="text-xs text-slate-500">{{ __('Satıcılarımızın kataloğa yeni eklediği güncel ürünler') }}</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                @foreach($newArrivals as $product)
+                    @php
+                        $primaryVariant = $product->variants->first();
+                        $productImage = $product->getFirstMediaUrl('images') ?: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop&q=80';
+                    @endphp
+                    <a href="{{ route('products.show', $product->slug) }}" 
+                       class="group bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs hover:shadow-xl hover:border-indigo-300 transition-all flex flex-col justify-between">
+                        
+                        <div>
+                            <!-- Ürün Görseli -->
+                            <div class="relative aspect-square rounded-xl bg-slate-50 overflow-hidden mb-3">
+                                <img src="{{ $productImage }}" 
+                                     alt="{{ $product->name }}" 
+                                     class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300">
+                                
+                                <span class="absolute top-2 left-2 bg-indigo-600 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full shadow-xs">
+                                    {{ __('YENİ') }}
+                                </span>
+                            </div>
+
+                            <!-- Kategori & Başlık -->
+                            <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1">
+                                {{ $product->category->name }}
+                            </span>
+                            <h3 class="text-xs font-bold text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-relaxed">
+                                {{ $product->name }}
+                            </h3>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 mt-3 space-y-2">
+                            <!-- Satıcı & Puan -->
+                            <div class="flex items-center justify-between text-[11px] text-slate-500">
+                                <span class="truncate max-w-[120px] font-medium">{{ $product->seller->store_name }}</span>
+                                <div class="flex items-center gap-1 text-amber-500 font-bold">
+                                    <i class="fa-solid fa-star text-[10px]"></i>
+                                    <span class="text-slate-700">5.0</span>
+                                </div>
+                            </div>
+
+                            <!-- Fiyat -->
+                            <div class="flex items-baseline gap-2">
+                                @if($primaryVariant && $primaryVariant->discount_price)
+                                    <span class="text-base font-black text-indigo-600">
+                                        {{ number_format($primaryVariant->discount_price, 2, ',', '.') }} TL
+                                    </span>
+                                    <span class="text-xs text-slate-400 line-through">
+                                        {{ number_format($primaryVariant->price, 2, ',', '.') }} TL
+                                    </span>
+                                @elseif($primaryVariant)
+                                    <span class="text-base font-black text-slate-900">
+                                        {{ number_format($primaryVariant->price, 2, ',', '.') }} TL
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                    </a>
+                @endforeach
+            </div>
+        </section>
+
+        <!-- 5. Güvenlik ve Alışveriş Garantileri -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-6">
+            <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-900">{{ __('Hızlı & Güvenli Teslimat') }}</h4>
+                    <p class="text-xs text-slate-500">{{ __('Satıcı bazında ayrıştırılmış kargo takibi') }}</p>
+                </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-900">{{ __('Onaylı Satıcı Mağazaları') }}</h4>
+                    <p class="text-xs text-slate-500">{{ __('Vergi ve kimlik kontrolünden geçmiş satıcılar') }}</p>
+                </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-900">{{ __('14 Gün Kolay İade') }}</h4>
+                    <p class="text-xs text-slate-500">{{ __('Koşulsuz şartsız iade ve değişim güvencesi') }}</p>
+                </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-900">{{ __('256-Bit SSL Ödeme') }}</h4>
+                    <p class="text-xs text-slate-500">{{ __('Tüm ödemeleriniz 3D Secure ile korunur') }}</p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Ortak Footer -->

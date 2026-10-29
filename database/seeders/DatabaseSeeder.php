@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Product;
+use App\Models\ProductQuestion;
 use App\Models\ProductVariant;
 use App\Models\Seller;
 use App\Models\User;
@@ -311,5 +312,48 @@ class DatabaseSeeder extends Seeder
                 'used_count' => 0,
             ]
         );
+
+        // 9. Bonus 2: Örnek Satıcı Soru & Cevapları
+        $firstProduct = Product::first();
+        if ($firstProduct) {
+            $customerUser = User::role('customer')->first() ?? User::where('email', 'like', 'musteri%')->first();
+            $customerId = $customerUser ? $customerUser->id : 1;
+
+            ProductQuestion::firstOrCreate(
+                ['question' => 'Bu ürünün kumaşı %100 pamuk mudur yoksa polyester karışımı mı?'],
+                [
+                    'product_id' => $firstProduct->id,
+                    'user_id' => $customerId,
+                    'seller_id' => $firstProduct->seller_id,
+                    'answer' => 'Merhaba, ürünümüz %100 birinci sınıf taranmış pamuk ipliğinden üretilmiştir. İlginiz için teşekkür ederiz.',
+                    'answered_at' => now()->subHours(5),
+                    'is_approved' => true,
+                ]
+            );
+
+            ProductQuestion::firstOrCreate(
+                ['question' => 'Aynı gün kargoya veriliyor mu ve hangi kargo firmasıyla çalışıyorsunuz?'],
+                [
+                    'product_id' => $firstProduct->id,
+                    'user_id' => $customerId,
+                    'seller_id' => $firstProduct->seller_id,
+                    'answer' => 'Saat 15:00\'e kadar verilen tüm siparişler aynı gün Yurtiçi Kargo güvencesiyle sevk edilmektedir.',
+                    'answered_at' => now()->subHours(2),
+                    'is_approved' => true,
+                ]
+            );
+
+            ProductQuestion::firstOrCreate(
+                ['question' => 'Kalıpları tam kalıp mı bir beden büyük almalı mıyım?'],
+                [
+                    'product_id' => $firstProduct->id,
+                    'user_id' => $customerId,
+                    'seller_id' => $firstProduct->seller_id,
+                    'answer' => null,
+                    'answered_at' => null,
+                    'is_approved' => true,
+                ]
+            );
+        }
     }
 }

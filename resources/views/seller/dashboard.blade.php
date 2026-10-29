@@ -16,11 +16,23 @@
                 </h2>
             </div>
 
-            <div class="text-xs text-slate-500 bg-white border border-slate-200 px-3.5 py-2 rounded-xl shadow-xs">
-                <span class="text-slate-400">{{ __('Yetkilendirme:') }}</span>
-                <span class="font-bold text-slate-800">role:seller</span> &bull; 
-                <span class="text-slate-400">{{ __('Durum:') }}</span> 
-                <span class="font-bold text-emerald-600 uppercase">{{ Auth::user()->seller->status ?? 'onayli' }}</span>
+            <div class="flex items-center gap-3">
+                <a href="{{ route('seller.questions.index') }}" class="inline-flex items-center gap-2 px-3.5 py-2 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold text-xs rounded-xl shadow-sm hover:from-indigo-700 hover:to-violet-700 transition-all">
+                    <i class="fa-solid fa-comments"></i>
+                    <span>{{ __('Müşteri Soruları') }}</span>
+                    @if(Auth::user()->seller && Auth::user()->seller->questions()->whereNull('answer')->count() > 0)
+                        <span class="bg-rose-500 text-white text-[10px] px-1.5 py-0.2 rounded-full font-black">
+                            {{ Auth::user()->seller->questions()->whereNull('answer')->count() }}
+                        </span>
+                    @endif
+                </a>
+
+                <div class="text-xs text-slate-500 bg-white border border-slate-200 px-3.5 py-2 rounded-xl shadow-xs">
+                    <span class="text-slate-400">{{ __('Yetkilendirme:') }}</span>
+                    <span class="font-bold text-slate-800">role:seller</span> &bull; 
+                    <span class="text-slate-400">{{ __('Durum:') }}</span> 
+                    <span class="font-bold text-emerald-600 uppercase">{{ Auth::user()->seller->status ?? 'onayli' }}</span>
+                </div>
             </div>
         </div>
     </x-slot>
@@ -72,16 +84,20 @@
                 <span class="text-[11px] text-emerald-600 font-semibold mt-1 block">{{ __('Standart Satıcı Tarifesi') }}</span>
             </div>
 
-            <!-- Siparişler -->
+            <!-- Müşteri Soruları (Bonus +2 Puan) -->
             <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs">
                 <div class="flex items-center justify-between text-slate-500 text-xs font-semibold mb-2">
-                    <span>{{ __('Bekleyen Siparişler') }}</span>
-                    <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
-                        <i class="fa-solid fa-truck-fast text-xs"></i>
+                    <span>{{ __('Müşteri Soruları') }}</span>
+                    <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                        <i class="fa-solid fa-comments text-xs"></i>
                     </div>
                 </div>
-                <div class="text-2xl font-black text-slate-900">0</div>
-                <span class="text-[11px] text-slate-400 mt-1 block">{{ __('Hafta 4: Sipariş Yönetimi') }}</span>
+                <div class="text-2xl font-black text-slate-900">
+                    {{ Auth::user()->seller ? Auth::user()->seller->questions()->count() : 0 }}
+                </div>
+                <a href="{{ route('seller.questions.index') }}" class="text-[11px] text-indigo-600 font-bold hover:underline mt-1 block">
+                    {{ __('Yanıtla & Görüntüle') }} &rarr;
+                </a>
             </div>
 
             <!-- Mağaza Durumu -->
