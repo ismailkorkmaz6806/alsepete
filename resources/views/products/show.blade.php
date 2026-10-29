@@ -26,8 +26,26 @@
         <!-- Livewire Ürün Detay & Varyant Seçici (Hafta 3 Çekirdek Özellik) -->
         <livewire:product-detail :product="$product" />
 
+        <!-- Hızlı Gezinme Sekmeleri -->
+        <div class="flex items-center gap-2 sm:gap-4 border-b border-slate-200 text-xs sm:text-sm font-bold pb-1 overflow-x-auto">
+            <a href="#aciklama" class="px-4 py-2 text-indigo-600 border-b-2 border-indigo-600 -mb-1.5 flex items-center gap-2 shrink-0">
+                <i class="fa-solid fa-align-left text-xs"></i>
+                <span>{{ __('Ürün Açıklaması & Özellikleri') }}</span>
+            </a>
+            <a href="#soru-cevap" class="px-4 py-2 text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 shrink-0">
+                <i class="fa-solid fa-comments text-xs text-indigo-500"></i>
+                <span>{{ __('Satıcıya Soru Sor & Cevaplar') }} ({{ $product->questions()->where('is_approved', true)->count() }})</span>
+            </a>
+            @if(isset($relatedProducts) && $relatedProducts->count() > 0)
+                <a href="#oneriler" class="px-4 py-2 text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-sparkles text-xs text-amber-500"></i>
+                    <span>{{ __('Benzer Önerilen Ürünler') }}</span>
+                </a>
+            @endif
+        </div>
+
         <!-- Ürün Açıklaması ve Özellikleri -->
-        <div class="bg-white rounded-3xl border border-slate-200/80 shadow-xs p-6 lg:p-10 space-y-4">
+        <div id="aciklama" class="scroll-mt-28 bg-white rounded-3xl border border-slate-200/80 shadow-xs p-6 lg:p-10 space-y-4">
             <h3 class="text-lg font-black text-slate-900 tracking-tight flex items-center gap-2 border-b border-slate-100 pb-4">
                 <i class="fa-solid fa-circle-info text-indigo-600"></i>
                 {{ __('Ürün Açıklaması & Özellikleri') }}
@@ -55,9 +73,14 @@
             </div>
         </div>
 
+        <!-- Bonus Görev 2: Satıcıya Soru Sor & Cevap Sistemi (+2 Puan) -->
+        <div id="soru-cevap" class="scroll-mt-28">
+            <livewire:product-questions :product="$product" />
+        </div>
+
         <!-- Bonus Görev 1: "Bu Ürünü Alanlar Bunları da Aldı" Öneri Sistemi (+2 Puan) -->
         @if(isset($relatedProducts) && $relatedProducts->count() > 0)
-            <div class="space-y-4">
+            <div id="oneriler" class="scroll-mt-28 space-y-4">
                 <div class="flex items-center justify-between">
                     <div>
                         <div class="flex items-center gap-2 mb-1">
@@ -76,7 +99,7 @@
                     @foreach($relatedProducts as $relProduct)
                         @php
                             $relVariant = $relProduct->variants->first();
-                            $relImg = $relProduct->getFirstMediaUrl('images') ?: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80';
+                            $relImg = $relProduct->featured_image;
                         @endphp
                         <a href="{{ route('products.show', $relProduct->slug) }}" 
                            class="group bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs hover:shadow-md hover:border-indigo-300 transition-all flex flex-col justify-between">
@@ -107,9 +130,6 @@
                 </div>
             </div>
         @endif
-
-        <!-- Bonus Görev 2: Satıcıya Soru Sor & Cevap Sistemi (+2 Puan) -->
-        <livewire:product-questions :product="$product" />
 
     </div>
 </x-app-layout>

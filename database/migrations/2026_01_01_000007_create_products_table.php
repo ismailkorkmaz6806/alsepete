@@ -15,6 +15,8 @@ return new class extends Migration
             $table->foreignId('brand_id')->nullable()->constrained('brands')->nullOnDelete();
             $table->string('name');
             $table->string('slug')->unique()->index();
+            $table->string('image_url')->nullable();
+            $table->text('gallery')->nullable();
             $table->longText('description')->nullable();
             $table->enum('status', ['taslak', 'onay_bekliyor', 'aktif', 'pasif'])->default('aktif')->index();
             $table->timestamps();

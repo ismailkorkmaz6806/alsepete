@@ -23,13 +23,13 @@
 
             <!-- Küçük Resim Galerisi (Thumbnails) -->
             @php
-                $thumbnails = $product->getMedia('images')->count() > 0 
-                    ? $product->getMedia('images')->map(fn($m) => $m->getUrl())->toArray()
-                    : [
-                        $activeImage,
-                        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80',
-                        'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80'
-                    ];
+                $mediaThumbs = $product->getMedia('images')->map(fn($m) => $m->getUrl())->toArray();
+                if (count($mediaThumbs) > 0) {
+                    $thumbnails = $mediaThumbs;
+                } else {
+                    $gallery = is_array($product->gallery) ? $product->gallery : [];
+                    $thumbnails = array_values(array_unique(array_merge([$product->featured_image], $gallery)));
+                }
             @endphp
 
             <div class="flex items-center gap-3 overflow-x-auto pb-2">
@@ -84,6 +84,13 @@
                             {{ __('Onaylı') }}
                         </span>
                     </div>
+
+                    <div class="text-slate-400">|</div>
+
+                    <a href="#soru-cevap" class="flex items-center gap-1.5 text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 rounded-lg font-bold transition-colors">
+                        <i class="fa-solid fa-comments"></i>
+                        <span>{{ $product->questions()->where('is_approved', true)->count() }} {{ __('Soru & Cevap') }}</span>
+                    </a>
                 </div>
 
                 <!-- Fiyat Bloğu (Livewire ile Reaktif Güncellenir) -->
@@ -228,6 +235,14 @@
                             <span>{{ __('Stokta Yok') }}</span>
                         </button>
                     @endif
+                </div>
+
+                <!-- Satıcıya Soru Sor Hızlı Buton -->
+                <div class="pt-1">
+                    <a href="#soru-cevap" class="w-full py-2.5 px-4 rounded-xl border border-indigo-200 bg-indigo-50/70 hover:bg-indigo-100 text-indigo-700 font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-2xs">
+                        <i class="fa-solid fa-circle-question text-indigo-600"></i>
+                        <span>{{ __('Satıcıya Bu Ürün Hakkında Soru Sor') }}</span>
+                    </a>
                 </div>
 
                 <!-- Güvenilirlik Rozetleri -->

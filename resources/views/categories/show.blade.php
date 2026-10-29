@@ -160,7 +160,7 @@
                         @foreach($products as $product)
                             @php
                                 $primaryVariant = $product->variants->first();
-                                $productImage = $product->getFirstMediaUrl('images') ?: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80';
+                                $productImage = $product->featured_image;
                             @endphp
                             <a href="{{ route('products.show', $product->slug) }}" 
                                class="group bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs hover:shadow-lg hover:border-indigo-300 transition-all flex flex-col justify-between">
