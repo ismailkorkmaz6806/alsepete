@@ -26,8 +26,8 @@
             class="pointer-events-auto mb-1 mr-3 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-2xl shadow-xl border border-indigo-100 text-slate-800 text-xs font-bold flex items-center gap-1.5 animate-bounce duration-1000 cursor-pointer select-none"
             @click="isOpen = true; scrollToBottom();">
             <span class="text-indigo-600 font-extrabold flex items-center gap-1">
-                <span>🛒</span>
-                <span>{{ __('Sepetinize yardım edeyim mi?') }}</span>
+                <span>👋</span>
+                <span>{{ __('Size nasıl yardımcı olabilirim?') }}</span>
             </span>
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
         </div>
@@ -84,12 +84,11 @@
                 </div>
                 <div>
                     <h3 class="font-bold text-white text-base leading-snug flex items-center gap-1.5">
-                        {{ __('AlSepete AI Danışman') }}
+                        {{ __('AlSepete AI') }}
                         <span class="text-[10px] bg-indigo-500/40 text-amber-300 font-bold px-2 py-0.5 rounded-full border border-amber-400/30">PRO</span>
                     </h3>
-                    <p class="text-xs text-emerald-400 font-medium flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                        {{ __('Sepet Uzmanı • Çevrimiçi') }}
+                    <p class="text-xs text-indigo-200 font-medium">
+                        {{ __('Alışveriş Danışmanı') }}
                     </p>
                 </div>
             </div>

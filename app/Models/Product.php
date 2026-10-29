@@ -28,6 +28,36 @@ class Product extends Model implements HasMedia
         'gallery' => 'array',
     ];
 
+    public function getNameAttribute(?string $val): ?string
+    {
+        if (app()->getLocale() === 'en' && $val) {
+            $trans = __($val);
+            if ($trans !== $val) {
+                return $trans;
+            }
+        }
+
+        return $val;
+    }
+
+    public function getDescriptionAttribute(?string $val): ?string
+    {
+        if (app()->getLocale() === 'en' && $val) {
+            $trans = __($val);
+            if ($trans !== $val) {
+                return $trans;
+            }
+
+            if (str_contains($val, 'resmi distribütör garantili olup')) {
+                $sellerName = $this->seller?->store_name ?? 'our authorized seller';
+
+                return "This product is covered by official distributor warranty and shipped by authorized seller {$sellerName} with AlSepete guarantee. 100% authentic with invoice. 14-day hassle-free return policy.";
+            }
+        }
+
+        return $val;
+    }
+
     public function getFeaturedImageAttribute(): string
     {
         return $this->getFirstMediaUrl('images')

@@ -28,6 +28,30 @@ class ProductVariant extends Model
         ];
     }
 
+    public function getColorAttribute(?string $val): ?string
+    {
+        if (app()->getLocale() === 'en' && $val) {
+            $trans = __($val);
+            if ($trans !== $val) {
+                return $trans;
+            }
+        }
+
+        return $val;
+    }
+
+    public function getSizeAttribute(?string $val): ?string
+    {
+        if (app()->getLocale() === 'en' && $val) {
+            $trans = __($val);
+            if ($trans !== $val) {
+                return $trans;
+            }
+        }
+
+        return $val;
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class);

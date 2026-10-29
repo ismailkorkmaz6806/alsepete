@@ -57,8 +57,8 @@
                  x-transition:enter="transition ease-out duration-500"
                  x-transition:enter-start="opacity-0 scale-95"
                  x-transition:enter-end="opacity-100 scale-100"
-                 class="relative w-full h-full min-h-[300px] sm:min-h-[380px] bg-gradient-to-r from-indigo-700 via-indigo-600 to-violet-600 text-white p-8 sm:p-14 flex flex-col justify-center">
-                <div class="relative z-10 max-w-2xl space-y-4">
+                 class="relative w-full h-full min-h-[300px] sm:min-h-[380px] bg-gradient-to-r from-indigo-700 via-indigo-600 to-violet-600 text-white p-8 sm:p-12 flex items-center justify-between gap-8">
+                <div class="relative z-10 max-w-xl space-y-4">
                     <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                         <span class="text-xs font-bold text-white uppercase tracking-wider">{{ __('Haftanın Öne Çıkan Fırsatları') }}</span>
@@ -78,6 +78,18 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Slayt 1 Görseli: Teknoloji & Cihazlar -->
+                <div class="hidden lg:flex items-center justify-center flex-1 relative pr-4">
+                    <div class="relative w-72 h-72 xl:w-80 xl:h-80 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&auto=format&fit=crop&q=80" alt="Elektronik Vitrini" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl text-slate-900 text-xs font-black shadow-lg flex items-center justify-between">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-laptop text-indigo-600"></i> {{ __('Akıllı Teknoloji') }}</span>
+                            <span class="text-indigo-600 font-extrabold bg-indigo-50 px-2 py-0.5 rounded-full">%30 {{ __('İndirim') }}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Slayt 2: Moda & Trendler -->
@@ -86,8 +98,8 @@
                  x-transition:enter="transition ease-out duration-500"
                  x-transition:enter-start="opacity-0 scale-95"
                  x-transition:enter-end="opacity-100 scale-100"
-                 class="relative w-full h-full min-h-[300px] sm:min-h-[380px] bg-gradient-to-r from-rose-600 via-pink-600 to-amber-500 text-white p-8 sm:p-14 flex flex-col justify-center">
-                <div class="relative z-10 max-w-2xl space-y-4">
+                 class="relative w-full h-full min-h-[300px] sm:min-h-[380px] bg-gradient-to-r from-rose-600 via-pink-600 to-amber-500 text-white p-8 sm:p-12 flex items-center justify-between gap-8">
+                <div class="relative z-10 max-w-xl space-y-4">
                     <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
                         <i class="fa-solid fa-fire text-amber-300 text-xs"></i>
                         <span class="text-xs font-bold text-white uppercase tracking-wider">{{ __('Yeni Sezon Trendleri') }}</span>
@@ -104,16 +116,28 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Slayt 2 Görseli: Moda & Yaşam Tarzı -->
+                <div class="hidden lg:flex items-center justify-center flex-1 relative pr-4">
+                    <div class="relative w-72 h-72 xl:w-80 xl:h-80 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 transform -rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&auto=format&fit=crop&q=80" alt="Moda Vitrini" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl text-slate-900 text-xs font-black shadow-lg flex items-center justify-between">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bag-shopping text-rose-600"></i> {{ __('Yeni Sezon') }}</span>
+                            <span class="text-rose-600 font-extrabold bg-rose-50 px-2 py-0.5 rounded-full">%40 {{ __('İndirim') }}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Slayt 3: Ev & Yaşam / Teknoloji -->
+            <!-- Slayt 3: Ev & Yaşam / Mutfak -->
             <div x-show="activeSlide === 2" 
                  x-cloak
                  x-transition:enter="transition ease-out duration-500"
                  x-transition:enter-start="opacity-0 scale-95"
                  x-transition:enter-end="opacity-100 scale-100"
-                 class="relative w-full h-full min-h-[300px] sm:min-h-[380px] bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-700 text-white p-8 sm:p-14 flex flex-col justify-center">
-                <div class="relative z-10 max-w-2xl space-y-4">
+                 class="relative w-full h-full min-h-[300px] sm:min-h-[380px] bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-700 text-white p-8 sm:p-12 flex items-center justify-between gap-8">
+                <div class="relative z-10 max-w-xl space-y-4">
                     <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
                         <i class="fa-solid fa-shield-halved text-emerald-300 text-xs"></i>
                         <span class="text-xs font-bold text-white uppercase tracking-wider">{{ __('Onaylı Satıcı Ekosistemi') }}</span>
@@ -128,6 +152,18 @@
                         <a href="{{ route('categories.show', 'ev-yasam') }}" class="bg-white hover:bg-slate-50 text-sky-700 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition-all hover:scale-105 text-xs sm:text-sm inline-flex items-center gap-2">
                             {{ __('Koleksiyonu Keşfet') }} <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
+                    </div>
+                </div>
+
+                <!-- Slayt 3 Görseli: Ev & Mutfak -->
+                <div class="hidden lg:flex items-center justify-center flex-1 relative pr-4">
+                    <div class="relative w-72 h-72 xl:w-80 xl:h-80 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&auto=format&fit=crop&q=80" alt="Ev ve Yaşam" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl text-slate-900 text-xs font-black shadow-lg flex items-center justify-between">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-couch text-sky-600"></i> {{ __('Ev & Yaşam') }}</span>
+                            <span class="text-sky-600 font-extrabold bg-sky-50 px-2 py-0.5 rounded-full">{{ __('Fırsat') }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
