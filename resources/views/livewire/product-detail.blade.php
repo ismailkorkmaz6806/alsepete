@@ -50,7 +50,7 @@
                 <!-- Kategori & Marka -->
                 <div class="flex flex-wrap items-center gap-2">
                     <a href="{{ route('categories.show', $product->category->slug) }}" class="text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 px-3 py-1 rounded-lg transition-colors">
-                        {{ $product->category->name }}
+                        {{ __($product->category->name) }}
                     </a>
                     @if($product->brand)
                         <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-lg">

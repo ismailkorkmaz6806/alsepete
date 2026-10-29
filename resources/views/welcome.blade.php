@@ -23,7 +23,7 @@
                 radial-gradient(at 50% 90%, rgba(168, 85, 247, 0.05) 0px, transparent 50%);
         }
     </style>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    @livewireStyles
 </head>
 <body class="subtle-mesh text-slate-800 min-h-screen antialiased flex flex-col selection:bg-indigo-600 selection:text-white">
 
@@ -231,7 +231,7 @@
 
                             <!-- Kategori & Başlık -->
                             <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1">
-                                {{ $product->category->name }}
+                                {{ __($product->category->name) }}
                             </span>
                             <h3 class="text-xs font-bold text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-relaxed">
                                 {{ $product->name }}
@@ -307,7 +307,7 @@
 
                             <!-- Kategori & Başlık -->
                             <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1">
-                                {{ $product->category->name }}
+                                {{ __($product->category->name) }}
                             </span>
                             <h3 class="text-xs font-bold text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-relaxed">
                                 {{ $product->name }}
@@ -394,5 +394,6 @@
     <!-- Ortak Footer -->
     @include('layouts.footer')
 
+    @livewireScripts
 </body>
 </html>

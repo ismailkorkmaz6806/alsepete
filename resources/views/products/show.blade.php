@@ -9,12 +9,12 @@
             <i class="fa-solid fa-chevron-right text-[9px] text-slate-300"></i>
             @if($product->category->parent)
                 <a href="{{ route('categories.show', $product->category->parent->slug) }}" class="hover:text-indigo-600 transition-colors">
-                    {{ $product->category->parent->name }}
+                    {{ __($product->category->parent->name) }}
                 </a>
                 <i class="fa-solid fa-chevron-right text-[9px] text-slate-300"></i>
             @endif
             <a href="{{ route('categories.show', $product->category->slug) }}" class="hover:text-indigo-600 transition-colors font-semibold text-slate-700">
-                {{ $product->category->name }}
+                {{ __($product->category->name) }}
             </a>
             <i class="fa-solid fa-chevron-right text-[9px] text-slate-300"></i>
             <span class="text-slate-400 truncate max-w-xs">{{ $product->name }}</span>

@@ -28,10 +28,21 @@ class AiShoppingAssistant extends Component
 
     public function mount(): void
     {
+        $this->quickPrompts = [
+            __('☕ Bütçe dostu kahve makinesi öner'),
+            __('🧹 Kablosuz dikey süpürge var mı?'),
+            __('🍳 Kaliteli tava & tencere seti'),
+            __('📦 Kargo ve iade şartları nedir?'),
+        ];
+
         if (empty($this->messages)) {
+            $greeting = app()->getLocale() === 'en'
+                ? "Hello! I am your **AlSepete AI Shopping Assistant** 🤖.\n\nYou can ask me for product recommendations, budget-friendly choices, or our shipping & return policies!"
+                : "Merhaba! Ben **AlSepete Akıllı Alışveriş Asistanı** 🤖.\n\nAradığınız bir ürün, bütçenize göre hediye tavsiyesi veya kargo/iade kurallarımız hakkında bana dilediğinizi sorabilirsiniz!";
+
             $this->messages[] = [
                 'role' => 'assistant',
-                'content' => "Merhaba! Ben **AlSepete Akıllı Alışveriş Asistanı** 🤖.\n\nAradığınız bir ürün, bütçenize göre hediye tavsiyesi veya kargo/iade kurallarımız hakkında bana dilediğinizi sorabilirsiniz!",
+                'content' => $greeting,
                 'products' => [],
                 'time' => now()->format('H:i'),
             ];
