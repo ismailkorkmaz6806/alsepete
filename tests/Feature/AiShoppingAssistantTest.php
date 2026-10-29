@@ -151,6 +151,24 @@ class AiShoppingAssistantTest extends TestCase
             ->assertDontSee('Adidas Stan Smith');
     }
 
+    public function test_ai_assistant_guides_user_to_login_page(): void
+    {
+        Livewire::test(AiShoppingAssistant::class)
+            ->set('userInput', 'Giriş yapmak istiyorum nasıl girerim?')
+            ->call('sendMessage')
+            ->assertSee('Giriş Yap Sayfasına Git')
+            ->assertSee('/login');
+    }
+
+    public function test_ai_assistant_guides_user_to_registration(): void
+    {
+        Livewire::test(AiShoppingAssistant::class)
+            ->set('userInput', 'Nasıl üye olurum?')
+            ->call('sendMessage')
+            ->assertSee('Ücretsiz Kayıt Ol')
+            ->assertSee('/register');
+    }
+
     public function test_ai_assistant_can_reset_chat(): void
     {
         Livewire::test(AiShoppingAssistant::class)

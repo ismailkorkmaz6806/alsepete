@@ -213,6 +213,123 @@ class AiShoppingAssistantService
             ];
         }
 
+        // 5. Giriş Yapma / Login & Sign In
+        if (Str::contains($q, ['giriş', 'giris', 'oturum aç', 'oturum ac', 'login', 'sign in', 'hesabıma giremiyorum', 'hesabima giremiyorum'])) {
+            return [
+                'message' => $isEn
+                    ? "🔑 **Log In to Your AlSepete Account:**\n\n- You can log in using your registered email and password.\n- Click here to go directly to: **[👉 Login Page](/login)**\n- Forgot your password? You can easily reset it from the login screen or via **[Reset Password](/forgot-password)**.\n- Don't have an account yet? You can **[Register for Free](/register)** in less than a minute!"
+                    : "🔑 **AlSepete Hesabınıza Giriş Yapın:**\n\n- Mevcut hesabınıza kayıtlı e-posta adresiniz ve şifrenizle hemen giriş yapabilirsiniz.\n- Giriş ekranına gitmek için: **[👉 Giriş Yap Sayfasına Git](/login)**\n- Şifrenizi unuttuysanız endişelenmeyin; **[Şifremi Unuttum](/forgot-password)** sayfasından anında yenileme bağlantısı alabilirsiniz.\n- Henüz üye değilseniz dakikalar içinde **[Ücretsiz Kayıt Ol](/register)**abilirsiniz!",
+                'products' => collect(),
+                'suggestions' => $isEn
+                    ? ['How to register?', 'Forgot password', 'Shipping terms']
+                    : ['Nasıl üye olurum?', 'Şifremi unuttum', 'Kargo bilgisi'],
+            ];
+        }
+
+        // 6. Üye Olma / Kayıt / Register & Sign Up
+        if (Str::contains($q, ['üye ol', 'uye ol', 'kayıt ol', 'kayit ol', 'hesap aç', 'hesap ac', 'üyelik', 'uyelik', 'kaydol', 'register', 'sign up'])) {
+            return [
+                'message' => $isEn
+                    ? "📝 **Create a Free AlSepete Account:**\n\n- Joining the AlSepete family is 100% **free**!\n- With an account, you can track orders, ask questions directly to sellers, and enjoy personalized discounts.\n- Create your account now: **[👉 Register for Free](/register)**\n- Simply enter your name, email, and choose a secure password to get started."
+                    : "📝 **AlSepete'ye Kolayca Ücretsiz Üye Olun:**\n\n- AlSepete ailesine katılmak tamamen **ücretsizdir**!\n- Üye olarak tüm siparişlerinizi anlık takip edebilir, satıcılara özel sorular sorabilir ve indirimlerden faydalanabilirsiniz.\n- Hemen yeni hesap oluşturmak için: **[👉 Ücretsiz Kayıt Ol](/register)**\n- Adınız, e-posta adresiniz ve belirleyeceğiniz şifre ile 1 dakikada hesabınız hazır olur.",
+                'products' => collect(),
+                'suggestions' => $isEn
+                    ? ['How to log in?', 'Become a seller', 'Daily deals']
+                    : ['Giriş yap', 'Nasıl satıcı olurum?', 'Günün fırsatları'],
+            ];
+        }
+
+        // 7. Şifremi Unuttum / Password Reset
+        if (Str::contains($q, ['şifremi unuttum', 'sifremi unuttum', 'şifre sıfırla', 'sifre sifirla', 'şifremi nasıl', 'sifremi nasil', 'forgot password', 'reset password'])) {
+            return [
+                'message' => $isEn
+                    ? "🔒 **Forgot Your Password?**\n\n- No worries! You can reset your password securely:\n- **[👉 Password Reset Link](/forgot-password)**\n- Enter your registered email address and click 'Send Password Reset Link'.\n- Check your inbox and follow the secure link to set a new password."
+                    : "🔒 **Şifrenizi mi Unuttunuz?**\n\n- Hiç sorun değil! Şifrenizi güvenle yenileyebilirsiniz:\n- **[👉 Şifre Sıfırlama Sayfasına Git](/forgot-password)**\n- Kayıtlı e-posta adresinizi girip 'Şifre Sıfırlama Bağlantısı Gönder' butonuna tıklayın.\n- E-postanıza gelen bağlantıya tıklayarak yeni şifrenizi hemen belirleyebilirsiniz.",
+                'products' => collect(),
+                'suggestions' => $isEn
+                    ? ['Log in', 'Customer support', 'Contact us']
+                    : ['Giriş yap', 'Müşteri hizmetleri', 'İletişim'],
+            ];
+        }
+
+        // 8. Sipariş Takibi & Kargom Nerede / Order Tracking
+        if (Str::contains($q, ['siparişim nerede', 'siparisim nerede', 'kargom nerede', 'sipariş takip', 'siparis takip', 'kargo takip', 'track order', 'where is my order'])) {
+            return [
+                'message' => $isEn
+                    ? "📦 **Track Your Order:**\n\n- You can monitor all your orders in real time:\n- Click on your profile at the top right and open **[My Orders](/musteri/siparisler)**.\n- As soon as the seller dispatches your parcel, your courier tracking code will be active.\n- You will also receive automatic email updates at every shipping milestone."
+                    : "📦 **Siparişinizi Takip Edin:**\n\n- Verdiğiniz tüm siparişleri ve kargo aşamalarını profilinizden kolayca takip edebilirsiniz:\n- Sağ üst köşedeki adınıza tıklayarak **[Siparişlerim](/musteri/siparisler)** sayfasına gidin.\n- Satıcı ürününüzü kargoya verdiği anda kargo takip kodunuz sipariş detayında aktifleşir.\n- Ayrıca her teslimat aşamasında e-posta ile anlık bilgilendirilirsiniz.",
+                'products' => collect(),
+                'suggestions' => $isEn
+                    ? ['Delivery times', 'Return process', 'Customer service']
+                    : ['Kargo kaç günde gelir?', 'İade süreci nasıl?', 'Müşteri hizmetleri'],
+            ];
+        }
+
+        // 9. Satıcıya Soru Sorma / Asking Seller
+        if (Str::contains($q, ['satıcıya soru', 'saticiya soru', 'satıcıyla iletişim', 'soru sor', 'soru sorma', 'ürün sorusu', 'ask seller'])) {
+            return [
+                'message' => $isEn
+                    ? "💬 **How to Ask a Seller Questions:**\n\n- Navigate to any product's detail page.\n- Scroll down to the **'Ask Seller a Question'** section right below the product options.\n- Type your question; the seller receives an instant alert on their dashboard.\n- Once answered, you will see the public answer on the product page and receive an email alert!"
+                    : "💬 **Satıcıya Nasıl Soru Sorabilirsiniz?**\n\n- İlgilendiğiniz herhangi bir ürünün detay sayfasına gidin.\n- Fiyat ve sepet butonlarının hemen altında yer alan **'Satıcıya Soru Sor'** bölümünü kullanın.\n- Sorunuz doğrudan satıcının yönetim paneline iletilir.\n- Satıcı yanıtladığında hem ürün sayfasında yayınlanır hem de size bildirim gelir!",
+                'products' => collect(),
+                'suggestions' => $isEn
+                    ? ['Shipping info', 'Return policies', 'Browse popular items']
+                    : ['Kargo bilgisi', 'İade koşulları', 'Popüler ürünler'],
+            ];
+        }
+
+        // 10. İletişim & Müşteri Hizmetleri / Contact & Support
+        if (Str::contains($q, ['iletişim', 'iletisim', 'müşteri hizmetleri', 'musteri hizmetleri', 'destek', 'canlı destek', 'bize ulaşın', 'telefon', 'contact', 'support'])) {
+            return [
+                'message' => $isEn
+                    ? "📞 **AlSepete Customer Support:**\n\n- Our support team is here to assist you 7 days a week:\n- **Email:** `destek@alsepete.com`\n- **Working Hours:** Monday - Sunday 09:00 - 20:00\n- You can also ask me anything 24/7 about products, orders, returns, and seller onboarding!"
+                    : "📞 **AlSepete Müşteri Destek Merkezi:**\n\n- Müşteri memnuniyeti ekibimiz haftanın 7 günü hizmetinizdedir:\n- **E-Posta:** `destek@alsepete.com`\n- **Çalışma Saatleri:** Pazartesi - Pazar 09:00 - 20:00\n- Platform kuralları, ürün tavsiyeleri, kargo ve iade süreçleri hakkında bana da 7/24 dilediğinizi sorabilirsiniz!",
+                'products' => collect(),
+                'suggestions' => $isEn
+                    ? ['Return terms', 'Shipping info', 'How to register?']
+                    : ['İade şartları', 'Kargo bilgisi', 'Nasıl üye olurum?'],
+            ];
+        }
+
+        // 11. Kupon & İndirim Kodu / Coupon & Discounts
+        if (Str::contains($q, ['kupon', 'indirim kodu', 'kampanya', 'promosyon', 'fırsat', 'firsat', 'coupon', 'discount code', 'promo'])) {
+            return [
+                'message' => $isEn
+                    ? "🎟️ **Coupons & Promo Codes:**\n\n- Add your favorite items to your cart and proceed to **Cart** or **Checkout**.\n- In the order summary panel on the right, enter your coupon into the **'Discount Code'** field and click Apply.\n- Your savings will be deducted from your total immediately!"
+                    : "🎟️ **Kupon ve İndirim Kodu Kullanımı:**\n\n- Beğendiğiniz ürünleri sepete ekledikten sonra **Sepetim** veya **Ödeme Adımı** sayfasına geçin.\n- Sipariş özeti bölümünde yer alan **'İndirim Kodu / Kupon'** alanına kodunuzu yazıp 'Uygula' butonuna tıklayın.\n- İndirim toplam tutarınıza anında yansıtılacaktır!",
+                'products' => collect(),
+                'suggestions' => $isEn
+                    ? ['Budget coffee machine', 'Cordless stick vacuum', 'Shipping info']
+                    : ['Bütçe dostu kahve makinesi', 'Kablosuz dikey süpürge', 'Kargo bilgisi'],
+            ];
+        }
+
+        // 12. AlSepete Nedir & Güvenilirlik / About AlSepete
+        if (Str::contains($q, ['alsepete nedir', 'site güvenilir mi', 'guvenilir mi', 'kimsiniz', 'hakkında', 'hakkinda', 'about alsepete', 'marketplace'])) {
+            return [
+                'message' => $isEn
+                    ? "🛡️ **About AlSepete:**\n\n- AlSepete is a modern **Multi-Vendor E-Commerce Marketplace** connecting verified quality sellers with millions of customers across Turkey.\n- **Escrow Buyer Protection:** Payments are held securely in a 256-bit SSL escrow account until you receive and approve your items.\n- **14-Day Free Returns:** Complete peace of mind with unconditional 14-day returns on eligible items."
+                    : "🛡️ **AlSepete Nedir ve Güvenli midir?**\n\n- AlSepete, Türkiye'nin onaylı ve güvenilir satıcılarını milyonlarca alıcıyla buluşturan yeni nesil çoklu satıcılı (**Multi-Vendor**) bir e-ticaret pazaryeridir.\n- **Havuz Hesabı Güvencesi:** Ödemeniz 256-Bit SSL şifrelemeli güvenli havuz hesabında bloke edilir; siparişinizi teslim alıp onaylayana kadar satıcıya para aktarılmaz.\n- **14 Gün Kolay İade:** Tüm alışverişleriniz 14 gün koşulsuz iade hakkı ile koruma altındadır.",
+                'products' => collect(),
+                'suggestions' => $isEn
+                    ? ['Become a seller', 'Payment methods', 'Popular products']
+                    : ['Nasıl satıcı olurum?', 'Ödeme yöntemleri', 'Popüler ürünler'],
+            ];
+        }
+
+        // 13. Nasıl Sipariş Verilir? / How to order
+        if (Str::contains($q, ['nasıl sipariş', 'nasil siparis', 'nasıl satın al', 'nasil satin al', 'satın alma', 'sipariş adımları', 'how to order'])) {
+            return [
+                'message' => $isEn
+                    ? "🛍️ **How to Place an Order:**\n\n1. Select your desired color/size on the product page and click **'Add to Cart'**.\n2. Click the cart icon at the top right and proceed to **'Complete Order'**.\n3. Enter your shipping address and complete payment securely via card.\n4. Your seller will dispatch your items within 1-3 business days!"
+                    : "🛍️ **AlSepete'de Sipariş Verme Adımları:**\n\n1. İlgilendiğiniz ürünün sayfasından renk ve beden seçip **'Sepete Ekle'** butonuna tıklayın.\n2. Sağ üstteki sepet simgesine basıp **'Siparişi Tamamla'** adımına geçin.\n3. Teslimat adresinizi girin ve kredi kartı / banka kartı ile güvenle ödemenizi yapın.\n4. Satıcınız siparişinizi 1-3 iş günü içinde özenle kargoya teslim edecektir!",
+                'products' => collect(),
+                'suggestions' => $isEn
+                    ? ['Shipping info', 'Log in', 'Top deals']
+                    : ['Kargo ücreti ne kadar?', 'Giriş yap', 'Günün fırsatları'],
+            ];
+        }
+
         return null;
     }
 
