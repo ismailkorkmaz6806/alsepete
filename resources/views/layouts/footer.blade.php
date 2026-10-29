@@ -58,3 +58,6 @@
         </div>
     </div>
 </footer>
+
+<!-- AlSepete Akıllı Alışveriş Asistanı (Livewire Widget) -->
+<livewire:ai-shopping-assistant />

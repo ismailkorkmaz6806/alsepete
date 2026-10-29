@@ -4,7 +4,7 @@ Amazon ve Hepsiburada iş modeline dayalı, çok satıcılı, modern bir Laravel
 
 [![Laravel Version](https://img.shields.io/badge/Laravel-11%20%2F%2012-red?logo=laravel)](https://laravel.com)
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%20%2F%208.3-blue?logo=php)](https://php.net)
-[![Tests](https://img.shields.io/badge/Tests-55%20Passing-brightgreen?logo=pest)](https://pestphp.com)
+[![Tests](https://img.shields.io/badge/Tests-62%20Passing-brightgreen?logo=pest)](https://pestphp.com)
 [![Code Style](https://img.shields.io/badge/Code%20Style-PSR--12%20(Pint)-success)](https://laravel.com/docs/pint)
 [![Release](https://img.shields.io/badge/Release-v0.3%20(Hafta%203)-indigo)](https://github.com/ismailkorkmaz6806/alsepete/releases/tag/v0.3)
 
@@ -47,13 +47,18 @@ Hafta 3 şartnamesine ait gezilebilir vitrin, reaktif varyant yönetimi ve seçi
 - Tüm sayfalarda `with(['seller', 'variants', 'brand', 'category', 'media'])` kullanılarak N+1 sorgu problemi sıfıra indirilmiştir.
 - Geliştirme ortamında sorguları görsel olarak denetlemek için `barryvdh/laravel-debugbar` entegre edilmiştir.
 
-### 5. Bonus Görevler (+4 Puan)
+### 5. Bonus Görevler & İnovasyonlar
 - 🌟 **Bonus 1 (+2 Puan) - "Bu Ürünü Alanlar Bunları da Aldı":** Ürün detay sayfasında çapraz kategori ve ilgili ürün öneri algoritması.
 - 🌟 **Bonus 2 (+2 Puan) - Satıcıya Soru Sor & Cevap Sistemi:** 
   - Müşterinin ürün sayfasından Livewire ile satıcıya soru sorabilmesi.
   - Onaylı satıcının kendi mağaza panelinden (`/satici/sorular`) gelen soruları görüntüleyip yanıtlaması.
   - Yanıtlanan soruların ürün detay sayfasında Soru-Cevap bloğunda otomatik yayınlanması.
 - 🌟 **Bonus 3 (+2 Puan) - Çoklu Dil:** Türkçe ve İngilizce tam yerelleştirme (Hafta 2'de tamamlandı).
+- 🤖 **Bonus 4 (İnovasyon) - AlSepete AI Akıllı Alışveriş Asistanı:**
+  - Tüm sayfalarda sağ alt köşede yer alan canlı sohbet balonu (`Livewire` + `Alpine.js`).
+  - Doğal dil ile bütçe ve anahtar kelimelere göre (örn: *"5000 TL altı kahve makinesi öner"*) veritabanını tarayarak **tıklanabilir ürün kartları** tavsiye etme.
+  - Kargo, iade şartları, satıcı olma gibi platform kurallarına anında kurumsal yanıt verme.
+  - Çevrimdışı (offline) semantik arama motoru ve isteğe bağlı Google Gemini LLM entegrasyonu.
 
 ---
 
@@ -151,7 +156,7 @@ Tarayıcınızda açın: **`http://127.0.0.1:8000`**
 Projede yazılan tüm iş kuralları ve güvenlik kontrolleri otomatik testlerle güvence altındadır:
 
 ```bash
-# Feature ve Unit Testlerini Çalıştırın (55 Test, 143 Assertion)
+# Feature ve Unit Testlerini Çalıştırın (62 Test, 159 Assertion)
 php artisan test
 
 # PSR-12 Kod Standartlarını Denetleyin
