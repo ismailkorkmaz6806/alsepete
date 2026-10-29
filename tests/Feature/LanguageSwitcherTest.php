@@ -25,4 +25,8 @@ test('home page renders in english when locale is set to en', function () {
     $response->assertSee('All Categories');
     $response->assertSee('Become a Seller');
     $response->assertSee('Cart');
+    $response->assertSee('Featured Deals of the Week');
+    $response->assertSee('Trending Products');
+    $response->assertSee('New Arrivals');
+    $response->assertSee('AI Assistant');
 });

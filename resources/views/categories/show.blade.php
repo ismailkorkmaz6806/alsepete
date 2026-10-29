@@ -10,14 +10,14 @@
                     <i class="fa-solid fa-chevron-right text-[9px] text-slate-300"></i>
                     @if($category->parent)
                         <a href="{{ route('categories.show', $category->parent->slug) }}" class="hover:text-indigo-600 transition-colors">
-                            {{ $category->parent->name }}
+                            {{ __($category->parent->name) }}
                         </a>
                         <i class="fa-solid fa-chevron-right text-[9px] text-slate-300"></i>
                     @endif
-                    <span class="font-bold text-slate-800">{{ $category->name }}</span>
+                    <span class="font-bold text-slate-800">{{ __($category->name) }}</span>
                 </nav>
                 <h1 class="text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
-                    <span>{{ $category->name }}</span>
+                    <span>{{ __($category->name) }}</span>
                     <span class="text-xs font-semibold text-slate-400 bg-slate-100 px-2.5 py-0.5 rounded-full">
                         {{ $products->total() }} {{ __('Ürün') }}
                     </span>
@@ -62,7 +62,7 @@
                 @foreach($category->children as $child)
                     <a href="{{ route('categories.show', $child->slug) }}" 
                        class="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-700 hover:border-indigo-500 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all shrink-0 shadow-xs">
-                        {{ $child->name }}
+                        {{ __($child->name) }}
                     </a>
                 @endforeach
             </div>
@@ -187,7 +187,7 @@
 
                                     <!-- Kategori & Başlık -->
                                     <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1">
-                                        {{ $product->category->name }}
+                                        {{ __($product->category->name) }}
                                     </span>
                                     <h3 class="text-xs font-bold text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-relaxed">
                                         {{ $product->name }}
