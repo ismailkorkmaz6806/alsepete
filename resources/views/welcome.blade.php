@@ -307,6 +307,7 @@
                             <div class="relative aspect-square rounded-xl bg-slate-50 overflow-hidden mb-3">
                                 <img src="{{ $productImage }}" 
                                      alt="{{ $product->name }}" 
+                                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80';"
                                      class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300">
                                 
                                 @if($primaryVariant && $primaryVariant->discount_price)
@@ -391,6 +392,7 @@
                             <div class="relative aspect-square rounded-xl bg-slate-50 overflow-hidden mb-3">
                                 <img src="{{ $productImage }}" 
                                      alt="{{ $product->name }}" 
+                                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80';"
                                      class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300">
                                 
                                 <span class="absolute top-2 left-2 bg-indigo-600 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full shadow-xs">

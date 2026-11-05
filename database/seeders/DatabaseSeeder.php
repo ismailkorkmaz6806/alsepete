@@ -687,8 +687,11 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Decathlon Quechua 2 Seconds 3 Kişilik Otomatik Kurulan Kamp Çadırı',
                 'cat' => 'Kamp & Doğa Malzemeleri', 'brand' => 'Decathlon', 'seller' => 'spor', 'price' => 3899.00,
-                'img' => 'https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&auto=format&fit=crop&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Petrol Yeşili', 'size' => '3 Kişilik Standart', 'stock' => 25], ['color' => 'Fresh & Black Güneş Korumalı', 'size' => '3 Kişilik Karartmalı', 'stock' => 15]],
             ],
             [
@@ -701,8 +704,8 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Decathlon Quechua Kol Destekli Katlanır Kamp ve Balıkçı Sandalyesi',
                 'cat' => 'Kamp & Doğa Malzemeleri', 'brand' => 'Decathlon', 'seller' => 'spor', 'price' => 699.00,
-                'img' => 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=80',
+                'gallery' => ['https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&auto=format&fit=crop&q=80'],
                 'variants' => [['color' => 'Koyu Mavi', 'size' => '110kg Taşıma Kapasitesi', 'stock' => 60], ['color' => 'Asker Yeşili', 'size' => '110kg Taşıma Kapasitesi', 'stock' => 45]],
             ],
             [
@@ -778,15 +781,22 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Decathlon Btwin 500 Korumalı Güçlü Kask ve Aksesuar Paketi',
                 'cat' => 'Bisiklet & Ekipman', 'brand' => 'Decathlon', 'seller' => 'spor', 'price' => 1199.00,
-                'img' => 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1559348349-86f1f65817fe?w=800&auto=format&fit=crop&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => 'Mat Siyah', 'size' => 'L (59-62cm Ayarlı)', 'stock' => 30]],
             ],
             [
                 'name' => 'Voit Direnç Lastiği 5 Farklı Sertlik Seviyeli Egzersiz Bandı Seti',
                 'cat' => 'Fitness & Kondisyon', 'brand' => 'Voit', 'seller' => 'spor', 'price' => 449.00,
-                'img' => 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&auto=format&fit=crop&q=80',
-                'gallery' => ['https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&auto=format&fit=crop&q=80'],
+                'img' => 'https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=800&auto=format&fit=crop&q=80',
+                'gallery' => [
+                    'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=800&auto=format&fit=crop&q=80',
+                ],
                 'variants' => [['color' => '5 Renk Takım', 'size' => 'Lateks Direnç Paketi', 'stock' => 50]],
             ],
 
@@ -859,11 +869,11 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => "L'Oréal Paris Elseve Mucizevi Yağ Saç Bakım Serumu 100ml",
                 'cat' => 'Saç Bakımı & Şekillendirme', 'brand' => "L'Oréal", 'seller' => 'kozmetik', 'price' => 349.00,
-                'img' => 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                'img' => 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80',
                 'gallery' => [
-                    'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80',
-                    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
                 ],
@@ -885,7 +895,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Nivea Luminous 630 Leke Karşıtı Aydınlatıcı Gece Bakım Serumu',
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => 'Nivea', 'seller' => 'kozmetik', 'price' => 799.00,
-                'img' => 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                'img' => 'https://images.unsplash.com/photo-1617897903246-719242758050?w=800&auto=format&fit=crop&q=80',
                 'gallery' => [
                     'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
@@ -950,13 +960,13 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Giorgio Armani Si Passione Kadın Parfüm EDP 100ml',
                 'cat' => 'Parfüm & Deodorant', 'brand' => 'Armani', 'seller' => 'kozmetik', 'price' => 5299.00,
-                'img' => 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&auto=format&fit=crop&q=80',
+                'img' => 'https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=800&auto=format&fit=crop&q=80',
                 'gallery' => [
+                    'https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=800&auto=format&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800&auto=format&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1617897903246-719242758050?w=800&auto=format&fit=crop&q=80',
-                    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
-                    'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
-                    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&auto=format&fit=crop&q=80',
                 ],
                 'variants' => [['color' => 'Lüks Kırmızı Cam Şişe', 'size' => '100 ml EDP', 'stock' => 20]],
             ],
@@ -989,13 +999,13 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Clinique Dramatically Different Nemlendirici Yağsız Yüz Jeli 125ml',
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => 'Clinique', 'seller' => 'kozmetik', 'price' => 1749.00,
-                'img' => 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                'img' => 'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=800&auto=format&fit=crop&q=80',
                 'gallery' => [
                     'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
-                    'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
-                    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=800&auto=format&fit=crop&q=80',
                 ],
                 'variants' => [['color' => 'Sarı Şeffaf Şişe', 'size' => '125 ml Pompalı', 'stock' => 30]],
             ],
@@ -1028,26 +1038,26 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Clinique All About Eyes Göz Altı Morluk ve Torba Karşıtı Krem 15ml',
                 'cat' => 'Cilt & Yüz Bakımı', 'brand' => 'Clinique', 'seller' => 'kozmetik', 'price' => 1499.00,
-                'img' => 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80',
+                'img' => 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
                 'gallery' => [
-                    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=800&auto=format&fit=crop&q=80',
-                    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1617897903246-719242758050?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80',
                 ],
                 'variants' => [['color' => 'Şeftali Tonlu Kavanoz', 'size' => '15 ml', 'stock' => 25]],
             ],
             [
                 'name' => 'Dyson Airstrait Islak ve Kuru Saç Düzleştirici Sıcak Hava Teknolojisi',
                 'cat' => 'Saç Bakımı & Şekillendirme', 'brand' => 'Dyson', 'seller' => 'kozmetik', 'price' => 23999.00,
-                'img' => 'https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=800&auto=format&fit=crop&q=80',
+                'img' => 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&auto=format&fit=crop&q=80',
                 'gallery' => [
-                    'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80',
-                    'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80',
                     'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
-                    'https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=800&auto=format&fit=crop&q=80',
-                    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1622296089863-eb7fc530daa8?w=800&auto=format&fit=crop&q=80',
+                    'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80',
                 ],
                 'variants' => [['color' => 'Prusya Mavisi / Parlak Bakır', 'size' => 'Plakasız Hava Akımı', 'stock' => 12]],
             ],
