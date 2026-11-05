@@ -87,6 +87,29 @@ Hafta 3 şartnamesine ait gezilebilir vitrin, reaktif varyant yönetimi, arama v
 
 ---
 
+## 📋 TODO & Gelecek Hafta Planı: Hafta 4 (Ara Demo 1)
+
+Hafta 4 şartnamesi ve Kanban yol haritasında yer alan teslim edilecek modüller:
+
+- [ ] **Satıcı Başvuru & Kayıt Modülü:**
+  - Müşterilerin satıcı olmak için başvurabileceği form ekranı (`store_name`, `tax_number`, `iban`, adres).
+  - Başvurunun `pending` (onay bekliyor) statüsünde kaydedilmesi ve admin paneline bildirim olarak düşmesi.
+- [ ] **Satıcı Paneli - Ürün Yönetimi (CRUD):**
+  - Satıcının yeni ürün ekleyebilmesi (`ProductStoreRequest`), detaylı açıklama, kategori ve marka seçimi.
+  - Ürünlere varyant (renk, beden, SKU) ve stok miktarları tanımlama.
+  - Satıcının kendi ürünlerini listelemesi, düzenlemesi ve anlık stok güncellemesi.
+- [ ] **Yetkilendirme & Güvenlik (ProductPolicy):**
+  - Satıcıların yalnızca **kendi mağazalarına ait** ürünleri düzenleyip silebilmesi (`$user->seller->id === $product->seller_id`).
+  - Başka bir satıcının ürününe doğrudan URL üzerinden erişildiğinde `403 Forbidden` koruması.
+- [ ] **Herkese Açık Mağaza Vitrin Sayfası:**
+  - `/magaza/{slug}` rotası ile satıcının adı, logosu, puanı ve yalnızca o mağazaya ait ürünlerin listelendiği vitrin sayfası.
+  - Mağaza içinde ürün arama ve filtreleme.
+- [ ] **Gelişmiş Arama & Filtre Entegrasyonu:**
+  - Arama kutusundaki autocomplete önerilerinin zenginleştirilmesi.
+  - Kategori sayfasındaki URL parametreli filtrelerin (`?marka=x&min=100&max=500&in_stock=1`) tam oturması.
+- [ ] **Ara Demo 1 Kapsamında Yeni Otomatik Testler:**
+  - Satıcı başvuru akışı, ürün ekleme/silme ve `ProductPolicy` güvenlik yetki testlerinin yazılması.
+
 ## 🔐 Hazır Test Hesapları
 
 Veritabanı seed edildiğinde kullanıma hazır gelen hesaplar:
