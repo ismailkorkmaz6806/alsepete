@@ -7,6 +7,7 @@
             <div class="relative aspect-square rounded-2xl bg-slate-50 border border-slate-100 overflow-hidden group">
                 <img src="{{ $activeImage }}" 
                      alt="{{ $product->name }}" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80';"
                      class="w-full h-full object-contain p-6 transition-transform duration-500 group-hover:scale-105">
                 
                 @if($this->selectedVariant && $this->selectedVariant->discount_price)
@@ -37,7 +38,10 @@
                     <button type="button" 
                             wire:click="setActiveImage('{{ $thumbUrl }}')" 
                             class="w-20 h-20 rounded-xl border-2 overflow-hidden shrink-0 transition-all {{ $activeImage === $thumbUrl ? 'border-indigo-600 ring-2 ring-indigo-600/20' : 'border-slate-200 hover:border-slate-300' }}">
-                        <img src="{{ $thumbUrl }}" class="w-full h-full object-contain p-1" alt="Thumbnail">
+                        <img src="{{ $thumbUrl }}" 
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80';"
+                             class="w-full h-full object-contain p-1" 
+                             alt="Thumbnail">
                     </button>
                 @endforeach
             </div>
