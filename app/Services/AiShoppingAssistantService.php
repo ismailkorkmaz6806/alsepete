@@ -536,18 +536,29 @@ class AiShoppingAssistantService
     protected function callGeminiApi(string $userPrompt, string $apiKey): ?array
     {
         try {
-            // Build compact catalog context for grounding
-            $topProducts = Product::where('status', 'aktif')
-                ->select(['id', 'name', 'brand_id'])
-                ->with('brand:id,name')
-                ->take(15)
-                ->get()
-                ->map(fn ($p) => "- [ID:{$p->id}] {$p->name} ({$p->brand?->name})")
+            // Relevant catalog context for grounding
+            $keywords = array_filter(explode(' ', mb_strtolower(trim($userPrompt))), fn ($w) => mb_strlen($w) >= 3);
+            $queryBuilder = Product::where('status', 'aktif')->with('brand:id,name');
+            if (! empty($keywords)) {
+                $queryBuilder->where(function ($q) use ($keywords) {
+                    foreach ($keywords as $kw) {
+                        $q->orWhere('name', 'LIKE', "%{$kw}%");
+                    }
+                });
+            }
+            $relevantProducts = $queryBuilder->take(20)->get();
+            if ($relevantProducts->isEmpty()) {
+                $relevantProducts = Product::where('status', 'aktif')->with('brand:id,name')->take(15)->get();
+            }
+
+            $catalogSummary = $relevantProducts
+                ->map(fn ($p) => "- [ID:{$p->id}] {$p->name} ({$p->brand?->name}, Fiyat: {$p->min_price} TL)")
                 ->implode("\n");
 
-            $systemPrompt = "Sen AlSepete adlı Türk e-ticaret pazaryerinin yardımsever, samimi ve uzman yapay zeka alışveriş asistanısın. Müşterilere Türkçe yanıt ver. Ürün önerirken varsa katalogdaki ürünleri tavsiye et. Eğer ürün önerirsen yanıtının en sonuna [RECS: 1, 2] şeklinde önerdiğin ürün ID'lerini ekle.\nKatalog Özeti:\n{$topProducts}";
+            $systemPrompt = "Sen AlSepete adlı Türk e-ticaret pazaryerinin yardımsever, samimi ve uzman yapay zeka alışveriş asistanısın. Müşterilere samimi, akıcı ve yardımsever bir Türkçeyle yanıt ver. Müşteriye uygun ürünleri AlSepete kataloğundan tavsiye et. Eğer ürün önerirsen yanıtının en sonuna mutlaka [RECS: 1, 2] şeklinde önerdiğin ürün ID'lerini iliştir.\nKatalogdan İlgili Ürünler:\n{$catalogSummary}";
 
-            $response = Http::timeout(4)->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$apiKey}", [
+            $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key={$apiKey}";
+            $payload = [
                 'contents' => [
                     [
                         'role' => 'user',
@@ -556,7 +567,14 @@ class AiShoppingAssistantService
                         ],
                     ],
                 ],
-            ]);
+            ];
+
+            $response = Http::timeout(8)->post($url, $payload);
+
+            if (! $response->successful()) {
+                $fallbackUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key={$apiKey}";
+                $response = Http::timeout(8)->post($fallbackUrl, $payload);
+            }
 
             if ($response->successful()) {
                 $content = $response->json('candidates.0.content.parts.0.text');
