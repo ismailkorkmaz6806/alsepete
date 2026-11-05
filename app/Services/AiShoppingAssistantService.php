@@ -133,24 +133,36 @@ class AiShoppingAssistantService
     /**
      * Process user query and return conversational text + recommended products.
      *
+     * @param  array<int, array{role: string, content: string, products?: array<int, array>}>  $history
      * @return array{message: string, products: Collection<int, Product>, suggestions: array<int, string>}
      */
-    public function respond(string $query): array
+    public function respond(string $query, array $history = []): array
     {
         $normalized = Str::lower(trim($query));
 
-        // 1. Check for Platform & Marketplace FAQs first
-        $faqResponse = $this->checkFaq($normalized);
-        if ($faqResponse !== null) {
-            return $faqResponse;
+        // 1. Check for Platform & Marketplace FAQs first (unless it is a contextual follow-up)
+        $isConversationalFollowUp = ! empty($history) && Str::contains($normalized, ['bu', 'bunun', 'bunu', 'hangisi', 'ikisi', 'daha', 'renk', 'fiyat']);
+        if (! $isConversationalFollowUp) {
+            $faqResponse = $this->checkFaq($normalized);
+            if ($faqResponse !== null) {
+                return $faqResponse;
+            }
         }
 
         // 2. Check if external Gemini API is configured and accessible
         $geminiKey = config('services.gemini.key') ?? env('GEMINI_API_KEY');
         if (! empty($geminiKey)) {
-            $geminiResponse = $this->callGeminiApi($query, $geminiKey);
+            $geminiResponse = $this->callGeminiApi($query, $geminiKey, $history);
             if ($geminiResponse !== null) {
                 return $geminiResponse;
+            }
+        }
+
+        // Fallback to FAQ if not checked earlier
+        if ($isConversationalFollowUp) {
+            $faqResponse = $this->checkFaq($normalized);
+            if ($faqResponse !== null) {
+                return $faqResponse;
             }
         }
 
@@ -532,43 +544,136 @@ class AiShoppingAssistantService
 
     /**
      * Optional external call to Google Gemini if an API key is present in .env.
+     *
+     * @param  array<int, array{role: string, content: string, products?: array<int, array>}>  $history
      */
-    protected function callGeminiApi(string $userPrompt, string $apiKey): ?array
+    protected function callGeminiApi(string $userPrompt, string $apiKey, array $history = []): ?array
     {
         try {
-            // Relevant catalog context for grounding
-            $keywords = array_filter(explode(' ', mb_strtolower(trim($userPrompt))), fn ($w) => mb_strlen($w) >= 3);
-            $queryBuilder = Product::where('status', 'aktif')->with('brand:id,name');
+            // 1. Gather context from conversation history (previously recommended products & search tokens)
+            $discussedProductIds = [];
+            $historySearchTokens = [];
+
+            foreach ($history as $msg) {
+                if (! empty($msg['products'])) {
+                    foreach ($msg['products'] as $pCard) {
+                        if (! empty($pCard['id'])) {
+                            $discussedProductIds[] = (int) $pCard['id'];
+                        }
+                    }
+                }
+                if (($msg['role'] ?? '') === 'user' && ! empty($msg['content'])) {
+                    $historySearchTokens[] = $msg['content'];
+                }
+            }
+            $discussedProductIds = array_unique($discussedProductIds);
+
+            // Fetch previously discussed products with full variant details (colors, sizes, prices)
+            $discussedProducts = empty($discussedProductIds)
+                ? collect()
+                : Product::whereIn('id', $discussedProductIds)->with(['brand:id,name', 'variants'])->get();
+
+            // Extract search keywords from current prompt + recent user messages
+            $combinedQuery = $userPrompt.' '.implode(' ', array_slice($historySearchTokens, -2));
+            $keywords = array_filter(
+                explode(' ', mb_strtolower(trim($combinedQuery))),
+                fn ($w) => mb_strlen($w) >= 3 && ! in_array($w, ['bana', 'bunu', 'daha', 'olan', 'icin', 'için', 'veya', 'peki', 'evet', 'hayır', 'nasil', 'nasıl', 'nedir', 'hangi'])
+            );
+
+            $queryBuilder = Product::where('status', 'aktif')->with(['brand:id,name', 'variants']);
             if (! empty($keywords)) {
                 $queryBuilder->where(function ($q) use ($keywords) {
-                    foreach ($keywords as $kw) {
+                    foreach (array_slice($keywords, 0, 6) as $kw) {
                         $q->orWhere('name', 'LIKE', "%{$kw}%");
                     }
                 });
             }
-            $relevantProducts = $queryBuilder->take(20)->get();
-            if ($relevantProducts->isEmpty()) {
-                $relevantProducts = Product::where('status', 'aktif')->with('brand:id,name')->take(15)->get();
+            $relevantProducts = $queryBuilder->take(15)->get();
+
+            $allContextProducts = $discussedProducts->merge($relevantProducts)->unique('id')->take(20);
+
+            if ($allContextProducts->isEmpty()) {
+                $allContextProducts = Product::where('status', 'aktif')->with(['brand:id,name', 'variants'])->take(15)->get();
             }
 
-            $catalogSummary = $relevantProducts
-                ->map(fn ($p) => "- [ID:{$p->id}] {$p->name} ({$p->brand?->name}, Fiyat: {$p->min_price} TL)")
+            $catalogSummary = $allContextProducts
+                ->map(function ($p) {
+                    $variantDetails = $p->variants->map(fn ($v) => "{$v->color}/{$v->size} ({$v->price} TL)")->implode(', ');
+
+                    return "- [ID:{$p->id}] {$p->name} (Marka: {$p->brand?->name}, Min Fiyat: {$p->min_price} TL, Seçenekler: {$variantDetails})";
+                })
                 ->implode("\n");
 
-            $systemPrompt = "Sen AlSepete adlı Türk e-ticaret pazaryerinin yardımsever, samimi ve uzman yapay zeka alışveriş asistanısın. Müşterilere samimi, akıcı ve yardımsever bir Türkçeyle yanıt ver. Müşteriye uygun ürünleri AlSepete kataloğundan tavsiye et. Eğer ürün önerirsen yanıtının en sonuna mutlaka [RECS: 1, 2] şeklinde önerdiğin ürün ID'lerini iliştir.\nKatalogdan İlgili Ürünler:\n{$catalogSummary}";
+            $systemInstruction = "Sen AlSepete adlı Türk e-ticaret pazaryerinin yardımsever, son derece akıllı ve samimi yapay zeka alışveriş asistanısın.
+Müşterilerle akıcı, sıcak ve yardımsever bir Türkçeyle sohbet et.
+Müşterinin geçmiş mesajlarını ve önceki konuşulan ürünleri çok iyi hatırla.
+Müşteri 'hangisi daha ucuz?', 'ikincisi', 'bunun kırmızısı var mı?', 'fiyatı ne?' gibi takip soruları sorduğunda önceki konuşulan ürünlere göre doğrudan, net ve tutarlı yanıt ver.
+AlSepete Platform Bilgisi:
+- 1-3 iş günü içinde hızlı kargo teslimatı.
+- 500 TL ve üzeri siparişlerde kargo tamamen ücretsiz.
+- 14 gün koşulsuz iade ve değişim hakkı.
 
-            $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key={$apiKey}";
+Katalog ve İlgili Ürünler:
+{$catalogSummary}
+
+ÖNEMLİ KURALLAR:
+1. Müşteriye yeni veya uygun bir ürün tavsiye ediyorsan, cevabının en sonuna [RECS: 1, 2] formatında ürün ID'lerini iliştir.
+2. Eğer müşteri sadece daha önce konuşulmuş bir ürünün detayını (rengi, fiyat farkı, kargo süresi vb.) soruyorsa yeniden ürün kartı basmana gerek yoktur.
+3. Yanıtların samimi, açık ve müşteriyi memnun edecek şekilde olsun.";
+
+            // 2. Format multi-turn conversation history for Gemini API
+            $contents = [];
+            $recentHistory = array_slice($history, -8);
+
+            foreach ($recentHistory as $idx => $msg) {
+                $role = (($msg['role'] ?? '') === 'user') ? 'user' : 'model';
+                $text = trim($msg['content'] ?? '');
+
+                // Skip generic welcome greeting
+                if ($idx === 0 && $role === 'model' && Str::contains($text, ['Merhaba! Ben AlSepete', 'Hello! I am'])) {
+                    continue;
+                }
+
+                if ($text === '') {
+                    continue;
+                }
+
+                // Ensure strict alternation of user and model roles
+                if (! empty($contents) && end($contents)['role'] === $role) {
+                    $lastIdx = count($contents) - 1;
+                    $contents[$lastIdx]['parts'][0]['text'] .= "\n".$text;
+                } else {
+                    $contents[] = [
+                        'role' => $role,
+                        'parts' => [['text' => $text]],
+                    ];
+                }
+            }
+
+            // Ensure the conversation starts with a user turn
+            while (! empty($contents) && $contents[0]['role'] !== 'user') {
+                array_shift($contents);
+            }
+
+            // Append current user prompt
+            if (! empty($contents) && end($contents)['role'] === 'user') {
+                $lastIdx = count($contents) - 1;
+                $contents[$lastIdx]['parts'][0]['text'] .= "\n".$userPrompt;
+            } else {
+                $contents[] = [
+                    'role' => 'user',
+                    'parts' => [['text' => $userPrompt]],
+                ];
+            }
+
             $payload = [
-                'contents' => [
-                    [
-                        'role' => 'user',
-                        'parts' => [
-                            ['text' => "{$systemPrompt}\n\nMüşteri Sorusu: {$userPrompt}"],
-                        ],
-                    ],
+                'system_instruction' => [
+                    'parts' => [['text' => $systemInstruction]],
                 ],
+                'contents' => $contents,
             ];
 
+            $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key={$apiKey}";
             $response = Http::timeout(8)->post($url, $payload);
 
             if (! $response->successful()) {

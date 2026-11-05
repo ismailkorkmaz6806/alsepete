@@ -77,6 +77,9 @@ class AiShoppingAssistant extends Component
             return;
         }
 
+        // Capture conversation history before current user message
+        $history = $this->messages;
+
         // 1. Add user message
         $this->messages[] = [
             'role' => 'user',
@@ -87,10 +90,10 @@ class AiShoppingAssistant extends Component
 
         $this->userInput = '';
 
-        // 2. Fetch AI response via service
+        // 2. Fetch AI response via service with full conversation history
         /** @var AiShoppingAssistantService $service */
         $service = app(AiShoppingAssistantService::class);
-        $result = $service->respond($trimmed);
+        $result = $service->respond($trimmed, $history);
 
         // Map recommended products to lightweight array for frontend rendering
         $productCards = [];
