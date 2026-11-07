@@ -17,6 +17,11 @@
             </div>
 
             <div class="flex items-center gap-3">
+                <a href="{{ route('seller.products.index') }}" class="inline-flex items-center gap-2 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span>{{ __('Ürün Yönetimi') }}</span>
+                </a>
+
                 <a href="{{ route('seller.questions.index') }}" class="inline-flex items-center gap-2 px-3.5 py-2 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold text-xs rounded-xl shadow-sm hover:from-indigo-700 hover:to-violet-700 transition-all">
                     <i class="fa-solid fa-comments"></i>
                     <span>{{ __('Müşteri Soruları') }}</span>
@@ -65,9 +70,11 @@
                     </div>
                 </div>
                 <div class="text-2xl font-black text-slate-900">
-                    {{ Auth::user()->seller ? Auth::user()->seller->products()->count() : 8 }}
+                    {{ Auth::user()->seller ? Auth::user()->seller->products()->count() : 0 }}
                 </div>
-                <span class="text-[11px] text-slate-400 mt-1 block">{{ __('Hafta 3: Ürün CRUD') }}</span>
+                <a href="{{ route('seller.products.index') }}" class="text-[11px] text-indigo-600 font-bold hover:underline mt-1 block">
+                    {{ __('Ürünleri Yönet') }} &rarr;
+                </a>
             </div>
 
             <!-- Mağaza Komisyonu -->

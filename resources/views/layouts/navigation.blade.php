@@ -13,7 +13,7 @@
             </div>
 
             <div class="flex items-center space-x-4">
-                <a href="{{ url('/satici') }}" class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 font-semibold text-indigo-600">
+                <a href="{{ route('seller.apply') }}" class="hover:text-indigo-600 transition-colors flex items-center gap-1.5 font-semibold text-indigo-600">
                     <i class="fa-solid fa-store text-[11px]"></i> {{ __("AlSepete'de Satıcı Ol") }}
                 </a>
                 <span class="text-slate-300">|</span>
@@ -55,16 +55,9 @@
             </div>
         </a>
 
-        <!-- Arama Kutusu (Search Box) -->
+        <!-- Arama Kutusu (Livewire Canlı Autocomplete Dropdown) -->
         <div class="hidden md:flex flex-1 max-w-2xl relative">
-            <form action="{{ route('home') }}" method="GET" class="w-full relative group">
-                <input type="text" name="q" placeholder="{{ __('Ürün, marka, kategori veya satıcı ara...') }}" 
-                       class="w-full bg-slate-100 border border-slate-200 focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-500/10 rounded-2xl py-2.5 pl-11 pr-24 text-sm text-slate-800 placeholder-slate-400 transition-all duration-200">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-3 text-slate-400 text-sm group-focus-within:text-indigo-600 transition-colors"></i>
-                <button type="submit" class="absolute right-1.5 top-1.5 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white text-xs font-semibold px-4 py-1.5 rounded-xl transition-all shadow-sm">
-                    {{ __('Ara') }}
-                </button>
-            </form>
+            <livewire:search-dropdown />
         </div>
 
         <!-- Sağ Aksiyonlar (Favoriler, Sepet, Hesap Menüsü) -->
@@ -292,7 +285,7 @@
     <!-- 4. Mobil Menü Drawer -->
     <div x-show="mobileMenuOpen" x-cloak class="md:hidden border-t border-slate-200 bg-white px-4 py-4 space-y-4 shadow-xl">
         <!-- Mobil Arama -->
-        <form action="{{ route('home') }}" method="GET" class="relative">
+        <form action="{{ route('search') }}" method="GET" class="relative">
             <input type="text" name="q" placeholder="{{ __('Ürün, marka, kategori veya satıcı ara...') }}" 
                    class="w-full bg-slate-100 border border-slate-200 rounded-xl py-2 pl-10 pr-4 text-xs">
             <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>

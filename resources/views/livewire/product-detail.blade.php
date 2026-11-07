@@ -114,12 +114,100 @@
                         @endif
                     </div>
 
-                    <div class="mt-2 flex items-center gap-2 text-xs">
-                        <span class="text-emerald-700 font-bold flex items-center gap-1">
-                            <i class="fa-solid fa-truck-fast"></i> {{ __('Ücretsiz Kargo') }}
-                        </span>
-                        <span class="text-slate-300">&bull;</span>
-                        <span class="text-slate-500">{{ __('14 Gün Koşulsuz İade') }}</span>
+                    <div class="mt-2 flex items-center justify-between text-xs" x-data="{ showInstallments: false, activeTab: 0 }">
+                        <div class="flex items-center gap-2">
+                            <span class="text-emerald-700 font-bold flex items-center gap-1">
+                                <i class="fa-solid fa-truck-fast"></i> {{ __('Ücretsiz Kargo') }}
+                            </span>
+                            <span class="text-slate-300">&bull;</span>
+                            <span class="text-slate-500">{{ __('14 Gün Koşulsuz İade') }}</span>
+                        </div>
+
+                        <!-- Taksit Seçenekleri Butonu (Bonus +2 Puan) -->
+                        <button type="button" @click="showInstallments = true" class="text-indigo-600 hover:text-indigo-800 font-bold flex items-center gap-1 hover:underline cursor-pointer">
+                            <i class="fa-regular fa-credit-card"></i>
+                            <span>{{ __('Taksit Seçenekleri') }}</span>
+                        </button>
+
+                        <!-- Taksit Seçenekleri Modalı -->
+                        <div x-show="showInstallments" x-cloak 
+                             class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs"
+                             @keydown.escape.window="showInstallments = false">
+                            <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl border border-slate-200 overflow-hidden" @click.outside="showInstallments = false">
+                                <div class="p-5 bg-gradient-to-r from-slate-900 to-indigo-950 text-white flex items-center justify-between">
+                                    <div class="flex items-center gap-2.5">
+                                        <div class="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center text-indigo-400">
+                                            <i class="fa-regular fa-credit-card"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-sm">{{ __('Taksit Seçenekleri') }} (İyzico)</h3>
+                                            <p class="text-[11px] text-slate-300">{{ __('Anlaşmalı kredi kartlarına özel taksit tablosu') }}</p>
+                                        </div>
+                                    </div>
+                                    <button type="button" @click="showInstallments = false" class="text-slate-400 hover:text-white text-lg cursor-pointer">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
+
+                                <!-- Banka / Kart Tab Seçimi -->
+                                <div class="flex items-center gap-1 p-2 bg-slate-50 border-b border-slate-200 overflow-x-auto text-xs">
+                                    @foreach($this->installmentPlans as $index => $plan)
+                                        <button type="button" 
+                                                @click="activeTab = {{ $index }}" 
+                                                :class="activeTab === {{ $index }} ? 'bg-white text-indigo-700 shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900'"
+                                                class="px-3 py-1.5 rounded-xl transition-all whitespace-nowrap">
+                                            {{ $plan['name'] }} ({{ $plan['bank'] }})
+                                        </button>
+                                    @endforeach
+                                </div>
+
+                                <!-- Taksit Tabloları -->
+                                <div class="p-6 max-h-96 overflow-y-auto">
+                                    @foreach($this->installmentPlans as $index => $plan)
+                                        <div x-show="activeTab === {{ $index }}" class="space-y-3">
+                                            <div class="text-xs font-bold text-slate-700 flex items-center justify-between">
+                                                <span>{{ $plan['bank'] }} - {{ $plan['name'] }}</span>
+                                                <span class="text-slate-400 font-normal">{{ __('Tüm vadeler') }}</span>
+                                            </div>
+                                            <table class="w-full text-xs text-left">
+                                                <thead>
+                                                    <tr class="border-b border-slate-200 text-slate-400 font-semibold uppercase text-[10px]">
+                                                        <th class="py-2">{{ __('Taksit Sayısı') }}</th>
+                                                        <th class="py-2 text-right">{{ __('Aylık Ödeme') }}</th>
+                                                        <th class="py-2 text-right">{{ __('Toplam Tutar') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-slate-100">
+                                                    @foreach($plan['table'] as $row)
+                                                        <tr class="hover:bg-slate-50">
+                                                            <td class="py-2.5 font-bold text-slate-800">
+                                                                @if($row['installment'] == 1)
+                                                                    {{ __('Tek Çekim') }}
+                                                                @else
+                                                                    {{ $row['installment'] }} {{ __('Taksit') }}
+                                                                @endif
+                                                            </td>
+                                                            <td class="py-2.5 text-right font-semibold text-slate-700">
+                                                                {{ number_format($row['monthly'], 2, ',', '.') }} TL
+                                                            </td>
+                                                            <td class="py-2.5 text-right font-black text-indigo-600">
+                                                                {{ number_format($row['total'], 2, ',', '.') }} TL
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <div class="p-4 bg-slate-50 border-t border-slate-100 text-right">
+                                    <button type="button" @click="showInstallments = false" class="px-5 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold transition">
+                                        {{ __('Kapat') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

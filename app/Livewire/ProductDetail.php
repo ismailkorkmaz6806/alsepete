@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use App\Models\ProductVariant;
+use App\Services\InstallmentService;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
@@ -55,6 +56,14 @@ class ProductDetail extends Component
     public function availableSizes(): array
     {
         return $this->product->variants->pluck('size')->filter()->unique()->values()->all();
+    }
+
+    #[Computed]
+    public function installmentPlans(): array
+    {
+        $price = (float) ($this->selectedVariant?->discount_price ?? $this->selectedVariant?->price ?? 0);
+
+        return (new InstallmentService)->getInstallmentPlans($price);
     }
 
     public function selectColor(string $color): void
