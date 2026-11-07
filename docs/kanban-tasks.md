@@ -35,12 +35,13 @@ Bu dosyadaki görevleri GitHub reponuzda **Projects -> New Project -> Board (Kan
 - [x] Laravel Debugbar entegrasyonu (N+1 sorgu optimizasyonu kanıtı)
 
 ### Sütun 4: Hafta 4 (Arama, Filtreleme ve Satıcı Paneli) - [ARA DEMO 1]
-- [ ] Arama kutusunda anlık autocomplete önerisi
-- [ ] URL parametreli ürün filtreleri (?marka=x&min=100)
-- [ ] Satıcı başvuru formu (mağaza adı, vergi no, IBAN)
-- [ ] Satıcı paneli: Ürün ekleme, düzenleme, stok güncelleme
-- [ ] Policy yetkilendirmesi: Satıcı sadece kendi ürününü düzenleyebilir
-- [ ] Herkese açık mağaza vitrin sayfası (/magaza/{slug})
+- [x] Arama kutusunda anlık autocomplete önerisi
+- [x] URL parametreli ürün filtreleri (?marka=x&min=100)
+- [x] Satıcı başvuru formu (mağaza adı, vergi no, IBAN)
+- [x] Satıcı paneli: Ürün ekleme, düzenleme, stok güncelleme, aktif/pasif anahtarı
+- [x] Policy yetkilendirmesi: Satıcı sadece kendi ürününü düzenleyebilir (Kabul Kriteri: 403 testi)
+- [x] Herkese açık mağaza vitrin sayfası (/magaza/{slug})
+- [x] [BONUS +2 Puan] Taksit seçenekleri gösterimi (iyzico taksit tablosu)
 
 ### Sütun 5: Hafta 5 (Sepet, Favoriler, Adres ve Kupon)
 - [ ] Sepet yönetimi (ekle, sil, adet güncelle, misafir sepeti birleştirme)

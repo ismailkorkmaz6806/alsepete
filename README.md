@@ -5,10 +5,10 @@ Amazon ve Hepsiburada iş modeline dayalı; modern, yüksek performanslı ve tam
 [![Laravel Version](https://img.shields.io/badge/Laravel-11%20%2F%2012-red?logo=laravel)](https://laravel.com)
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%20%2F%208.3-blue?logo=php)](https://php.net)
 [![Livewire 3](https://img.shields.io/badge/Livewire-3.x-fb70a9?logo=livewire)](https://livewire.laravel.com)
-[![Tests](https://img.shields.io/badge/Tests-67%20Passing%20(176%20Assertions)-brightgreen?logo=pest)](https://pestphp.com)
+[![Tests](https://img.shields.io/badge/Tests-84%20Passing%20(250%20Assertions)-brightgreen?logo=pest)](https://pestphp.com)
 [![Code Style](https://img.shields.io/badge/Code%20Style-PSR--12%20(Pint)-success)](https://laravel.com/docs/pint)
 [![AI Engine](https://img.shields.io/badge/AI-Google%20Gemini%203.5-orange?logo=google)](https://ai.google.dev)
-[![Release](https://img.shields.io/badge/Release-v0.3%20(Hafta%203)-indigo)](https://github.com/ismailkorkmaz6806/alsepete)
+[![Release](https://img.shields.io/badge/Release-v0.4%20(Hafta%204%20--%20Ara%20Demo%201)-indigo)](https://github.com/ismailkorkmaz6806/alsepete)
 
 ---
 
@@ -24,54 +24,50 @@ Amazon ve Hepsiburada iş modeline dayalı; modern, yüksek performanslı ve tam
 
 ---
 
+## 🌟 Hafta 4 (v0.4 - Ara Demo 1) Teslim Edilen Modüller & Kabul Kriterleri
+
+Hafta 4 şartnamesi ve Kanban yol haritasında yer alan **Arama, Filtreleme ve Satıcı Paneli** ile seçilen ek bonus eksiksiz tamamlanmıştır:
+
+### 1. Canlı Arama Kutusu & Autocomplete Önerisi (Livewire 3)
+- **Yazarken Canlı Öneri:** Navbar üzerindeki arama kutusuna yazarken (250ms debounce) eşleşen ürünler (küçük resim, başlık, marka, fiyat), markalar ve kategoriler anlık açılır pencerede listelenir.
+- **Gelişmiş Arama Sonuç Sayfası:** `/arama?q=...` rotası ile başlık, açıklama ve marka içinde tam metin arama.
+
+### 2. URL Parametreli Gelişmiş Filtreler
+- **Filtreler:** Kategori, Marka (`?marka=sony`), Fiyat Aralığı (`?min=100&max=500`), Renk (`?renk=siyah`), Beden/Boyut (`?beden=M`), Puan ve Stok durumu (`?stok=1`).
+- **Kabul Kriteri:** Filtreler URL parametrelerinde saklanır; filtreli bir sayfanın linki paylaşıldığında veya sayfalama yapıldığında aynı sonuçlar birebir gelir.
+
+### 3. Satıcı Başvuru Formu & Admin Onay/Red Paneli
+- **Başvuru Formu:** Müşterilerin satıcı olmak için başvurduğu `/satici-ol` ekranı (Mağaza Adı, Vergi Kimlik No, IBAN).
+- **Statü Güvenliği:** Başvuru yapıldığında satıcı durumu admin onaylayana kadar `"beklemede"` olarak kaydedilir ve onaylanana kadar satıcı paneline erişilemez (`403 Forbidden`).
+- **Admin Yönetim Ekranı:** `/admin/saticilar` panelinden admin bekleyen başvuruları tek tıkla onaylar (`onayli`) veya reddeder. Onaylanan kullanıcıya otomatik `seller` rolü atanır.
+
+### 4. Satıcı Paneli - Ürün Yönetimi (CRUD, Hızlı Stok & Durum Anahtarı)
+- **Ürün Listesi:** `/satici/urunler` rotasında satıcı yalnızca kendi mağazasına ait ürünleri, varyantlarını ve anlık stoklarını listeler.
+- **Ürün Ekleme & Düzenleme:** `/satici/urunler/yeni` ve `/satici/urunler/{id}/duzenle` ile görsel, kategori, marka, açıklama ve varyant (fiyat, indirimli fiyat, stok, sku, renk, beden) yönetimi.
+- **Hızlı Stok & Durum Değiştirici:** Satıcı liste üzerinden doğrudan stok güncelleyebilir ve ürünü tek tıkla Aktif/Pasif yapabilir.
+
+### 5. Yetkilendirme Politikası (ProductPolicy) - [Zorunlu Kabul Kriteri]
+- **Kabul Kriteri:** *Satıcı A, Satıcı B'nin ürün düzenleme adresini (`/satici/urunler/{b_product}/duzenle`) elle yazarsa anında **403 Forbidden** alır.*
+- Satıcılar yalnızca kendi mağazalarına ait ürünleri düzenleyebilir ve silebilir (`$user->seller->id === $product->seller_id`).
+- Bu kural `tests/Feature/SellerProductAuthorizationTest.php` altındaki 5 adet uçtan uca otomatik test ile güvence altına alınmıştır.
+
+### 6. Herkese Açık Mağaza Vitrin Sayfası
+- **SEO Uyumlu Mağaza Rotası:** `/magaza/{slug}` (Örn: `/magaza/tekromarket`).
+- **Mağaza Profili:** Satıcı adı, onaylı mağaza rozeti, üyelik tarihi, toplam aktif ürün sayısı.
+- **Mağaza İçi Arama & Filtreleme:** Yalnızca o satıcıya ait aktif ürünlerin 24'lük sayfalamayla listelendiği, marka/kategori/fiyat filtreli vitrin.
+
+### 7. Bonus Görev (+2 Puan) - İyzico Taksit Seçenekleri Tablosu
+- **Taksit Motoru (`InstallmentService`):** Anlaşmalı 6 büyük banka kart ailesi (Bonus, Maximum, World, Axess, CardFinans, Paraf) için 2, 3, 6, 9, 12 taksit ve aylık ödeme planı hesaplama.
+- **İnteraktif Arayüz:** Ürün detay sayfasında (`/urun/{slug}`) "Taksit Seçenekleri" butonu ve banka logolu, sekmeli açılır taksit tablosu modalı.
+
+---
+
 ## 🌟 Hafta 3 (v0.3) Teslim Edilen Modüller & Kabul Kriterleri
 
-Hafta 3 şartnamesine ait gezilebilir vitrin, reaktif varyant yönetimi, arama ve seçilen tüm bonus özellikler eksiksiz tamamlanmıştır:
-
-### 1. Canlı Varyant Seçimi & Ürün Detay (Livewire 3)
-- **Sayfa Yenilenmeden Reaktif Değişim:** Renk ve beden seçildiğinde anlık fiyat, indirim oranı, SKU ve stok miktarı Livewire ile dinamik güncellenir.
-- **SEO Uyumlu URL:** `/urun/{slug}` rotası.
-- **Görsel Galerisi:** Büyük ürün önizlemesi ve tıklanabilir çoklu küçük resim (thumbnail) galerisi.
-- **Stok Koruması:** Stok bittiğinde *"Tükendi"* uyarısı ve sepete ekleme butonunun otomatik pasifleştirilmesi.
-
-### 2. Kategori Sayfası (24 Ürünlük Sayfalama, Filtreleme & Sıralama)
-- **SEO Uyumlu URL:** `/kategori/{slug}` rotası (Örn: `/kategori/elektronik`, `/kategori/ev-yasam`).
-- **24 Ürünlük Sayfalama:** `CategoryShowController` üzerinde `$query->paginate(24)` ile endüstri standardı sayfalama düzeni (`{{ $products->links() }}`).
-- **Sıralama Seçenekleri (4 Mod):**
-  - **En Yeniler (`newest`):** Son eklenen ürünler ilk sırada.
-  - **Fiyat: Düşükten Yükseğe (`price_asc`):** Varyant fiyatına göre artan sıralama.
-  - **Fiyat: Yüksekten Düşüğe (`price_desc`):** Varyant fiyatına göre azalan sıralama.
-  - **En Çok Değerlendirilenler (`rating`):** Puan ve popülerliğe göre listeleme.
-- **Gelişmiş Filtreler:** Marka seçimi, minimum-maksimum fiyat aralığı ve "Sadece Stoktakiler" (`in_stock`) filtre kutusu.
-
-### 3. Canlı Arama Çubuğu (Debounced Live Search)
-- Navbar üzerinde anlık ürün arama.
-- Kullanıcı yazarken veritabanından isim, açıklama ve kategori bazlı filtreleme ile anlık açılır öneri menüsü.
-
-### 4. Ana Sayfa Vitrini (Showcase)
-- **Banner Slider:** Alpine.js tabanlı otomatik geçişli (5 sn), önceki/sonraki butonlu ve noktalı kampanya slider'ı.
-- **Öne Çıkan Kategoriler:** İkonlu, alt kategori adetli ve doğrudan kategori sayfasına yönlendiren kart ızgarası.
-- **Çok Satanlar & Yeni Gelenler:** Veritabanından dinamik çekilen, fırsat etiketli ürün vitrinleri.
-- **Zengin ve Gerçekçi Katalog:** Seeder ile 100 adet gerçekçi, yüksek çözünürlüklü ve kategorisine uygun ürün (kozmetik, teknoloji, ev & yaşam, spor vb.).
-
-### 5. N+1 Sorgu Koruması & Laravel Debugbar
-- Tüm sayfalarda `with(['seller', 'variants', 'brand', 'category', 'media'])` kullanılarak N+1 sorgu problemi sıfıra indirilmiştir.
-- Geliştirme ortamında sorguları görsel olarak denetlemek için `barryvdh/laravel-debugbar` entegre edilmiştir.
-
-### 6. Bonus Görevler & İnovasyonlar (+6 Puan ve Fazlası)
-- 🌟 **Bonus 1 (+2 Puan) - "Bu Ürünü Alanlar Bunları da Aldı":** Ürün detay sayfasında çapraz kategori ve ilgili ürün öneri algoritması.
-- 🌟 **Bonus 2 (+2 Puan) - Satıcıya Soru Sor & Cevap Sistemi:** 
-  - Müşterinin ürün sayfasından Livewire ile satıcıya soru sorabilmesi.
-  - Onaylı satıcının kendi mağaza panelinden (`/satici/sorular`) gelen soruları görüntüleyip yanıtlaması.
-  - Yanıtlanan soruların ürün detay sayfasında Soru-Cevap bloğunda anında yayınlanması.
-- 🌟 **Bonus 3 (+2 Puan) - Çoklu Dil:** Türkçe ve İngilizce tam yerelleştirme (`/dil/tr` & `/dil/en`).
-- 🤖 **Bonus 4 (İnovasyon) - AlSepete AI Akıllı Alışveriş Asistanı:**
-  - Tüm sayfalarda sağ alt köşede yer alan canlı sohbet balonu (`Livewire` + `Alpine.js`).
-  - **Google Gemini Entegrasyonu:** Google AI Studio `gemini-3.5-flash-lite` / `gemini-3.5-flash` modelleriyle entegre.
-  - **Çok Turlu Sohbet Hafızası (Multi-Turn Conversation):** Kullanıcının önceki sorularını unutmaz; zamirleri, bütçe kıyaslamalarını ve devam sorularını akıllıca yanıtlar.
-  - **Tıklanabilir Ürün Kartları:** Doğal dil ile bütçe ve anahtar kelimelere göre (örn: *"3000 TL altı kulaklık öner"*) veritabanını tarayarak canlı ürün kartı tavsiye etme.
-  - **Kurumsal Bilgi:** Kargo, iade şartları, satıcı olma gibi platform kurallarına anında yanıt verme.
-  - **Offline Fallback:** API anahtarı girilmediğinde veya kota bittiğinde dahili semantik arama motoruna pürüzsüz geçiş.
+- **Canlı Varyant Seçimi & Ürün Detay:** Livewire 3 ile renk, beden ve fiyat değişimi, stok koruması.
+- **Kategori Sayfası:** 24 ürünlük sayfalama (`paginate(24)`), 4 mod sıralama, marka & stok filtreleri.
+- **Google Gemini 3.5 Flash Alışveriş Asistanı:** Canlı çok turlu sohbet hafızası, veritabanı ürün grounding'i, kurumsal SSS.
+- **Bonus 1 & 2:** "Bu Ürünü Alanlar Bunları da Aldı" önerisi ve Satıcı Soru-Cevap sistemi.
 
 ---
 
@@ -79,36 +75,22 @@ Hafta 3 şartnamesine ait gezilebilir vitrin, reaktif varyant yönetimi, arama v
 
 - **Kimlik Doğrulama & Roller (Spatie / Breeze):** `admin`, `seller`, `customer` rolleri.
 - **Rol Tabanlı Rota Koruması (Middleware):** `EnsureUserIsAdmin` (`/admin/*`) ve `EnsureSellerIsApproved` (`/satici/*`).
-- **Kategori Yönetimi (Admin CRUD) - İnce Controller & Action Mimarisi:**
-  - `CreateCategoryAction`, `UpdateCategoryAction`, `DeleteCategoryAction`.
-  - `CategoryStoreRequest`, `CategoryUpdateRequest` Türkçe validasyonları ve `CategoryPolicy`.
+- **Kategori Yönetimi (Admin CRUD) - İnce Controller & Action Mimarisi:** `CreateCategoryAction`, `UpdateCategoryAction`, `DeleteCategoryAction`, `CategoryPolicy`.
 - **Ortak Düzen & Dinamik Mega Menü:** `View::composer` ile önbellekli kategori ağacı.
-- **Gösterge Panelleri (Dashboards):** Admin Dashboard (`/admin`) ve Satıcı Dashboard (`/satici`).
+- **Çoklu Dil Desteği:** Türkçe & İngilizce tam yerelleştirme (`/dil/tr` & `/dil/en`).
 
 ---
 
-## 📋 TODO & Gelecek Hafta Planı: Hafta 4 (Ara Demo 1)
+## 📋 TODO & Gelecek Hafta Planı: Hafta 5 (Sepet, Favoriler, Adres ve Kupon)
 
-Hafta 4 şartnamesi ve Kanban yol haritasında yer alan teslim edilecek modüller:
+- [ ] **Sepet Yönetimi:** Ürün ekleme, silme, adet güncelleme, misafir sepeti birleştirme.
+- [ ] **Çok Satıcılı Sepet Gruplaması:** Ürünlerin sepette satıcı bazında ayrılması ve kargo hesaplama.
+- [ ] **Stok Aşımı Koruması:** Varyant stok miktarından fazla ürün eklenmesini engelleme.
+- [ ] **Favoriler Listesi:** Kalp butonu ile favorilere ekleme/çıkarma.
+- [ ] **Adres Defteri:** İl/ilçe seçimli teslimat ve fatura adresi yönetimi.
+- [ ] **Kupon Motoru:** Kupon doğrulama ve indirim hesaplama (En az 5 birim test).
 
-- [ ] **Satıcı Başvuru & Kayıt Modülü:**
-  - Müşterilerin satıcı olmak için başvurabileceği form ekranı (`store_name`, `tax_number`, `iban`, adres).
-  - Başvurunun `pending` (onay bekliyor) statüsünde kaydedilmesi ve admin paneline bildirim olarak düşmesi.
-- [ ] **Satıcı Paneli - Ürün Yönetimi (CRUD):**
-  - Satıcının yeni ürün ekleyebilmesi (`ProductStoreRequest`), detaylı açıklama, kategori ve marka seçimi.
-  - Ürünlere varyant (renk, beden, SKU) ve stok miktarları tanımlama.
-  - Satıcının kendi ürünlerini listelemesi, düzenlemesi ve anlık stok güncellemesi.
-- [ ] **Yetkilendirme & Güvenlik (ProductPolicy):**
-  - Satıcıların yalnızca **kendi mağazalarına ait** ürünleri düzenleyip silebilmesi (`$user->seller->id === $product->seller_id`).
-  - Başka bir satıcının ürününe doğrudan URL üzerinden erişildiğinde `403 Forbidden` koruması.
-- [ ] **Herkese Açık Mağaza Vitrin Sayfası:**
-  - `/magaza/{slug}` rotası ile satıcının adı, logosu, puanı ve yalnızca o mağazaya ait ürünlerin listelendiği vitrin sayfası.
-  - Mağaza içinde ürün arama ve filtreleme.
-- [ ] **Gelişmiş Arama & Filtre Entegrasyonu:**
-  - Arama kutusundaki autocomplete önerilerinin zenginleştirilmesi.
-  - Kategori sayfasındaki URL parametreli filtrelerin (`?marka=x&min=100&max=500&in_stock=1`) tam oturması.
-- [ ] **Ara Demo 1 Kapsamında Yeni Otomatik Testler:**
-  - Satıcı başvuru akışı, ürün ekleme/silme ve `ProductPolicy` güvenlik yetki testlerinin yazılması.
+---
 
 ## 🔐 Hazır Test Hesapları
 
@@ -116,9 +98,9 @@ Veritabanı seed edildiğinde kullanıma hazır gelen hesaplar:
 
 | Rol | E-Posta | Şifre | Erişim Alanı |
 |---|---|---|---|
-| **Admin** | `admin@alsepete.com` | `password` | `/admin` ve `/admin/categories` |
-| **Onaylı Satıcı** | `satici1@alsepete.com` | `password` | `/satici` (Mağaza Paneli & Soru-Cevap) |
-| **Müşteri** | `musteri1@alsepete.com` | `password` | Ana sayfa & Kullanıcı profili |
+| **Admin** | `admin@alsepete.com` | `password` | `/admin`, `/admin/categories` ve `/admin/saticilar` |
+| **Onaylı Satıcı** | `satici1@alsepete.com` | `password` | `/satici`, `/satici/urunler` ve `/satici/sorular` |
+| **Müşteri** | `musteri1@alsepete.com` | `password` | Ana sayfa, `/satici-ol` başvuru ve profil |
 
 ---
 
@@ -137,7 +119,6 @@ Veritabanı seed edildiğinde kullanıma hazır gelen hesaplar:
 git clone https://github.com/ismailkorkmaz6806/alsepete.git
 cd alsepete
 composer install
-npm install
 ```
 
 ### 2. Ortam Değişkenlerini Yapılandırın
@@ -145,7 +126,6 @@ npm install
 cp .env.example .env
 php artisan key:generate
 ```
-*(İsteğe Bağlı: Google Gemini AI Asistanını canlı LLM olarak kullanmak için `.env` dosyanıza `GEMINI_API_KEY=your_key_here` ekleyebilirsiniz. Anahtar girilmezse dahili akıllı motor otomatik devreye girer).*
 
 ### 3. Veritabanını Oluşturun ve Seed Edin (100 Ürün + Test Kullanıcıları)
 ```bash
@@ -155,7 +135,6 @@ php artisan migrate:fresh --seed
 ### 4. Depolama Köprüsünü Kurun ve Projeyi Başlatın
 ```bash
 php artisan storage:link
-npm run build
 php artisan serve
 ```
 Tarayıcınızda açın: **`http://127.0.0.1:8000`**
@@ -164,20 +143,26 @@ Tarayıcınızda açın: **`http://127.0.0.1:8000`**
 
 ## 🧪 Test ve Kod Kalitesi
 
-Tüm iş kuralları, güvenlik mekanizmaları, sayfalama, sıralama ve yapay zeka asistanı **67 adet otomatik test** ile korunmaktadır:
+Tüm iş kuralları, yetkilendirme politikaları, arama ve filtreleme özellikleri **84 adet otomatik test (250 assertion)** ile güvence altındadır:
 
 ```bash
-# Tüm Feature ve Unit Testlerini Çalıştırın (67 Test, 176 Assertion)
+# Tüm Feature ve Unit Testlerini Çalıştırın (84 Test, 250 Assertion)
 php artisan test
 
-# Sadece Kategori & Sıralama Testlerini Çalıştırın
-php artisan test --filter=CategoryBrowseTest
+# Hafta 4 Satıcı ProductPolicy Yetkilendirme Testi (403 Testi)
+php artisan test --filter=SellerProductAuthorizationTest
 
-# Sadece AI Asistan Testlerini Çalıştırın
-php artisan test --filter=AiShoppingAssistantTest
+# Hafta 4 Arama ve URL Parametreli Filtre Testi
+php artisan test --filter=SearchAndFilterTest
 
-# Sadece Satıcı Soru-Cevap & Bonus Testlerini Çalıştırın
-php artisan test --filter=BonusFeaturesTest
+# Hafta 4 Satıcı Başvuru ve Admin Onay Testi
+php artisan test --filter=SellerApplicationTest
+
+# Hafta 4 Herkese Açık Mağaza Vitrin Testi
+php artisan test --filter=PublicStoreTest
+
+# Hafta 4 Taksit Seçenekleri Bonus Testi
+php artisan test --filter=InstallmentBonusTest
 
 # PSR-12 Standart Kontrolü (Laravel Pint)
 ./vendor/bin/pint --test
@@ -185,13 +170,11 @@ php artisan test --filter=BonusFeaturesTest
 
 ---
 
-## 📁 Hafta 1, 2 ve 3 Teslimat Belgeleri
+## 📁 Hafta 1, 2, 3 ve 4 Teslimat Belgeleri
 - **ER Diyagramı:** `docs/er-diagram.dbml` ([dbdiagram.io](https://dbdiagram.io) uyumlu)
 - **Arayüz Tel Çerçevesi (Wireframe):** `docs/wireframe.md`
 - **10 Haftalık Kanban Planı:** `docs/kanban-tasks.md`
-- **Kategori & Sıralama Controller:** `app/Http/Controllers/CategoryShowController.php`
-- **Livewire Bileşenleri:** `app/Livewire/ProductDetail.php`, `AiShoppingAssistant.php`
-- **AI Alışveriş Servisi:** `app/Services/AiShoppingAssistantService.php`
-- **İş Mantığı (Actions):** `app/Actions/Category/`
-- **Yetkilendirme Politikaları (Policies):** `app/Policies/CategoryPolicy.php`
-- **Dil Dosyaları:** `lang/tr/`, `lang/en.json`, `lang/tr.json`
+- **Arama & Canlı Autocomplete:** `app/Livewire/SearchDropdown.php`, `app/Http/Controllers/SearchController.php`
+- **Yetkilendirme Politikası:** `app/Policies/ProductPolicy.php`, `CategoryPolicy.php`
+- **Satıcı Paneli & Başvuru:** `app/Http/Controllers/Seller/ProductController.php`, `SellerApplicationController.php`, `Admin/SellerManagementController.php`
+- **Taksit Servisi:** `app/Services/InstallmentService.php`

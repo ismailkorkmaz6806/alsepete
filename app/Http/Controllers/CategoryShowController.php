@@ -32,25 +32,56 @@ class CategoryShowController extends Controller
             ->where('status', 'aktif')
             ->whereIn('category_id', $categoryIds);
 
-        // Marka Filtresi
-        if ($request->filled('brand')) {
-            $query->where('brand_id', $request->query('brand'));
-        }
-
-        // Fiyat Aralığı Filtresi
-        if ($request->filled('min_price')) {
-            $query->whereHas('variants', function ($q) use ($request) {
-                $q->where('price', '>=', (float) $request->query('min_price'));
-            });
-        }
-        if ($request->filled('max_price')) {
-            $query->whereHas('variants', function ($q) use ($request) {
-                $q->where('price', '<=', (float) $request->query('max_price'));
+        // Marka Filtresi (?marka=sony veya ?brand=1)
+        $brandParam = $request->query('marka') ?: $request->query('brand');
+        if ($brandParam) {
+            $query->where(function ($q) use ($brandParam) {
+                if (is_numeric($brandParam)) {
+                    $q->where('brand_id', $brandParam);
+                } else {
+                    $q->whereHas('brand', fn ($b) => $b->where('slug', $brandParam)->orWhere('name', 'like', "%{$brandParam}%"));
+                }
             });
         }
 
-        // Sadece Stoktakiler
-        if ($request->boolean('in_stock')) {
+        // Fiyat Aralığı Filtresi (?min=100&max=500 veya ?min_price=100)
+        $minPrice = $request->query('min') ?: $request->query('min_price');
+        if ($minPrice !== null && $minPrice !== '') {
+            $query->whereHas('variants', function ($q) use ($minPrice) {
+                $q->where(function ($sub) use ($minPrice) {
+                    $sub->whereNotNull('discount_price')->where('discount_price', '>=', (float) $minPrice)
+                        ->orWhere(fn ($p) => $p->whereNull('discount_price')->where('price', '>=', (float) $minPrice));
+                });
+            });
+        }
+        $maxPrice = $request->query('max') ?: $request->query('max_price');
+        if ($maxPrice !== null && $maxPrice !== '') {
+            $query->whereHas('variants', function ($q) use ($maxPrice) {
+                $q->where(function ($sub) use ($maxPrice) {
+                    $sub->whereNotNull('discount_price')->where('discount_price', '<=', (float) $maxPrice)
+                        ->orWhere(fn ($p) => $p->whereNull('discount_price')->where('price', '<=', (float) $maxPrice));
+                });
+            });
+        }
+
+        // Renk Filtresi (?renk=siyah veya ?color=siyah)
+        $color = $request->query('renk') ?: $request->query('color');
+        if ($color) {
+            $query->whereHas('variants', function ($q) use ($color) {
+                $q->where('color', 'like', "%{$color}%");
+            });
+        }
+
+        // Beden Filtresi (?beden=M veya ?size=M)
+        $size = $request->query('beden') ?: $request->query('size');
+        if ($size) {
+            $query->whereHas('variants', function ($q) use ($size) {
+                $q->where('size', 'like', "%{$size}%");
+            });
+        }
+
+        // Sadece Stoktakiler (?stok=1 veya ?in_stock=1)
+        if ($request->boolean('in_stock') || $request->boolean('stok')) {
             $query->whereHas('variants', function ($q) {
                 $q->where('stock', '>', 0);
             });

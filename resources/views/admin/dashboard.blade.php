@@ -11,10 +11,21 @@
                 </h2>
             </div>
 
-            <a href="{{ route('admin.categories.index') }}" class="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold text-xs rounded-xl shadow-md shadow-indigo-500/20 hover:from-indigo-700 hover:to-violet-700 transition-all">
-                <i class="fa-solid fa-layer-group"></i>
-                <span>{{ __('Kategori Yönetimi') }}</span>
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="{{ route('admin.sellers.index') }}" class="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 text-slate-700 hover:text-indigo-600 font-bold text-xs rounded-xl shadow-xs transition-all">
+                    <i class="fa-solid fa-users-gear text-indigo-600"></i>
+                    <span>{{ __('Satıcı Başvuruları') }}</span>
+                    @php $pendingCount = \App\Models\Seller::where('status', 'beklemede')->count(); @endphp
+                    @if($pendingCount > 0)
+                        <span class="px-1.5 py-0.2 bg-amber-500 text-white rounded-full text-[10px]">{{ $pendingCount }}</span>
+                    @endif
+                </a>
+
+                <a href="{{ route('admin.categories.index') }}" class="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold text-xs rounded-xl shadow-md shadow-indigo-500/20 hover:from-indigo-700 hover:to-violet-700 transition-all">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>{{ __('Kategori Yönetimi') }}</span>
+                </a>
+            </div>
         </div>
     </x-slot>
 
@@ -41,7 +52,7 @@
             <!-- Onaylı Satıcılar -->
             <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs">
                 <div class="flex items-center justify-between text-slate-500 text-xs font-semibold mb-2">
-                    <span>{{ __('Onaylı Satıcılar') }}</span>
+                    <span>{{ __('Satıcı Mağazaları') }}</span>
                     <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
                         <i class="fa-solid fa-store text-xs"></i>
                     </div>
@@ -49,7 +60,9 @@
                 <div class="text-2xl font-black text-slate-900">
                     {{ \App\Models\Seller::where('status', 'onayli')->count() }}
                 </div>
-                <span class="text-[11px] text-emerald-600 font-semibold mt-1 block">{{ __('Aktif Mağaza') }}</span>
+                <a href="{{ route('admin.sellers.index') }}" class="text-[11px] text-emerald-600 font-bold hover:underline mt-1 block">
+                    {{ __('Satıcıları Yönet') }} &rarr;
+                </a>
             </div>
 
             <!-- Müşteriler -->
