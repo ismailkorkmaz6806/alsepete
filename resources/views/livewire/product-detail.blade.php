@@ -81,9 +81,15 @@
                     <div class="flex items-center gap-1.5 text-slate-600">
                         <i class="fa-solid fa-store text-indigo-600"></i>
                         <span>{{ __('Satıcı:') }}</span>
-                        <span class="font-bold text-slate-900 hover:text-indigo-600 transition-colors">
-                            {{ $product->seller->store_name }}
-                        </span>
+                        @if($product->seller && $product->seller->slug)
+                            <a href="{{ route('stores.show', $product->seller->slug) }}" class="font-bold text-slate-900 hover:text-indigo-600 underline decoration-indigo-200 hover:decoration-indigo-600 underline-offset-2 transition-colors">
+                                {{ $product->seller->store_name }}
+                            </a>
+                        @else
+                            <span class="font-bold text-slate-900">
+                                {{ $product->seller?->store_name }}
+                            </span>
+                        @endif
                         <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
                             {{ __('Onaylı') }}
                         </span>
