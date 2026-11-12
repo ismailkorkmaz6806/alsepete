@@ -47,6 +47,12 @@ Route::middleware('auth')->group(function () {
         ->middleware('throttle:6,1')
         ->name('verification.send');
 
+    Route::post('verify-email/quick', function (\Illuminate\Http\Request $request) {
+        $request->user()->markEmailAsVerified();
+
+        return redirect()->route('dashboard');
+    })->name('verification.quick');
+
     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
         ->name('password.confirm');
 
