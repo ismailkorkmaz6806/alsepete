@@ -16,6 +16,14 @@
     @endif
 
     <div class="space-y-3 pt-2">
+        <form method="POST" action="{{ route('verification.quick') }}">
+            @csrf
+            <button type="submit" class="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer">
+                <i class="fa-solid fa-circle-check"></i>
+                {{ __('E-Postamı Doğrula ve Devam Et (Test Modu)') }}
+            </button>
+        </form>
+
         <form method="POST" action="{{ route('verification.send') }}">
             @csrf
             <x-primary-button class="w-full">
