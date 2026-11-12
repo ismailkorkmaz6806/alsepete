@@ -91,3 +91,12 @@ test('herkese acik magaza sayfasi /magaza/{slug} yalnizca o saticinin aktif urun
     $response->assertDontSee('Eski Sezon Pasif Mont');
     $response->assertDontSee('Baska Magazanin Urunu');
 });
+
+test('urun detay sayfasinda satici adi magaza vitrinine link verir', function () {
+    $response = $this->get(route('products.show', $this->p1->slug));
+
+    $response->assertStatus(200);
+    $response->assertSee(route('stores.show', $this->seller1->slug));
+    $response->assertSee('Mega Trend Magaza');
+});
+
