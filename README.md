@@ -81,7 +81,7 @@ Hafta 4 şartnamesi ve Kanban yol haritasında yer alan **Arama, Filtreleme ve S
 
 ---
 
-## 📋 TODO & Gelecek Hafta Planı: Hafta 5 (Sepet, Favoriler, Adres ve Kupon)
+## 📋 TODO & Gelecek Hafta Planı: Hafta 5 (Sepet, Favoriler, Adres ve Kupon) - [IN PROGRESS]
 
 - [ ] **Sepet Yönetimi:** Ürün ekleme, silme, adet güncelleme, misafir sepeti birleştirme.
 - [ ] **Çok Satıcılı Sepet Gruplaması:** Ürünlerin sepette satıcı bazında ayrılması ve kargo hesaplama.

@@ -34,7 +34,7 @@ Bu dosyadaki görevleri GitHub reponuzda **Projects -> New Project -> Board (Kan
 - [x] [BONUS +2 Puan] Çoklu dil desteği (TR / EN)
 - [x] Laravel Debugbar entegrasyonu (N+1 sorgu optimizasyonu kanıtı)
 
-### Sütun 4: Hafta 4 (Arama, Filtreleme ve Satıcı Paneli) - [ARA DEMO 1]
+### Sütun 4: Hafta 4 (Arama, Filtreleme ve Satıcı Paneli) - [ARA DEMO 1] [DONE]
 - [x] Arama kutusunda anlık autocomplete önerisi
 - [x] URL parametreli ürün filtreleri (?marka=x&min=100)
 - [x] Satıcı başvuru formu (mağaza adı, vergi no, IBAN)
@@ -43,7 +43,7 @@ Bu dosyadaki görevleri GitHub reponuzda **Projects -> New Project -> Board (Kan
 - [x] Herkese açık mağaza vitrin sayfası (/magaza/{slug})
 - [x] [BONUS +2 Puan] Taksit seçenekleri gösterimi (iyzico taksit tablosu)
 
-### Sütun 5: Hafta 5 (Sepet, Favoriler, Adres ve Kupon)
+### Sütun 5: Hafta 5 (Sepet, Favoriler, Adres ve Kupon) [IN PROGRESS]
 - [ ] Sepet yönetimi (ekle, sil, adet güncelle, misafir sepeti birleştirme)
 - [ ] Sepette ürünlerin satıcı bazında gruplanması ve kargo hesaplama
 - [ ] Stoktan fazla sepete eklemeyi engelleme
