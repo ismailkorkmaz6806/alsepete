@@ -5,7 +5,7 @@ Amazon ve Hepsiburada iş modeline dayalı; modern, yüksek performanslı ve tam
 [![Laravel Version](https://img.shields.io/badge/Laravel-11%20%2F%2012-red?logo=laravel)](https://laravel.com)
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%20%2F%208.3-blue?logo=php)](https://php.net)
 [![Livewire 3](https://img.shields.io/badge/Livewire-3.x-fb70a9?logo=livewire)](https://livewire.laravel.com)
-[![Tests](https://img.shields.io/badge/Tests-84%20Passing%20(250%20Assertions)-brightgreen?logo=pest)](https://pestphp.com)
+[![Tests](https://img.shields.io/badge/Tests-86%20Passing%20(263%20Assertions)-brightgreen?logo=pest)](https://pestphp.com)
 [![Code Style](https://img.shields.io/badge/Code%20Style-PSR--12%20(Pint)-success)](https://laravel.com/docs/pint)
 [![AI Engine](https://img.shields.io/badge/AI-Google%20Gemini%203.5-orange?logo=google)](https://ai.google.dev)
 [![Release](https://img.shields.io/badge/Release-v0.4%20(Hafta%204%20--%20Ara%20Demo%201)-indigo)](https://github.com/ismailkorkmaz6806/alsepete)
@@ -143,10 +143,10 @@ Tarayıcınızda açın: **`http://127.0.0.1:8000`**
 
 ## 🧪 Test ve Kod Kalitesi
 
-Tüm iş kuralları, yetkilendirme politikaları, arama ve filtreleme özellikleri **84 adet otomatik test (250 assertion)** ile güvence altındadır:
+Tüm iş kuralları, yetkilendirme politikaları, arama ve filtreleme özellikleri **86 adet otomatik test (263 assertion)** ile güvence altındadır:
 
 ```bash
-# Tüm Feature ve Unit Testlerini Çalıştırın (84 Test, 250 Assertion)
+# Tüm Feature ve Unit Testlerini Çalıştırın (86 Test, 263 Assertion)
 php artisan test
 
 # Hafta 4 Satıcı ProductPolicy Yetkilendirme Testi (403 Testi)
