@@ -9,5 +9,13 @@
     "Email": "E-Posta",
     "Dashboard": "Kontrol Paneli",
     "Profile": "Profil",
-    "You're logged in!": "Başarıyla giriş yaptınız!"
+    "You're logged in!": "Başarıyla giriş yaptınız!",
+    "Forbidden": "Erişim Yetkiniz Bulunmuyor",
+    "Not Found": "Sayfa Bulunamadı",
+    "Page Expired": "Oturum Süresi Doldu",
+    "Server Error": "Sunucu Hatası",
+    "Service Unavailable": "Hizmet Geçici Olarak Kullanılamıyor",
+    "Unauthorized": "Giriş Yapmanız Gerekiyor",
+    "Too Many Requests": "Çok Fazla İstek Gönderildi",
+    "This action is unauthorized.": "Bu işlemi gerçekleştirmek için yetkiniz bulunmamaktadır."
 }

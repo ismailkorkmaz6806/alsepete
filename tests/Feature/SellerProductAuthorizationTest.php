@@ -67,6 +67,8 @@ test("Hafta 4 Kabul Kriteri: Satici A, Satici B'nin urun duzenleme adresini elle
         ->get(route('seller.products.edit', $this->productB));
 
     $response->assertStatus(403);
+    $response->assertSee('Erişim Yetkiniz Bulunmuyor');
+    $response->assertSee('Bu ürünü yalnızca ürünü listeleyen mağaza sahibi düzenleyebilir.');
 });
 
 test("Satici A, Satici B'nin urununu PUT istegi ile guncellemeye calisirsa 403 alir", function () {
