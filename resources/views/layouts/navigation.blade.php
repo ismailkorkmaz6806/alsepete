@@ -62,18 +62,8 @@
 
         <!-- Sağ Aksiyonlar (Favoriler, Sepet, Hesap Menüsü) -->
         <div class="flex items-center space-x-2 sm:space-x-4 shrink-0">
-            <!-- Favoriler -->
-            <a href="{{ route('favorites.index') }}" class="hidden sm:flex relative p-2 rounded-xl hover:bg-slate-100 text-slate-600 hover:text-rose-500 transition-colors" title="{{ __('Favorilerim') }}">
-                <i class="fa-regular fa-heart text-lg"></i>
-                @auth
-                    @php $favCount = Auth::user()->favorites()->count(); @endphp
-                    @if($favCount > 0)
-                        <span class="absolute -top-1 -right-1 bg-rose-500 text-white text-[9px] font-bold rounded-full min-w-[16px] h-4 px-1 flex items-center justify-center shadow-xs">
-                            {{ $favCount }}
-                        </span>
-                    @endif
-                @endauth
-            </a>
+            <!-- Favoriler (Livewire Counter ile Reaktif) -->
+            <livewire:favorite-counter />
 
             <!-- Sepet İkonu (Livewire Counter ile Reaktif) -->
             <livewire:cart-counter />

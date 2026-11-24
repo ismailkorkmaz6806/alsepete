@@ -5,7 +5,7 @@ Amazon ve Hepsiburada iş modeline dayalı; modern, yüksek performanslı ve tam
 [![Laravel Version](https://img.shields.io/badge/Laravel-11%20%2F%2012-red?logo=laravel)](https://laravel.com)
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%20%2F%208.3-blue?logo=php)](https://php.net)
 [![Livewire 3](https://img.shields.io/badge/Livewire-3.x-fb70a9?logo=livewire)](https://livewire.laravel.com)
-[![Tests](https://img.shields.io/badge/Tests-101%20Passing%20(314%20Assertions)-brightgreen?logo=pest)](https://pestphp.com)
+[![Tests](https://img.shields.io/badge/Tests-102%20Passing%20(318%20Assertions)-brightgreen?logo=pest)](https://pestphp.com)
 [![Code Style](https://img.shields.io/badge/Code%20Style-PSR--12%20(Pint)-success)](https://laravel.com/docs/pint)
 [![AI Engine](https://img.shields.io/badge/AI-Google%20Gemini%203.5-orange?logo=google)](https://ai.google.dev)
 [![Release](https://img.shields.io/badge/Release-v0.5%20(Hafta%205%20--%20Sepet%2C%20Favoriler%2C%20Adres%20ve%20Kupon)-indigo)](https://github.com/ismailkorkmaz6806/alsepete)
@@ -175,10 +175,10 @@ Tarayıcınızda açın: **`http://127.0.0.1:8000`**
 
 ## 🧪 Test ve Kod Kalitesi
 
-Tüm iş kuralları, yetkilendirme politikaları, arama, filtreleme, sepet, adres, favoriler ve kupon hesaplamaları **101 adet otomatik test (314 assertion)** ile güvence altındadır:
+Tüm iş kuralları, yetkilendirme politikaları, arama, filtreleme, sepet, adres, favoriler ve kupon hesaplamaları **102 adet otomatik test (318 assertion)** ile güvence altındadır:
 
 ```bash
-# Tüm Feature ve Unit Testlerini Çalıştırın (101 Test, 314 Assertion)
+# Tüm Feature ve Unit Testlerini Çalıştırın (102 Test, 318 Assertion)
 php artisan test
 
 # Hafta 5 Sepet & Kupon Hesaplama Birim Testleri (8 Unit Test - Zorunlu Kabul Kriteri)
@@ -207,7 +207,7 @@ php artisan test --filter=SearchAndFilterTest
 - **Kupon Doğrulama & İndirim Motoru:** `app/Services/CouponService.php`
 - **81 İl & İlçe Servisi:** `app/Services/LocationService.php`
 - **Adres Defteri Yetkilendirmesi:** `app/Policies/AddressPolicy.php`
-- **Livewire Bileşenleri:** `CartPage.php`, `CartCounter.php`, `FavoriteButton.php`, `FavoritesPage.php`, `AddressManager.php`
+- **Livewire Bileşenleri:** `CartPage.php`, `CartCounter.php`, `FavoriteButton.php`, `FavoriteCounter.php`, `FavoritesPage.php`, `AddressManager.php`
 - **Arama & Canlı Autocomplete:** `app/Livewire/SearchDropdown.php`, `app/Http/Controllers/SearchController.php`
 - **Satıcı Ürün Politikası:** `app/Policies/ProductPolicy.php`
 - **Taksit Servisi:** `app/Services/InstallmentService.php`
