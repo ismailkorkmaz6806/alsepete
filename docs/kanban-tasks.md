@@ -43,15 +43,15 @@ Bu dosyadaki görevleri GitHub reponuzda **Projects -> New Project -> Board (Kan
 - [x] Herkese açık mağaza vitrin sayfası (/magaza/{slug})
 - [x] [BONUS +2 Puan] Taksit seçenekleri gösterimi (iyzico taksit tablosu)
 
-### Sütun 5: Hafta 5 (Sepet, Favoriler, Adres ve Kupon) [IN PROGRESS]
-- [ ] Sepet yönetimi (ekle, sil, adet güncelle, misafir sepeti birleştirme)
-- [ ] Sepette ürünlerin satıcı bazında gruplanması ve kargo hesaplama
-- [ ] Stoktan fazla sepete eklemeyi engelleme
-- [ ] Favoriler listesi (AJAX / Livewire kalp butonu)
-- [ ] İl/ilçe seçimli adres defteri yönetimi
-- [ ] Kupon doğrulama ve indirim hesaplama motoru (En az 5 birim test)
+### Sütun 5: Hafta 5 (Sepet, Favoriler, Adres ve Kupon) [DONE]
+- [x] Sepet yönetimi (ekle, sil, adet güncelle, misafir sepeti birleştirme)
+- [x] Sepette ürünlerin satıcı bazında gruplanması ve kargo hesaplama
+- [x] Stoktan fazla sepete eklemeyi engelleme
+- [x] Favoriler listesi (AJAX / Livewire kalp butonu)
+- [x] İl/ilçe seçimli adres defteri yönetimi
+- [x] Kupon doğrulama ve indirim hesaplama motoru (En az 5 birim test)
 
-### Sütun 6: Hafta 6 (Ödeme ve Sipariş Oluşturma) - [ARA DEMO 2]
+### Sütun 6: Hafta 6 (Ödeme ve Sipariş Oluşturma) - [ARA DEMO 2] [IN PROGRESS]
 - [ ] Checkout sayfası ve mesafeli satış sözleşmesi
 - [ ] iyzico sandbox ödeme entegrasyonu ve 3D secure dönüşü
 - [ ] DB Transaction: 1 ana sipariş (orders) ve satıcı başına alt sipariş (sub_orders)

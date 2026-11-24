@@ -99,4 +99,3 @@ test('urun detay sayfasinda satici adi magaza vitrinine link verir', function ()
     $response->assertSee(route('stores.show', $this->seller1->slug));
     $response->assertSee('Mega Trend Magaza');
 });
-

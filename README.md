@@ -5,10 +5,10 @@ Amazon ve Hepsiburada iş modeline dayalı; modern, yüksek performanslı ve tam
 [![Laravel Version](https://img.shields.io/badge/Laravel-11%20%2F%2012-red?logo=laravel)](https://laravel.com)
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%20%2F%208.3-blue?logo=php)](https://php.net)
 [![Livewire 3](https://img.shields.io/badge/Livewire-3.x-fb70a9?logo=livewire)](https://livewire.laravel.com)
-[![Tests](https://img.shields.io/badge/Tests-86%20Passing%20(263%20Assertions)-brightgreen?logo=pest)](https://pestphp.com)
+[![Tests](https://img.shields.io/badge/Tests-101%20Passing%20(314%20Assertions)-brightgreen?logo=pest)](https://pestphp.com)
 [![Code Style](https://img.shields.io/badge/Code%20Style-PSR--12%20(Pint)-success)](https://laravel.com/docs/pint)
 [![AI Engine](https://img.shields.io/badge/AI-Google%20Gemini%203.5-orange?logo=google)](https://ai.google.dev)
-[![Release](https://img.shields.io/badge/Release-v0.4%20(Hafta%204%20--%20Ara%20Demo%201)-indigo)](https://github.com/ismailkorkmaz6806/alsepete)
+[![Release](https://img.shields.io/badge/Release-v0.5%20(Hafta%205%20--%20Sepet%2C%20Favoriler%2C%20Adres%20ve%20Kupon)-indigo)](https://github.com/ismailkorkmaz6806/alsepete)
 
 ---
 
@@ -21,6 +21,38 @@ Amazon ve Hepsiburada iş modeline dayalı; modern, yüksek performanslı ve tam
   1. **Hassas Para:** Fiyatlar `decimal(10,2)` olarak saklanır (asla float kullanılmaz).
   2. **Snapshot Güvenliği:** Sipariş anındaki ürün adı, fiyat ve teslimat adresi sipariş tablolarına kopyalanır (`snapshot`).
   3. **Stok Güvenliği:** Stok `product_variants` tablosundadır ve `DB::transaction` + `lockForUpdate()` ile yarış koşullarına (race condition) karşı korunur.
+
+---
+
+## 🌟 Hafta 5 (v0.5) Teslim Edilen Modüller & Kabul Kriterleri
+
+Hafta 5 şartnamesi ve Kanban yol haritasında yer alan **Sepet, Favoriler, Adres Defteri ve Kupon Motoru** eksiksiz tamamlanmıştır:
+
+### 1. Canlı Çok Satıcılı Sepet Yönetimi (Livewire 3 & CartService)
+- **Çok Satıcılı Gruplama:** Sepetteki ürünler satıcı bazında ayrıştırılarak satıcı kartları halinde listelenir.
+- **Satıcı Başına Kargo Mantığı:** Her satıcı için kargo ücreti 49.90 TL olarak bağımsız hesaplanır. **300 TL ve üzeri siparişlerde satıcı bazında kargo ücretsizdir.** Kalan tutara göre dinamik kargo baremi ilerleme çubuğu gösterilir.
+- **Misafir Sepeti Birleştirme:** Giriş yapmamış kullanıcıların sepeti oturumda (`session`) tutulur. Kullanıcı giriş yaptığında (`login`) veya kayıt olduğunda (`register`), misafir sepeti kullanıcının veritabanı sepetine otomatik aktarılır.
+- **Sepet Özeti & Sayacı:** Navbar'da anlık güncellenen sepet sayacı badge'i (`CartCounter`) ve sipariş özeti (Ara Toplam, Satıcı Kargo Ücretleri, Kupon İndirimi, Genel Toplam).
+
+### 2. Stok Aşımı Koruması (Kabul Kriteri)
+- Ürün detayında veya sepet sayfasında varyantın mevcut stok miktarından (`ProductVariant.stock`) fazla adet eklenemez veya artırılamaz.
+- Aşım durumunda kullanıcıya Türkçe uyarı mesajı verilir ve işlem engellenir.
+
+### 3. Favoriler Sistemi (Livewire 3)
+- **Kalp Butonu (`FavoriteButton`):** Ürün kartlarında ve ürün detay sayfasında interaktif kalp butonu ile tek tıkla favorilere ekleme/çıkarma.
+- **Misafir Yönlendirmesi:** Giriş yapmamış kullanıcı favori butonuna tıkladığında otomatik olarak giriş yapma sayfasına yönlendirilir.
+- **Müşteri Favorilerim Sayfası:** `/favorilerim` rotasında favoriye eklenen ürünler listelenir, tek tıkla sepete ekleme veya favorilerden çıkarma imkanı sunulur.
+
+### 4. Adres Defteri Yönetimi & Yetkilendirme (AddressPolicy)
+- **Adres Yönetim Arayüzü (`/hesabim/adresler`):** Modal destekli teslimat ve fatura adresi ekleme, düzenleme ve silme.
+- **81 İl ve İlçe Seçimi (`LocationService`):** İl seçildiğinde ilgili ile ait ilçelerin reaktif olarak doldurulduğu dinamik açılır menü.
+- **Varsayılan Adres Belirleme:** Tek tıkla varsayılan teslimat adresi seçebilme özelliği.
+- **AddressPolicy Koruması:** Bir kullanıcı başka bir kullanıcının adresini görüntüleyemez, güncelleyemez veya silemez (`403 Forbidden`).
+
+### 5. Kupon Motoru & Kabul Kriterleri (CouponService)
+- **Kupon Türleri:** Yüzde (`percentage`) ve sabit tutar (`fixed`) kuponları. Sabit kupon indirimi sepet ara toplamını aşamaz.
+- **Doğrulama Kuralları:** Kupon başlangıç/bitiş tarihleri, toplam kullanım limiti (`used_count < usage_limit`) ve minimum sepet tutarı kontrolü.
+- **Kabul Kriteri (Zorunlu):** Sepet hesabı (ara toplam, kargo, indirim, genel toplam) için **en az 5 birim test** yazılmıştır (`tests/Unit/CartCalculationTest.php` altında 8 birim test). Süresi dolmuş kupon denendiğinde Türkçe hata mesajı döner.
 
 ---
 
@@ -81,14 +113,14 @@ Hafta 4 şartnamesi ve Kanban yol haritasında yer alan **Arama, Filtreleme ve S
 
 ---
 
-## 📋 TODO & Gelecek Hafta Planı: Hafta 5 (Sepet, Favoriler, Adres ve Kupon) - [IN PROGRESS]
+## 📋 TODO & Gelecek Hafta Planı: Hafta 6 (Ödeme ve Sipariş Oluşturma) - [ARA DEMO 2] [IN PROGRESS]
 
-- [ ] **Sepet Yönetimi:** Ürün ekleme, silme, adet güncelleme, misafir sepeti birleştirme.
-- [ ] **Çok Satıcılı Sepet Gruplaması:** Ürünlerin sepette satıcı bazında ayrılması ve kargo hesaplama.
-- [ ] **Stok Aşımı Koruması:** Varyant stok miktarından fazla ürün eklenmesini engelleme.
-- [ ] **Favoriler Listesi:** Kalp butonu ile favorilere ekleme/çıkarma.
-- [ ] **Adres Defteri:** İl/ilçe seçimli teslimat ve fatura adresi yönetimi.
-- [ ] **Kupon Motoru:** Kupon doğrulama ve indirim hesaplama (En az 5 birim test).
+- [ ] **Checkout Sayfası:** Adres seçimi, kargo özeti ve mesafeli satış sözleşmesi.
+- [ ] **iyzico Sandbox Ödeme Entegrasyonu:** 3D Secure akışı ve ödeme doğrulama.
+- [ ] **Sipariş Bölme (Sub-Orders):** 1 ana sipariş (`orders`) ve satıcı başına 1 alt sipariş (`sub_orders`).
+- [ ] **Eşzamanlı Stok Düşümü:** `DB::transaction` ve `lockForUpdate()` ile yarış koşulu (race condition) koruması.
+- [ ] **Sipariş Onay E-postası:** Kuyruk (`Queue`) üzerinden asenkron e-posta bildirimi.
+- [ ] **Siparişlerim ve Sipariş Detay:** Müşteri sipariş takibi ve satıcı bazlı alt sipariş detayları.
 
 ---
 
@@ -143,11 +175,17 @@ Tarayıcınızda açın: **`http://127.0.0.1:8000`**
 
 ## 🧪 Test ve Kod Kalitesi
 
-Tüm iş kuralları, yetkilendirme politikaları, arama ve filtreleme özellikleri **86 adet otomatik test (263 assertion)** ile güvence altındadır:
+Tüm iş kuralları, yetkilendirme politikaları, arama, filtreleme, sepet, adres, favoriler ve kupon hesaplamaları **101 adet otomatik test (314 assertion)** ile güvence altındadır:
 
 ```bash
-# Tüm Feature ve Unit Testlerini Çalıştırın (86 Test, 263 Assertion)
+# Tüm Feature ve Unit Testlerini Çalıştırın (101 Test, 314 Assertion)
 php artisan test
+
+# Hafta 5 Sepet & Kupon Hesaplama Birim Testleri (8 Unit Test - Zorunlu Kabul Kriteri)
+php artisan test --filter=CartCalculationTest
+
+# Hafta 5 Uçtan Uca Feature Testleri (Stok, Misafir Birleştirme, Adres, Favoriler)
+php artisan test --filter=Hafta5FeatureTest
 
 # Hafta 4 Satıcı ProductPolicy Yetkilendirme Testi (403 Testi)
 php artisan test --filter=SellerProductAuthorizationTest
@@ -155,26 +193,21 @@ php artisan test --filter=SellerProductAuthorizationTest
 # Hafta 4 Arama ve URL Parametreli Filtre Testi
 php artisan test --filter=SearchAndFilterTest
 
-# Hafta 4 Satıcı Başvuru ve Admin Onay Testi
-php artisan test --filter=SellerApplicationTest
-
-# Hafta 4 Herkese Açık Mağaza Vitrin Testi
-php artisan test --filter=PublicStoreTest
-
-# Hafta 4 Taksit Seçenekleri Bonus Testi
-php artisan test --filter=InstallmentBonusTest
-
 # PSR-12 Standart Kontrolü (Laravel Pint)
 ./vendor/bin/pint --test
 ```
 
 ---
 
-## 📁 Hafta 1, 2, 3 ve 4 Teslimat Belgeleri
+## 📁 Hafta 1 - 5 Teslimat Belgeleri ve Çekirdek Servisler
 - **ER Diyagramı:** `docs/er-diagram.dbml` ([dbdiagram.io](https://dbdiagram.io) uyumlu)
 - **Arayüz Tel Çerçevesi (Wireframe):** `docs/wireframe.md`
 - **10 Haftalık Kanban Planı:** `docs/kanban-tasks.md`
+- **Sepet Servisi & Çok Satıcılı Kargo:** `app/Services/CartService.php`, `config/alsepete.php`
+- **Kupon Doğrulama & İndirim Motoru:** `app/Services/CouponService.php`
+- **81 İl & İlçe Servisi:** `app/Services/LocationService.php`
+- **Adres Defteri Yetkilendirmesi:** `app/Policies/AddressPolicy.php`
+- **Livewire Bileşenleri:** `CartPage.php`, `CartCounter.php`, `FavoriteButton.php`, `FavoritesPage.php`, `AddressManager.php`
 - **Arama & Canlı Autocomplete:** `app/Livewire/SearchDropdown.php`, `app/Http/Controllers/SearchController.php`
-- **Yetkilendirme Politikası:** `app/Policies/ProductPolicy.php`, `CategoryPolicy.php`
-- **Satıcı Paneli & Başvuru:** `app/Http/Controllers/Seller/ProductController.php`, `SellerApplicationController.php`, `Admin/SellerManagementController.php`
+- **Satıcı Ürün Politikası:** `app/Policies/ProductPolicy.php`
 - **Taksit Servisi:** `app/Services/InstallmentService.php`

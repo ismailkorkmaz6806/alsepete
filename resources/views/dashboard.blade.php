@@ -19,8 +19,8 @@
 
     <div class="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
-        <!-- Üst İstatistik Kartları -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <!-- Üst İstatistik ve Hızlı Erişim Kartları -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs flex items-center gap-4">
                 <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl shrink-0">
                     <i class="fa-solid fa-comments"></i>
@@ -43,17 +43,31 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl shrink-0">
-                    <i class="fa-solid fa-location-dot"></i>
+            <a href="{{ route('favorites.index') }}" class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs hover:border-rose-300 hover:shadow-md transition-all flex items-center justify-between group">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-500 group-hover:scale-105 transition-transform flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold block">{{ __('Favorilerim') }}</span>
+                        <span class="text-2xl font-black text-slate-900">{{ auth()->user()->favorites()->count() }}</span>
+                    </div>
                 </div>
-                <div class="truncate">
-                    <span class="text-xs text-slate-400 font-bold block">{{ __('Varsayılan Adres') }}</span>
-                    <span class="text-xs font-bold text-slate-800 truncate block">
-                        {{ auth()->user()->addresses->first()?->city ?? 'İstanbul' }} / {{ auth()->user()->addresses->first()?->district ?? 'Kadıköy' }}
-                    </span>
+                <i class="fa-solid fa-arrow-right text-xs text-slate-300 group-hover:text-rose-500 transition-colors"></i>
+            </a>
+
+            <a href="{{ route('addresses.index') }}" class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs hover:border-indigo-300 hover:shadow-md transition-all flex items-center justify-between group">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 group-hover:scale-105 transition-transform flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold block">{{ __('Adres Defterim') }}</span>
+                        <span class="text-2xl font-black text-slate-900">{{ auth()->user()->addresses()->count() }}</span>
+                    </div>
                 </div>
-            </div>
+                <i class="fa-solid fa-arrow-right text-xs text-slate-300 group-hover:text-indigo-600 transition-colors"></i>
+            </a>
         </div>
 
         <!-- Sorduğum Sorular ve Satıcı Yanıtları Sekmesi (Kullanıcının Aradığı Bölüm) -->

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use App\Models\ProductVariant;
+use App\Services\CartService;
 use App\Services\InstallmentService;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -123,12 +124,22 @@ class ProductDetail extends Component
     public function addToCart(): void
     {
         $variant = $this->selectedVariant;
-        if (! $variant || $variant->stock < 1) {
+        if (! $variant) {
+            session()->flash('cart_error', __('Lütfen bir ürün seçeneği belirleyin.'));
+
             return;
         }
 
-        $this->addedToCart = true;
-        session()->flash('cart_success', __('Ürün başarıyla sepete eklendi!'));
+        $cartService = app(CartService::class);
+        $result = $cartService->addItem($variant->id, $this->quantity);
+
+        if ($result['success']) {
+            $this->addedToCart = true;
+            session()->flash('cart_success', $result['message']);
+            $this->dispatch('cart-updated');
+        } else {
+            session()->flash('cart_error', $result['message']);
+        }
     }
 
     public function render()

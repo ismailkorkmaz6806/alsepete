@@ -1236,6 +1236,46 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        // Hafta 5 Test Kuponları: Sabit tutar, süresi dolmuş ve limiti dolmuş
+        Coupon::firstOrCreate(
+            ['code' => 'INDIRIM50'],
+            [
+                'type' => 'tutar',
+                'value' => 50.00,
+                'min_total' => 150.00,
+                'starts_at' => now(),
+                'ends_at' => now()->addMonths(3),
+                'usage_limit' => 500,
+                'used_count' => 0,
+            ]
+        );
+
+        Coupon::firstOrCreate(
+            ['code' => 'SURESIDOLDU'],
+            [
+                'type' => 'yuzde',
+                'value' => 20.00,
+                'min_total' => 100.00,
+                'starts_at' => now()->subMonths(2),
+                'ends_at' => now()->subDay(), // Süresi dün doldu
+                'usage_limit' => 100,
+                'used_count' => 5,
+            ]
+        );
+
+        Coupon::firstOrCreate(
+            ['code' => 'LIMITDOLDU'],
+            [
+                'type' => 'tutar',
+                'value' => 25.00,
+                'min_total' => 100.00,
+                'starts_at' => now()->subMonth(),
+                'ends_at' => now()->addMonth(),
+                'usage_limit' => 10,
+                'used_count' => 10, // Limit dolmuş
+            ]
+        );
+
         // 10. Bonus 2: Gerçekçi ve Zengin Satıcı Soru & Cevapları
         $customerUser = User::where('email', 'musteri1@alsepete.com')->first();
         $customerId = $customerUser ? $customerUser->id : 1;
@@ -1326,6 +1366,33 @@ class DatabaseSeeder extends Seeder
                     'is_approved' => true,
                 ]
             );
+        }
+
+        // 11. Hafta 5: Örnek Müşteri Adresleri ve Favoriler
+        if ($customerUser) {
+            Address::firstOrCreate(
+                ['user_id' => $customerUser->id, 'title' => 'Evim'],
+                [
+                    'city' => 'İstanbul',
+                    'district' => 'Kadıköy',
+                    'full_address' => 'Caferağa Mah. Moda Cad. No: 42 Daire: 5',
+                    'is_default' => true,
+                ]
+            );
+
+            Address::firstOrCreate(
+                ['user_id' => $customerUser->id, 'title' => 'İş Yeri / Ofis'],
+                [
+                    'city' => 'İstanbul',
+                    'district' => 'Beşiktaş',
+                    'full_address' => 'Levent Mah. Büyükdere Cad. Kanyon Ofis No: 185 Kat: 12',
+                    'is_default' => false,
+                ]
+            );
+
+            if (isset($createdProducts[0])) {
+                $customerUser->favorites()->syncWithoutDetaching([$createdProducts[0]->id]);
+            }
         }
     }
 }
