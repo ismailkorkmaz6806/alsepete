@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Livewire\AddressManager;
 use App\Livewire\CartPage;
 use App\Livewire\FavoriteButton;
+use App\Livewire\FavoriteCounter;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Category;
@@ -262,5 +263,27 @@ class Hafta5FeatureTest extends TestCase
             ->assertForbidden();
 
         $this->assertDatabaseHas('addresses', ['id' => $address->id]);
+    }
+
+    /**
+     * Hafta 5: Favori sayacı Livewire ile reaktiftir ve favorite-updated olayı ile anında güncellenir.
+     */
+    public function test_favori_sayaci_anlik_guncellenir(): void
+    {
+        // 1. Başlangıçta sayaç 0
+        $counter = Livewire::actingAs($this->customer)
+            ->test(FavoriteCounter::class)
+            ->assertDontSee('bg-rose-500');
+
+        // 2. Ürünü favoriye ekle
+        Livewire::actingAs($this->customer)
+            ->test(FavoriteButton::class, ['productId' => $this->product->id])
+            ->call('toggle')
+            ->assertDispatched('favorite-updated');
+
+        // 3. Sayaç bileşeni favorite-updated olayını dinleyip 1 gösterir
+        $counter->dispatch('favorite-updated')
+            ->assertSee('1')
+            ->assertSee('bg-rose-500');
     }
 }
