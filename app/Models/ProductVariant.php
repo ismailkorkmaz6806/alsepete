@@ -62,6 +62,11 @@ class ProductVariant extends Model
         return $this->hasMany(CartItem::class, 'variant_id');
     }
 
+    public function getFinalPriceAttribute(): float
+    {
+        return (float) ($this->discount_price ?? $this->price);
+    }
+
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class, 'variant_id');

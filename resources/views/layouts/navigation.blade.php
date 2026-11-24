@@ -63,19 +63,20 @@
         <!-- Sağ Aksiyonlar (Favoriler, Sepet, Hesap Menüsü) -->
         <div class="flex items-center space-x-2 sm:space-x-4 shrink-0">
             <!-- Favoriler -->
-            <a href="#" class="hidden sm:flex relative p-2 rounded-xl hover:bg-slate-100 text-slate-600 hover:text-rose-500 transition-colors">
+            <a href="{{ route('favorites.index') }}" class="hidden sm:flex relative p-2 rounded-xl hover:bg-slate-100 text-slate-600 hover:text-rose-500 transition-colors" title="{{ __('Favorilerim') }}">
                 <i class="fa-regular fa-heart text-lg"></i>
-                <span class="absolute -top-1 -right-1 bg-rose-500 text-white text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center shadow-sm">0</span>
+                @auth
+                    @php $favCount = Auth::user()->favorites()->count(); @endphp
+                    @if($favCount > 0)
+                        <span class="absolute -top-1 -right-1 bg-rose-500 text-white text-[9px] font-bold rounded-full min-w-[16px] h-4 px-1 flex items-center justify-center shadow-xs">
+                            {{ $favCount }}
+                        </span>
+                    @endif
+                @endauth
             </a>
 
-            <!-- Sepet İkonu (Cart with Badge) -->
-            <a href="#" class="flex items-center gap-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3.5 py-2 rounded-xl font-bold text-xs transition-colors">
-                <div class="relative">
-                    <i class="fa-solid fa-bag-shopping text-sm text-indigo-600"></i>
-                    <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-[9px] font-bold rounded-full w-3.5 h-3.5 flex items-center justify-center">0</span>
-                </div>
-                <span class="hidden sm:inline">{{ __('Sepetim') }}</span>
-            </a>
+            <!-- Sepet İkonu (Livewire Counter ile Reaktif) -->
+            <livewire:cart-counter />
 
             <!-- Hesap Menüsü (Account Dropdown) -->
             @guest
@@ -110,6 +111,12 @@
                         <div class="py-1">
                             <a href="{{ route('dashboard') }}" class="flex items-center gap-2 px-4 py-2 text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">
                                 <i class="fa-solid fa-chart-pie w-4 text-slate-400"></i> {{ __('Kontrol Paneli') }}
+                            </a>
+                            <a href="{{ route('favorites.index') }}" class="flex items-center gap-2 px-4 py-2 text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">
+                                <i class="fa-solid fa-heart w-4 text-slate-400"></i> {{ __('Favori Ürünlerim') }}
+                            </a>
+                            <a href="{{ route('addresses.index') }}" class="flex items-center gap-2 px-4 py-2 text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">
+                                <i class="fa-solid fa-map-location-dot w-4 text-slate-400"></i> {{ __('Adres Defterim') }}
                             </a>
                             <a href="{{ route('dashboard') }}#sorular" class="flex items-center gap-2 px-4 py-2 text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">
                                 <i class="fa-solid fa-comments w-4 text-slate-400"></i> {{ __('Sorduğum Sorular') }}

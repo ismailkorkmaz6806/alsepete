@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\App;
 use Spatie\Permission\Models\Role;
@@ -42,7 +43,7 @@ class TurkishValidationTest extends TestCase
     {
         Role::firstOrCreate(['name' => 'customer']);
 
-        $user = \App\Models\User::factory()->create();
+        $user = User::factory()->create();
         $user->assignRole('customer');
 
         $response = $this->actingAs($user)->get('/admin');

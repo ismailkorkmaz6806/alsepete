@@ -10,6 +10,9 @@ use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\Seller\QuestionController as SellerQuestionController;
 use App\Http\Controllers\SellerApplicationController;
 use App\Http\Controllers\StoreShowController;
+use App\Livewire\AddressManager;
+use App\Livewire\CartPage;
+use App\Livewire\FavoritesPage;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
@@ -42,6 +45,17 @@ Route::get('/urun/{slug}', [ProductShowController::class, 'show'])->name('produc
 Route::get('/kategori/{slug}', [CategoryShowController::class, 'show'])->name('categories.show');
 Route::get('/arama', [SearchController::class, 'index'])->name('search');
 Route::get('/magaza/{slug}', [StoreShowController::class, 'show'])->name('stores.show');
+
+// Hafta 5: Sepet, Favoriler ve Adres Defteri
+Route::get('/sepet', CartPage::class)->name('cart.index');
+Route::get('/checkout', function () {
+    return redirect()->route('cart.index')->with('couponMessage', 'Ödeme ve sipariş oluşturma adımı Hafta 6 teslimatında açılacaktır.');
+})->name('checkout');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/favorilerim', FavoritesPage::class)->name('favorites.index');
+    Route::get('/hesabim/adresler', AddressManager::class)->name('addresses.index');
+});
 
 // Satıcı Ol Başvuru Rotaları
 Route::middleware('auth')->group(function () {

@@ -299,6 +299,13 @@
                     </div>
                 @endif
 
+                @if(session()->has('cart_error'))
+                    <div class="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-xs font-bold flex items-center gap-2 animate-fade-in">
+                        <i class="fa-solid fa-circle-exclamation text-rose-600"></i>
+                        <span>{{ session('cart_error') }}</span>
+                    </div>
+                @endif
+
                 <div class="flex items-center gap-3">
                     <!-- Adet Sayacı -->
                     <div class="flex items-center border border-slate-200 rounded-2xl bg-slate-50 p-1">
@@ -333,6 +340,9 @@
                             <span>{{ __('Stokta Yok') }}</span>
                         </button>
                     @endif
+
+                    <!-- Favorilere Ekle Kalp Butonu -->
+                    <livewire:favorite-button :product-id="$product->id" size="sm" :key="'fav-detail-'.$product->id" />
                 </div>
 
                 <!-- Satıcıya Soru Sor Hızlı Buton -->
